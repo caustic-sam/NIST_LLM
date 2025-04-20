@@ -1,0 +1,31 @@
+[bliss_rest]
+bliss = bliss.rest_service.default_rest_plugin:DefaultRestPlugin
+
+[console_scripts]
+BlissAxisManager = bliss.tango.servers.axis_ds:main
+BlissBrother = bliss.tango.servers.bliss_brother_ds:main
+BlissMotorController = bliss.tango.servers.motor_controller_ds:main
+BlissTangoServer = bliss.tango.servers.bliss_ds:main
+BlissTempManager = bliss.tango.servers.temp_ds:main
+CT2 = bliss.tango.servers.ct2_ds:main
+FuelCell = bliss.tango.servers.fuelcell_ds:main
+Gpib = bliss.tango.servers.gpib_ds:main
+Keithley428 = bliss.tango.servers.keithley428_ds:main
+LinkamDsc = bliss.tango.servers.linkamdsc_ds:main
+MCCE = bliss.tango.servers.mcce_ds:main
+Multimeter = bliss.tango.servers.keithley_ds:main
+Multiplexer = bliss.tango.servers.multiplexer_ds:main
+Musst = bliss.tango.servers.musst_ds:main
+NanoBpm = bliss.tango.servers.nanobpm_ds:main
+NanoBpmServo = bliss.tango.servers.nanobpm_servo_ds:main
+Regulation = bliss.tango.servers.regulation_ds:main
+Wago = bliss.tango.servers.wago_ds:main
+beacon-server = bliss.beacon.app.beacon_server:main
+bliss = bliss.shell.main.step1:main
+bliss-ct2-server = bliss.controllers.ct2.server:main
+bliss-emulator = bliss.controllers.emulator:main
+bliss-flex-server = bliss.controllers.correlator.flex.server:main
+bliss-handel-server = bliss.controllers.mca.handel.server:main
+bliss-service = bliss.comm.service:main
+bliss-speedgoat-server = bliss.controllers.speedgoat.server:main
+tcp-proxy = bliss.comm.tcp_proxy:main

@@ -1,0 +1,6 @@
+"""
+.. autosummary::
+    :toctree:
+
+    temperature
+"""

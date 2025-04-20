@@ -1,0 +1,358 @@
+<!--
+ This file is part of the bliss project
+
+ Copyright (c) Beamline Control Unit, ESRF
+ Distributed under the GNU LGPLv3. See LICENSE for more info.
+-->
+<style>
+
+.col-v-center {
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+}
+
+.col-compact {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.list-group-item-compact {
+  padding: 4px 6px;
+}
+
+.panel-compact {
+  padding: 4px 6px;
+}
+
+.panel-heading-compact {
+  padding: 4px 6px;
+}
+
+</style>
+
+{% block toolbar %}
+
+
+<div class="container">
+<div class="row">
+  <div class="btn-group" role="group" aria-label="global functionality">
+    <a class="btn btn-default disabled-btn" href="javascript:void(0)">
+      {{ name if name else "unknown session" }}
+    </a>
+    <button type="button" class="btn btn-primary apply"
+      data-toggle="tooltip" title="save changes">
+      <span class="fa fa-save"></span>
+      Save
+    </button>
+    <button type="button" class="btn btn-info"
+      data-name="{{name}}" data-filename="{{filename}}"
+      data-toggle="tooltip" title="View in yaml file">
+      <span class="fa fa-eye"></span>
+      Yaml
+    </button>
+  </div>
+</div>
+
+{% endblock %}
+
+<div style="height:10px;"></div>
+
+{% block params %}
+
+<div class="row">
+  <form id="session_form" class="form-horizontal">
+    <fieldset>
+
+      <div class="row">
+	<!-- Text input-->
+	<div class="form-group">
+	  <label class="col-sm-2 control-label" for="name">Name</label>
+	  <div class="col-sm-3">
+	    <input id="name" name="name" type="text"
+		   placeholder="{{ name }}" value="{{ name }}"
+		   class="form-control input-md" required></input>
+	  </div>
+	</div>
+	<!-- Text input-->
+	<div class="form-group">
+	  <label class="col-sm-2 control-label" for="setup">Setup script</label>
+	  <div class="col-sm-3">
+	    <input id="setup" name="setup" type="text"
+		   placeholder="{{ setup }}" value="{{ setup }}"
+		   class="form-control input-md"></input>
+	  </div>
+	</div>
+
+      </div>
+      <div class="row">
+	<div class="col-sm-5">
+	  <div class="panel panel-danger">
+	    <div class="panel-heading panel-heading-compact">Available (tag view)</div>
+	    <div class="panel-body panel-compact">
+	      <div class="btn-group" role="group">
+		<button type="button" class="btn btn-default"
+			id="available-stree-expand-all"
+			data-toggle="tooltip" data-placement="bottom"
+			title="Expand all items">
+		  <span class="fa fa-angle-double-down"></span>
+		</button>
+		<button type="button" class="btn btn-default"
+			id="available-stree-collapse-all"
+			data-toggle="tooltip" data-placement="bottom"
+			title="Collapse all items">
+		  <span class="fa fa-angle-double-up"></span>
+		</button>
+	      </div>
+	      <div class="btn-group" role="group">
+		<button type="button" class="btn btn-default"
+			id="available-stree-clear"
+			data-toggle="tooltip" data-placement="bottom"
+			title="Clear selection">
+		  <span class="fa fa-eraser"></span>
+		</button>
+	    </div>
+
+	      <div style="height:10px;"></div>
+	      <div id="available-stree"
+		   class="beacon-tree"></div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- vertical button bar -->
+	<div class="col-sm-1 col-v-center col-compact">
+	  <button type="button" title="Select"
+		  class="btn btn-lg btn-default center-block add"
+      id="add-session-item"
+      style="margin-top: 25px; margin-bottom: 25px;">
+	    <i class="fa fa-chevron-right"></i>
+    </button>
+
+	  <button type="button" title="Unselect"
+		  class="btn btn-lg btn-default center-block remove"
+		  id="remove-session-item">
+	    <i class="fa fa-chevron-left"></i>
+	  </button>
+	</div>
+
+	<div class="col-sm-5">
+	  <div class="panel panel-info">
+	    <div class="panel-heading panel-heading-compact">Selected (tag view)</div>
+	    <div class="panel-body panel-compact">
+	      <div class="btn-group" role="group">
+		<button type="button" class="btn btn-default"
+			id="selected-stree-expand-all"
+			data-toggle="tooltip" data-placement="bottom"
+			title="Expand all nodes">
+		  <span class="fa fa-angle-double-down"></span>
+		</button>
+		<button type="button" class="btn btn-default"
+			id="selected-stree-collapse-all"
+			data-toggle="tooltip" data-placement="bottom"
+			title="Collapse all nodes">
+		  <span class="fa fa-angle-double-up"></span>
+		</button>
+	      </div>
+	      <div class="btn-group" role="group">
+		<button type="button" class="btn btn-default"
+			id="selected-stree-clear"
+			data-toggle="tooltip" data-placement="bottom"
+			title="Clear selection">
+		  <span class="fa fa-eraser"></span>
+		</button>
+	      </div>
+
+	      <div style="height:10px;"></div>
+
+	      <div id="selected-stree"
+		   class="beacon-tree"></div>
+	    </div>
+	  </div>
+	</div>
+
+      </div>
+    </fieldset>
+  </form>
+</div> <!-- row -->
+</div> <!-- container -->
+
+{% endblock %}
+
+<script type="text/javascript">
+
+  var SESSION_ITEMS = null;
+
+  function submit_form(form) {
+    var formData = new FormData(form);
+    formData.append("__original_name__", "{{ name }}");
+    var selected_tree = $("#selected-stree").treeview(true);
+    $.each(SESSION_ITEMS.selected, function(name, item) {
+      formData.append("items[]", name);
+    });
+    $.ajax({
+      url: "plugin/session/edit",
+      type: "POST",
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: formData,
+      success: function(result) {
+        data = $.parseJSON(result);
+        show_notification(data.message, data.type);
+      }
+    });
+  }
+
+  function select_items() {
+    move_session_items($("#available-stree").treeview(true),
+                       SESSION_ITEMS.available, SESSION_ITEMS.selected);
+  }
+
+  function unselect_items() {
+    move_session_items($("#selected-stree").treeview(true),
+                       SESSION_ITEMS.selected, SESSION_ITEMS.available);
+  }
+
+  function move_session_items(treeview, src_tree, dst_tree) {
+    var nodes = get_selected_items(treeview);
+    $.each(nodes, function(name, node) {
+      delete src_tree[name];
+      dst_tree[name] = SESSION_ITEMS.all[name];
+    });
+    update_session_trees(SESSION_ITEMS);
+    unselect_all($("#available-stree").treeview(true));
+    unselect_all($("#selected-stree").treeview(true));
+  }
+
+  function add_session_tree_nodes(tree_options, items) {
+    var tag_nodes = {};
+    $.each(items, function(name, item) {
+      var tags = item.tags;
+      if (tags == null || tags.length == 0) {
+        tags = ["(no tag)"];
+      }
+      $.each(tags, function(idx, tag) {
+        var nodes = null;
+        if (tag_nodes.hasOwnProperty(tag)) {
+          nodes = tag_nodes[tag];
+        }
+        else {
+          nodes = [];
+          tree_options.data.push({
+            text: tag,
+            nodes: nodes,
+            icon: "fa fa-folder-open",
+            type: "folder",
+          });
+          tag_nodes[tag] = nodes;
+        }
+        item.text = item.name;
+        nodes.push(item);
+      });
+    });
+  }
+
+  function update_session_tree(tree_tag, items) {
+    var tree_options = get_tree_options();
+    tree_options.multiSelect = true;
+    tree_options.levels = 2;
+    tree_options.data = [];
+    add_session_tree_nodes(tree_options, items);
+    tree_tag.treeview(tree_options);
+  }
+
+  function update_session_trees(data) {
+    update_session_tree($("#available-stree"), data.available);
+    update_session_tree($("#selected-stree"), data.selected);
+  }
+
+  function unselect_all_session_tree(tree) {
+    $.each(tree.getSelected(), function(index, node) {
+      tree.unselectNode(node, {silent: true});
+    });
+  }
+
+  $(function() {
+
+    $(".apply").on("click", function() {
+      submit_form($("#session_form")[0]);
+    });
+
+    $(".add").click(function() {
+      select_items();
+    });
+
+    $(".remove").click(function() {
+      unselect_items();
+    });
+
+    $("#available-stree-expand-all").on("click", function() {
+      $("#available-stree").treeview("expandAll",
+        { levels: 2, silent: true } );
+    });
+
+    $("#available-stree-collapse-all").on("click", function() {
+      $("#available-stree").treeview("collapseAll",
+        { silent: true } );
+    });
+
+    $("#available-stree-clear").on("click", function() {
+      unselect_all_session_tree($("#available-stree").treeview(true));
+    });
+
+    $("#selected-stree-clear").on("click", function() {
+      unselect_all_session_tree($("#selected-stree").treeview(true));
+    });
+
+    $("#selected-stree-expand-all").on("click", function() {
+      $("#selected-stree").treeview("expandAll",
+        { levels: 2, silent: true } );
+    });
+
+    $("#selected-stree-collapse-all").on("click", function() {
+      $("#selected-stree").treeview("collapseAll",
+        { silent: true } );
+    });
+
+    var all_items = {};
+    $.each(BEACON_TREES["tags"], function(i1, tag) {
+      $.each(tag.nodes, function(i2, node) {
+        all_items[node.name] = node;
+      });
+    });
+
+    SESSION_ITEMS = {all: all_items, available: {}, selected: {}};
+
+    $.get("item/{{ name }}", function(data) {
+      $.each(data.items, function(index, item) {
+        SESSION_ITEMS.selected[item.name] = item;
+      });
+      $.each(SESSION_ITEMS.all, function(name, item) {
+        if (!SESSION_ITEMS.selected.hasOwnProperty(name)) {
+          SESSION_ITEMS.available[name] = item;
+        }
+      });
+      update_session_trees(SESSION_ITEMS);
+    }, "json")
+    .fail(function() {
+      show_notification("Error while getting session {{ name }}", "error");
+    });
+  });
+
+  function get_selected_items(tree) {
+    var items = {};
+    $.each(tree.getSelected(), function(i1, node) {
+      if(node.type == "folder") {
+        $.each(node.nodes, function(i2, sub_node) {
+          items[sub_node.name] = sub_node;
+        });
+      }
+      else {
+        items[node.name] = node;
+      }
+    });
+    return items;
+  }
+</script>

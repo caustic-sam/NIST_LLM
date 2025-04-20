@@ -1,0 +1,29 @@
+# 📘 Changelog
+
+All notable changes to the NIST_LLM project will be documented in this file.
+
+---
+
+## [v2.0.0-alpha] - 2025-03-30
+
+### 🎉 Added
+- PDF processing pipeline with SQLite storage
+- Modular code in `scripts/`: `txt_processing.py`, `store_results.py`, `integrated_pipeline.py`
+- Random PDF selection logic (sample of 10)
+- Cleanliness score calculation
+- Automatic DB initialization (`data/nist_llm.db`)
+- DevContainer support for Docker and Codespaces
+
+### 🧠 Notes
+- This is the first working checkpoint for v2.0
+- Additional features like CLI args, LLM prep, and API endpoints are upcoming
+- Cleanup of older file versions still in progress
+
+---
+
+## [Unreleased]
+
+### 🚧 Planned
+- Integration with document translation and vector storage
+- CLI interface for switching data sources
+- Full unit test coverage and automated test pipeline

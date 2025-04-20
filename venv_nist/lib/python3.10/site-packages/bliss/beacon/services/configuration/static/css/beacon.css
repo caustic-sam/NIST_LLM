@@ -1,0 +1,70 @@
+/* -*- coding: utf-8 -*- */
+/*
+ * This file is part of the bliss project
+ *
+ * Copyright (c) Beamline Control Unit, ESRF
+ * Distributed under the GNU LGPLv3. See LICENSE for more info.
+*/
+
+.beacon-body {
+    padding-top: 60px;
+/*    background-color: #222222;  */
+}
+
+.beacon-col {
+    height: 100%;
+}
+
+.beacon-brand-img-compact {
+    padding: 0;
+    padding-right: 15px;
+    /* padding: 4px 8px 8px 4px; */
+/*    margin-left: -5px; */
+}
+
+.beacon-tree-col {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.beacon-navigation {
+    position: fixed;
+    height: calc(100% - 98px);
+    padding-left:10px;
+    width:32%;
+}
+
+.beacon-editor {
+    border: 1px solid #AAA;
+    font-family: monospace;
+    min-height: 350px;
+    padding: 4px;
+}
+
+.beacon-navigation .beacon-tree {
+    overflow-y: auto;
+    height: 100%;
+}
+
+#session_form .beacon-tree {
+    overflow-y: auto;
+    height: calc(100% - 270px);
+}
+
+.beacon-tree ul.list-group {
+    margin-bottom: 0;
+}
+
+.beacon-tree li.list-group-item {
+    padding: 2px 4px;
+}
+
+/* navbar for tree */
+.beacon-tree-navbar {
+    min-height: 45px;
+    margin-bottom: 5px;
+}
+
+.disabled-btn {
+    pointer-events: none;
+}

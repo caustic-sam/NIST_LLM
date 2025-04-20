@@ -1,0 +1,86 @@
+<!--
+ This file is part of the bliss project
+
+ Copyright (c) Beamline Control Unit, ESRF
+ Distributed under the GNU LGPLv3. See LICENSE for more info.
+-->
+<style type="text/css" media="screen">
+  #file-editor {
+    min-width: 200px;
+    min-height: 500px;
+    height: 100%;
+  }
+</style>
+
+<div class="row">
+  <div class="btn-group" role="group" aria-label="global functionality">
+    <a class="btn btn-default disabled-btn" href="javascript:void(0)">
+      {{ name if name else "unknown file" }}
+    </a>
+    <button type="button" class="btn btn-primary save-editor"
+	    data-toggle="tooltip" title="save changes" disabled>
+      Save
+      <span class="fa fa-save"></span>
+    </button>
+    <button type="button" class="btn btn-primary revert-editor"
+	    data-toggle="tooltip" title="revert editor changes" disabled>
+      Revert
+      <span class="fa fa-undo"></span>
+    </button>
+  </div>
+</div>
+
+</div>
+<div style="height:10px;"></div>
+<div class="row" style="height: calc(100% - 44px);">
+  <div id="file-editor">{{ content }}</div>
+</div>
+
+<script>
+  $(function() {
+    var editor = configure_file_editor("file-editor", "{{ ftype }}");
+
+    function update_buttons() {
+      var clean = editor.getSession().getUndoManager().isClean();
+      $(".save-editor").prop("disabled", clean);
+      $(".revert-editor").prop("disabled", clean);
+    }
+
+    editor.on("input", function(e) {
+      update_buttons();
+    });
+
+    function save_editor() {
+      save_file("{{ name }}", editor.getValue(), function() {
+        editor.getSession().getUndoManager().markClean();
+        update_buttons();
+        reload_trees();
+        show_notification("{{name}} saved", "success");
+      });
+    }
+
+    // Save editor with CTRL-S
+    $('#file-editor').bind('keydown', function(e) {
+      if (e.ctrlKey || e.metaKey) {
+        switch (String.fromCharCode(e.which).toLowerCase()) {
+          case 's':
+            e.preventDefault();
+            if (!$(".save-editor").prop("disabled"))
+              save_editor();
+            break;
+        }
+      }
+    });
+
+    $(".save-editor").on("click", save_editor);
+
+    $(".revert-editor").on("click", function() {
+      $.get("db_file/{{ name }}", function(data) {
+        editor.setValue(data.content);
+      }, "json")
+      .fail(function() {
+        show_notification("Error", "error");
+      });
+    });
+  });
+</script>

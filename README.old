@@ -1,0 +1,36 @@
+# NIST_LLM Directory Structure
+
+📂 **NIST_LLM/** - Root directory of the project.
+│
+├── 🐍 **venv/** - Contains the Python virtual environment for dependency isolation.
+│
+├── 📊 **data/**
+│   ├── **raw/** - Stores raw data files, which are untouched and original.
+│   └── **processed/** - Contains processed data that is ready for use.
+│
+├── 📝 **docs/** - Documentation files explaining the project setup, usage, and architecture.
+│
+├── 🧩 **src/** - Source code for the project, including all main components.
+│   ├── **main.py** - The main entry point of the application.
+│   ├── **config.py** - Configuration settings for various environments.
+│   ├── 🗃️ **database/**
+│   │   ├── **connection.py** - Setup for the database connection.
+│   │   ├── **models.py** - Database model definitions.
+│   │   └── **queries.py** - Custom database queries.
+│   ├── 🌐 **api/**
+│   │   ├── **api.py** - Defines the API and routes.
+│   │   └── **endpoints/** - Individual API endpoints.
+│   └── 🚀 **services/**
+│       ├── **data_service.py** - Services to handle data-related logic.
+│       └── **nist_service.py** - Specific services for NIST data operations.
+│
+├── 🧪 **tests/** - Contains tests for all components of the application.
+│   ├── **test_database.py**
+│   ├── **test_api.py**
+│   └── **test_services.py**
+│
+├── ⚙️ **scripts/** - Additional utility scripts for setup and maintenance.
+│
+├── 📜 **requirements.txt** - Lists all project dependencies.
+│
+└── 📘 **README.md** - Overview and setup instructions for the project.

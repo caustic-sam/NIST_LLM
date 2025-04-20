@@ -1,0 +1,29 @@
+# TEST calibration
+# Type TABLE
+# Comments are starting with '#'
+# Spaces are mainly ignored.
+
+CALIB_NAME = B52
+CALIB_TYPE = TABLE
+CALIB_TIME = 1400081171.300155
+CALIB_DESC = "test table : example of matching lines"
+#CALIB_TITI = 14
+
+B52[0.8e-2] = -0.83e-02
+B52[1]=1
+B52[3]= 2
+B52[5]=-12
+B52 [6]=  -3
+B52 [7]=   2
+B52[10]=   4.5
+ B52[13]=7.5
+ B52 [15] = 18.5   
+B52[18]=0.5e2
+B52[23]=	42
+B52[23.1]=0.61e2
+B52[27.401] = 0.72e2
+B52[32]=  62
+B52[0.5e2] = +0.53e2
+
+
+

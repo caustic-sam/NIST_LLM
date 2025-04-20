@@ -1,0 +1,8 @@
+[blissdata]
+hdf5_fallback = blissdata.streams.hdf5_fallback
+lima = blissdata.streams.lima
+lima2 = blissdata.streams.lima2
+scan_sequence = blissdata.streams.scan_sequence
+
+[console_scripts]
+memory_tracker = blissdata.redis_engine.memory_tracker:cli

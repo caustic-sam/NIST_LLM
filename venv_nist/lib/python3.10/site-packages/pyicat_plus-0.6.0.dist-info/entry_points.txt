@@ -1,0 +1,6 @@
+[console_scripts]
+icat-nexus-definitions = pyicat_plus.apps.icat_as_nexus:main
+icat-store-from-file = pyicat_plus.apps.store_from_file:main
+icat-store-processed = pyicat_plus.apps.store_processed:main
+icat-store-raw = pyicat_plus.apps.store_raw:main
+icat-sync-raw = pyicat_plus.apps.sync_raw:main

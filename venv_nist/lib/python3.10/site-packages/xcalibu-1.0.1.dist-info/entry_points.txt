@@ -1,0 +1,3 @@
+[console_scripts]
+xcalibu = xcalibu.xcalibu:main
+xcalibu_server = xcalibu.Xcalibuds:main

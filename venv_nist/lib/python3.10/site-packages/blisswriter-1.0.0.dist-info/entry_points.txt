@@ -1,0 +1,4 @@
+[console_scripts]
+NexusSessionWriter = blisswriter.app.process:main
+NexusWriterService = blisswriter.app.service:main
+RegisterNexusWriter = blisswriter.app.register_service:main

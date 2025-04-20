@@ -1,0 +1,17 @@
+# QEpro Ocen Optics spectrometer calibration
+# 21 march 2018
+# Type POLY
+
+CALIB_NAME = OO_QEpro
+CALIB_TYPE = POLY
+CALIB_TIME = 1400076973.280716
+CALIB_ORDER = 3
+CALIB_XMIN = 0
+CALIB_XMAX = 1024
+CALIB_DESC = "Poly MCA QEpro"
+
+C0 = 248.04324341
+C1 = 0.7960531712
+C2 = -3.98926e-5
+C3 = 8.93556e-10
+

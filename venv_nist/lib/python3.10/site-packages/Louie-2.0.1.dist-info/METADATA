@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: Louie
+Version: 2.0.1
+Summary: Signal dispatching mechanism
+Home-page: https://github.com/11craft/louie/
+Download-URL: https://pypi.python.org/pypi/Louie
+Author: Patrick K. O'Brien and contributors
+License: BSD
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
+
+=====
+Louie
+=====
+
+.. image:: https://travis-ci.org/11craft/louie.svg
+    :target: https://travis-ci.org/11craft/louie
+
+.. image:: https://readthedocs.org/projects/louie/badge/?version=latest
+    :target: http://louie.readthedocs.org/en/latest/?badge=latest
+    :alt: Documentation Status
+
+Louie provides Python programmers with a straightforward way to dispatch
+signals between objects in a wide variety of contexts. It is based on
+PyDispatcher_, which in turn was based on a highly-rated recipe_ in the
+Python Cookbook.
+
+.. _PyDispatcher: http://pydispatcher.sf.net/
+
+.. _recipe: https://code.activestate.com/recipes/87056/

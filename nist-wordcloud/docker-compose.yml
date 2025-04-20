@@ -1,0 +1,9 @@
+
+services:
+  yt-wordcloud:
+    build: .
+    volumes:
+      - .:/app                          # Mounts current folder so .png is visible
+      - ../yt-whisper/whisper/output:/app/output  # Keeps your existing output mount
+    working_dir: /app
+    command: python nist_wordcloud_single.py

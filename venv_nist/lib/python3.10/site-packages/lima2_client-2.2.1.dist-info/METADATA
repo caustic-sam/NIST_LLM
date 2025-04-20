@@ -1,0 +1,92 @@
+Metadata-Version: 2.4
+Name: lima2-client
+Version: 2.2.1
+Summary: Python client library for Lima2 detector
+Author: BCU (ESRF)
+License: Copyright (c) 2020-2024 Beamline Control Unit, ESRF
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+        
+Project-URL: Repository, https://gitlab.esrf.fr/limagroup/lima2-client
+Project-URL: Documentation, https://limagroup.gitlab-pages.esrf.fr/lima2-client/
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pytango
+Requires-Dist: gevent
+Requires-Dist: jsonschema
+Requires-Dist: jsonschema-default
+Requires-Dist: beartype
+Requires-Dist: numpy
+Requires-Dist: pyyaml
+Requires-Dist: typing-extensions
+Requires-Dist: h5py
+Provides-Extra: dev
+Requires-Dist: black==22.3; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: types-pyyaml; extra == "dev"
+Requires-Dist: types-jsonschema; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: ipython; extra == "dev"
+Requires-Dist: pytango-db; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-forked; extra == "dev"
+Requires-Dist: pytest-asyncio; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx; extra == "docs"
+Requires-Dist: sphinxcontrib-mermaid; extra == "docs"
+Requires-Dist: sphinxcontrib-napoleon; extra == "docs"
+Requires-Dist: sphinx-immaterial; extra == "docs"
+Requires-Dist: recommonmark; extra == "docs"
+Dynamic: license-file
+
+# LImA 2 Client library
+
+This project provides a Python interface to the LImA 2 distributed system.
+
+Checkout the [documentation here](https://limagroup.gitlab-pages.esrf.fr/lima2-client/).
+
+### Development setup
+
+In order to install lima2-client in a new conda environment:
+
+```sh
+conda create -n l2c -c esrf-bcu python==3.10 pytango pytango-db
+pip install .[dev]
+```
+The `dev` extra dependency adds linting, formatting, static analysis and testing tools.
+It also installs `ipython` required to run the `lima2_shell`.
+
+### Quickstart with blissdemo
+
+With `bliss-demo-servers` running, you can run an interactive Lima2 client shell to manipulate the
+Lima2 simulator devices and test the client API:
+
+```sh
+export TANGO_HOST="localhost:10000"  # Assuming you are running bliss-demo-servers locally
+lima2_shell
+```
+
+The `lima2_shell` utility instantiates a `Client` object using config from `l2c_config.yaml`,
+creates a set of default control, acquisition and processing parameters, and starts an ipython session.
+
+### Bootstrapping the documentation
+
+The source for the documentation is in the `docs` folder. Here are the instructions to built and read it locally. The documentation is built with [Doxygen](http://www.doxygen.org/) and [Sphinx](http://www.sphinx-doc.org). The sphinx template is from [Sphinx Material](https://bashtage.github.io/sphinx-material/).
+
+```
+    conda create -n doc --file docs/requirements.txt -c conda-forge
+    conda activate doc
+    cd docs
+    make html
+```
+
+The html documentation is generated in `docs/.build/html`.

@@ -1,0 +1,36 @@
+# TEST calibration
+# Type TABLE
+# Comments are starting with '#'
+# Spaces are mainly ignored.
+
+CALIB_NAME = GAUSS1
+CALIB_TYPE = TABLE
+CALIB_TIME = 1400081171.300155
+CALIB_DESC = "roughly a gaussian..."
+
+GAUSS1[-5] =  1.2
+GAUSS1[-4] =  2.3
+GAUSS1[-3] =  5.7
+GAUSS1[-2] = 12.6
+GAUSS1[-1] = 20.9
+GAUSS1[0]  = 24.9
+GAUSS1[1]  = 20.9
+GAUSS1[2]  = 12.6
+GAUSS1[3]  =  5.7
+GAUSS1[4]  =  2.3
+GAUSS1[5]  =  1.2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+Metadata-Version: 2.2
+Name: PyMca5
+Version: 5.9.4
+Summary: Mapping and X-Ray Fluorescence Analysis
+Home-page: http://pymca.sourceforge.net
+Download-URL: https://github.com/vasole/pymca/archive/v5.9.4.tar.gz
+Author: V. Armando Sole
+Author-email: sole@esrf.fr
+License: MIT
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Scientific/Engineering :: Visualization
+License-File: LICENSE
+License-File: LICENSE.GPL
+License-File: LICENSE.LGPL
+License-File: LICENSE.MIT
+Requires-Dist: numpy
+Requires-Dist: matplotlib>1.0
+Requires-Dist: fisx>=1.1.6
+Requires-Dist: h5py
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: download-url
+Dynamic: home-page
+Dynamic: license
+Dynamic: platform
+Dynamic: requires-dist
+Dynamic: summary
+
+Stand-alone application and Python tools for interactive and/or batch processing analysis of X-Ray Fluorescence Spectra. Graphical user interface (GUI) and batch processing capabilities provided

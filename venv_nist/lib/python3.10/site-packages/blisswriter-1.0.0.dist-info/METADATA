@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: blisswriter
+Version: 1.0.0
+Summary: Bliss NeXus-compliant HDF5 file writer
+Home-page: https://gitlab.esrf.fr/bliss/bliss/-/tree/master/blisswriter
+Author: BCU (ESRF)
+License: LGPLv3
+Project-URL: Source, https://gitlab.esrf.fr/bliss/bliss/-/tree/master/blisswriter
+Project-URL: Documentation, https://bliss.gitlab-pages.esrf.fr/bliss/
+Project-URL: Tracker, https://gitlab.esrf.fr/bliss/bliss/issues/
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: blissdata >=1
+Requires-Dist: pyicat-plus
+Provides-Extra: dev
+Requires-Dist: blissdata[tango] ; extra == 'dev'
+Requires-Dist: hdf5plugin ; extra == 'dev'
+Requires-Dist: pytest >=7 ; extra == 'dev'
+Requires-Dist: black >=22 ; extra == 'dev'
+Requires-Dist: flake8 >=4 ; extra == 'dev'
+Provides-Extra: tango
+Requires-Dist: blissdata[tango] ; extra == 'tango'
+Provides-Extra: test
+Requires-Dist: blissdata[tango] ; extra == 'test'
+Requires-Dist: hdf5plugin ; extra == 'test'
+Requires-Dist: pytest >=7 ; extra == 'test'
+
+Bliss Writer
+============
+
+The `blisswriter` project provides NeXus-compliant HDF5 file writing based on
+data published by `blissdata`. It can be used in three ways
+
+* writer service for a single `bliss` session as a *process*
+  * command line interface: `NexusSessionWriter`
+  * consumer of Redis data published by `blissdata`
+* writer service for a single `bliss` session as a *Tango device*
+  * command line interface: `NexusWriterService`
+  * consumer of Redis data published by `blissdata`
+* writer python API
+  * python API: `from blisswriter.writer.main import ScanWriterWithState`
+  * same API used by the writer services
+
+`blisswriter` is developed and maintained by the [Software group](https://www.esrf.fr/Instrumentation/software)
+of the [European Synchrotron](https://www.esrf.fr/).

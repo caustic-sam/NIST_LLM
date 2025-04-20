@@ -1,0 +1,21 @@
+# GAP calibration U32A on ID21
+# feb 2023  /users/blissadm/local/beamline_configuration/CC4/KOHZU/UNDU_CALIB/U32a_1_table.dat
+# Type POLY
+# Harmonic 1
+# energy 4.5 -> 10.6 keV
+
+CALIB_NAME = U32A_poly
+CALIB_TYPE = POLY
+CALIB_TIME = 1400076973.280716
+CALIB_ORDER = 6
+CALIB_XMIN = 4.5
+CALIB_XMAX = 10.6
+CALIB_DESC = "Oh mon poly oh oh oh"
+
+C6=0.00183579
+C5=-0.07343073
+C4=1.21708214
+C3=-10.65837865
+C2=51.91920884
+C1=-131.33463772
+C0=145.16458297

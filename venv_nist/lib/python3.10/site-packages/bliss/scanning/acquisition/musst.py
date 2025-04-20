@@ -1,0 +1,357 @@
+# -*- coding: utf-8 -*-
+#
+# This file is part of the bliss project
+#
+# Copyright (c) Beamline Control Unit, ESRF
+# Distributed under the GNU LGPLv3. See LICENSE for more info.
+
+import time
+import gevent
+from gevent import event
+import numpy
+
+from bliss.scanning.chain import AcquisitionMaster, AcquisitionSlave
+from bliss.scanning.channel import AcquisitionChannel
+
+
+class MusstDefaultAcquisitionMaster(AcquisitionMaster):
+    def __init__(self, controller, musst, count_time=None, npoints=1, ctrl_params=None):
+
+        super().__init__(controller, ctrl_params=ctrl_params)
+
+        self.count_time = count_time
+        self.musst = musst
+
+    def prepare(self):
+        pass
+
+    def start(self):
+        pass
+
+    def stop(self):
+        if self.musst.STATE == self.musst.RUN_STATE:
+            self.musst.ABORT
+
+    def trigger(self):
+        self.trigger_slaves()
+        self.musst.ct(self.count_time, wait=True)
+        if self._counters:
+            data = (
+                c.conversion_function(x)
+                for c, x in zip(self._counters, self.musst.read_all(*self._counters))
+            )
+            for channel_data, channel in zip(data, self.channels):
+                channel.emit(channel_data)
+
+
+class MusstAcquisitionMaster(AcquisitionMaster):
+    def __init__(
+        self,
+        musst_dev,
+        program=None,
+        program_data=None,
+        program_start_name=None,
+        program_abort_name=None,
+        vars=None,
+        program_template_replacement=None,
+        ctrl_params=None,
+        prepare_once=False,
+        start_once=False,
+        last_iter_index=1,
+        **keys,
+    ):
+        """
+        Acquisition master for the musst card.
+
+        program -- program filename you need to load for your scan
+        program_data -- program data string you need to load for you scan
+            Either program or program_data needs to be specified.
+            If both are set, program_data is used rather than program.
+        program_start_name -- name of program to be started (RUN musst command)
+        program_abort_name -- name of program called on cleanup
+        program_template_replacement -- substitution variable before sending it to the card
+        vars -- all variable you want to set before the musst program starts
+        """
+        AcquisitionMaster.__init__(
+            self,
+            musst_dev,
+            name=musst_dev.name,
+            trigger_type=AcquisitionMaster.HARDWARE,
+            prepare_once=prepare_once,
+            start_once=start_once,
+            ctrl_params=ctrl_params,
+            **keys,
+        )
+        self.musst = musst_dev
+        self.program = program
+        self.program_data = program_data
+        if self.program is None and self.program_data is None:
+            raise ValueError("Either program or program_data needs to be set")
+        self.program_start_name = program_start_name
+        self.program_abort_name = program_abort_name
+        if program_template_replacement is not None:
+            self.program_template_replacement = program_template_replacement
+        else:
+            self.program_template_replacement = dict()
+        self.vars = vars if vars is not None else dict()
+
+        self.last_iter_index = last_iter_index
+        self.next_vars = None
+        self._iter_index = 0
+        self._running_state = False
+        self._event = event.Event()
+        self._start_epoch = None
+
+    @property
+    def running_state(self):
+        return self._running_state
+
+    @property
+    def name(self):
+        return f"{self.device.name}_master"
+
+    def __iter__(self):
+        self._iter_index = 0
+        if isinstance(self.vars, (list, tuple)):
+            vars_iter = iter(self.vars)
+            while True:
+                self.next_vars = next(vars_iter)
+                yield self
+                self._iter_index += 1
+        elif self.start_once:
+            self.next_vars = self.vars
+            while self._iter_index <= self.last_iter_index:
+                yield self
+                self._iter_index += 1
+        else:
+            self.next_vars = self.vars
+            while True:
+                yield self
+                self._iter_index += 1
+                if not self.parent:
+                    break
+
+    def prepare(self):
+        if self._iter_index > 0 and self.prepare_once:
+            return
+
+        if self._iter_index == 0:
+            if self.program_data is not None:
+                self.musst.upload_program(
+                    self.program_data,
+                    template_replacement=self.program_template_replacement,
+                )
+            else:
+                self.musst.upload_file(
+                    self.program, template_replacement=self.program_template_replacement
+                )
+
+        for var_name, value in self.next_vars.items():
+            self.musst.putget("VAR %s %s" % (var_name, value))
+        self._start_epoch = None
+        self._running_state = False
+        self._event.set()
+
+    def start(self):
+        if self._iter_index > 0 and self.start_once:
+            return
+
+        self.musst.run(self.program_start_name)
+        self._start_epoch = time.time()
+        self._running_state = True
+        self._event.set()
+
+    def stop(self):
+        if self.musst.STATE == self.musst.RUN_STATE:
+            self.musst.ABORT
+            if self.program_abort_name:
+                self.musst.run(self.program_abort_name)
+                self.wait_ready()
+
+    def trigger_ready(self):
+        return self.musst.STATE != self.musst.RUN_STATE
+
+    def wait_ready(self):
+        if self.start_once and not self.last_iter():
+            return
+
+        while self.musst.STATE == self.musst.RUN_STATE:
+            gevent.sleep(0.02)
+        self._running_state = False
+        self._event.set()
+
+    def last_iter(self):
+        return self._iter_index == self.last_iter_index
+
+
+def MusstAcquisitionSlave(
+    musst_dev,
+    program=None,
+    program_start_name=None,
+    program_abort_name=None,
+    store_list=None,
+    vars=None,
+    program_template_replacement=None,
+    max_data_rate=0,
+):
+    """
+    This will create either a simple MusstAcquisitionSlave or
+    MusstAcquisitionMaster + MusstAcquisitionSlave for compatibility reason.
+    This chose is made if you provide a **program**.
+    """
+    if program is None:
+        return _MusstAcquisitionSlave(
+            musst_dev,
+            store_list=store_list,
+            max_data_rate=max_data_rate,
+        )
+    else:
+        master = MusstAcquisitionMaster(
+            musst_dev,
+            program=program,
+            program_start_name=program_start_name,
+            program_abort_name=program_abort_name,
+            vars=vars,
+            program_template_replacement=program_template_replacement,
+        )
+        return _MusstAcquisitionSlave(
+            master,
+            store_list=store_list,
+            max_data_rate=max_data_rate,
+        )
+
+
+class _MusstAcquisitionSlave(AcquisitionSlave):
+    class Iterator(object):
+        def __init__(self, acq_device):
+            self.__device = acq_device
+            self.__current_iter = iter(acq_device.device)
+
+        def __next__(self):
+            next(self.__current_iter)
+            return self.__device
+
+    def __init__(
+        self,
+        musst,
+        store_list=None,
+        max_data_rate=0,
+        ctrl_params=None,
+    ):
+        """
+        Acquisition device for the musst card.
+
+        store_list -- a list of variable you store in musst memory during the scan
+        """
+        AcquisitionSlave.__init__(
+            self,
+            musst,
+            trigger_type=AcquisitionSlave.HARDWARE,
+            ctrl_params=ctrl_params,
+        )
+        store_list = store_list if store_list is not None else list()
+        self.channels.extend(
+            (
+                AcquisitionChannel(f"{self.name}:{name}", numpy.int32, ())
+                for name in store_list
+            )
+        )
+        self.__stop_flag = False
+        if isinstance(musst, MusstAcquisitionMaster):
+            self._master = musst
+        else:
+            self._master = None
+        self.__musst_device = None
+        self.__max_data_rate = max_data_rate
+
+    def __iter__(self):
+        if isinstance(self.device, MusstAcquisitionMaster):
+            return _MusstAcquisitionSlave.Iterator(self)
+        raise TypeError("'MusstAcquisitionSlave' is not iterable")
+
+    def prepare(self):
+        if isinstance(self.device, MusstAcquisitionMaster):
+            self.__musst_device = self._master.device
+            self._master.prepare()
+        else:
+            master = self.parent
+            if not isinstance(master, MusstAcquisitionMaster):
+                raise RuntimeError(
+                    "MusstAcquisitionSlave must have a MusstAcquisitionMaster as"
+                    " parent here it's (%r)" % master
+                )
+            elif master.device != self.device:
+                raise RuntimeError(
+                    "MusstAcquisitionMaster doesn't have the same musst device"
+                    " master has (%s) and device (%s)"
+                    % (master.device.name, self.device.name)
+                )
+            self.__musst_device = self.device
+            self._master = master
+
+    def acq_prepare(self):
+        # do not wait reading task
+        return self.prepare()
+
+    @property
+    def musst(self):
+        return self.__musst_device
+
+    @property
+    def start_epoch(self):
+        return self._master._start_epoch
+
+    def start(self):
+        if isinstance(self.device, MusstAcquisitionMaster):
+            self._master.start()
+
+    def stop(self):
+        if isinstance(self.device, MusstAcquisitionMaster):
+            self._master.stop()
+        self.__stop_flag = True
+        self._master._event.set()
+
+    def trigger_ready(self):
+        if isinstance(self.device, MusstAcquisitionMaster):
+            return self.device.trigger_ready()
+        return True
+
+    def wait_ready(self):
+        if isinstance(self.device, MusstAcquisitionMaster):
+            self._master.wait_ready()
+        # self.wait_reading()
+
+    def reading(self):
+        master = self._master
+        last_read_event = 0
+
+        # wait the master to start
+        while not self.__stop_flag and not master._running_state:
+            master._event.clear()
+            master._event.wait()
+
+        while not self.__stop_flag and master._running_state:
+            new_read_event = self._send_data(last_read_event)
+            if new_read_event != last_read_event:
+                last_read_event = new_read_event
+            gevent.sleep(0.1)
+        self._send_data(last_read_event)  # final send
+
+    def _send_data(self, last_read_event):
+        data = self.musst.get_data(
+            len(self.channels), last_read_event, self.__max_data_rate
+        )
+        if data.size > 0:
+            self.channels.update_from_array(data)
+            nb_event_read = data.shape[0]
+            last_read_event += nb_event_read
+            self.emit_progress_signal({"recv_data_len": last_read_event})
+
+        return last_read_event
+
+    def wait_reading(self):
+        master = self._master
+        if master is not None:
+            if master.start_once and not master.last_iter():
+                return
+        AcquisitionSlave.wait_reading(self)

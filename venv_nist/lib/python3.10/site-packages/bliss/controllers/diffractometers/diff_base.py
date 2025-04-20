@@ -1,0 +1,886 @@
+# -*- coding: utf-8 -*-
+#
+# This file is part of the bliss project
+#
+# Copyright (c) Beamline Control Unit, ESRF
+# Distributed under the GNU LGPLv3. See LICENSE for more info.
+
+
+from __future__ import annotations
+import numpy
+import tabulate
+
+from bliss import global_map
+from bliss.physics.hkl.geometry import HklGeometry
+from bliss.config.settings import HashObjSetting
+from bliss.common.standard import _move
+from bliss.common.utils import autocomplete_property
+from bliss.common.protocols import HasMetadataForScan
+from bliss.controllers.bliss_controller import BlissController
+from bliss.controllers.motors.hklmotors import HKLMotors
+from bliss.common.counter import SamplingMode
+from bliss.controllers.counter import SamplingCounterController
+
+__CURR_DIFF: Diffractometer | None = None
+__ALL_DIFF: dict[str, Diffractometer] = dict()
+
+
+def _clear_cache():
+    global __ALL_DIFF, __CURR_DIFF
+    __CURR_DIFF = None
+    __ALL_DIFF = {}
+
+
+def get_current_diffractometer() -> Diffractometer:
+    global __CURR_DIFF
+    if __CURR_DIFF is None:
+        try:
+            __CURR_DIFF = list(__ALL_DIFF.values())[0]
+        except Exception:
+            raise ValueError("No diffractometers defined.")
+    return __CURR_DIFF
+
+
+def register_diffractometer(name: str, obj: Diffractometer):
+    global __ALL_DIFF, __CURR_DIFF
+    __ALL_DIFF[name] = obj
+    if __CURR_DIFF is None:
+        __CURR_DIFF = obj
+
+
+def set_current_diffractometer(name_or_obj):
+    global __CURR_DIFF
+    if isinstance(name_or_obj, Diffractometer):
+        name = name_or_obj.name
+    else:
+        name = name_or_obj
+    obj = __ALL_DIFF.get(name, None)
+    if obj is None:
+        raise ValueError("No diffractometer registered with name [{0}]".format(name))
+    __CURR_DIFF = obj
+
+
+def get_diffractometer_list():
+    return list(__ALL_DIFF.keys())
+
+
+def pprint_diff_settings(name):
+    settings = dict(HashObjSetting(name))
+    for key in [key for key in settings.keys() if key.startswith("sample_")]:
+        val = settings.pop(key)
+        if key == "sample_reflections":
+            print("* {0} :".format(key))
+            for ref in val:
+                print("    - {0}".format(ref))
+        else:
+            print("* {0} : {1}".format(key, val))
+    for key in [key for key in settings.keys() if key.endswith("_limits")]:
+        print("* {0} : {1}".format(key, settings.pop(key)))
+    for key in [key for key in settings.keys() if key.endswith("_mode")]:
+        print("* {0} : {1}".format(key, settings.pop(key)))
+    for key in [key for key in settings.keys() if key.endswith("_pars")]:
+        print("* {0} : {1}".format(key, settings.pop(key)))
+    for key, val in settings.items():
+        print("* {0} : {1}".format(key, val))
+
+
+def remove_diff_settings(name, *keys):
+    settings = HashObjSetting(name)
+    if not len(keys):
+        settings.clear()
+    else:
+        for keyname in keys:
+            settings.remove(keyname)
+
+
+class DiffractometerCounterController(SamplingCounterController):
+    def __init__(self, diffractometer):
+        self.diffractometer = diffractometer
+        super().__init__(self.diffractometer.name)
+
+    def read(self, counter):
+        if counter.tag == "energy":
+            return self.diffractometer.energy
+        elif counter.tag == "wavelength":
+            return self.diffractometer.wavelength
+        else:
+            return self.diffractometer.get_axis(counter.tag).position
+
+
+class Diffractometer(BlissController, HasMetadataForScan):
+
+    """Diffractometer base class.
+
+    YML configuration example:
+
+    controller:
+        plugin: diffractometer
+        name: d4ch
+        geometry: E4CH
+        axes:
+
+            #--- declare real axis of the diffracto config ---
+
+            - name: $myomega
+            tags: real omega
+            - name: $mychi
+            tags: real chi
+            - name: $myphi
+            tags: real phi
+            - name: $mytth
+            tags: real tth
+
+            - name: $myenergy
+            tags: real energy
+
+            #--- export some pseudo axis ---
+
+            - name: H
+            tags: hkl_h
+            - name: K
+            tags: hkl_k
+            - name: L
+            tags: hkl_l
+            - name: Q
+            tags: q_q
+
+    """
+
+    EXTRA_COUNTER_TAGS = ["energy", "wavelength"]
+    PSI_CONSTANT_MODES = [
+        "psi_constant",
+        "psi_constant_vertical",
+        "psi_constant_horizontal",
+    ]
+
+    def __init__(self, config):
+        super().__init__(config)
+
+        geometry = config.get("geometry")
+        if geometry is None:
+            raise ValueError(
+                f"Missing geometry in config of Diffractometer '{self.name}'"
+            )
+
+        self._settings = HashObjSetting(self.name)
+        self._geometry = HklGeometry(geometry, self._settings)
+        register_diffractometer(self.name, self)
+        hklmot_cfg = self.__prepare_hklmotors_config()
+        self._motor_calc: HKLMotors | None = HKLMotors(self, hklmot_cfg)
+        self._scc = DiffractometerCounterController(self)
+        global_map.register(self, children_list=[self._scc])
+
+    def _get_item_owner(self, name, cfg, pkey):
+        """Return the controller that owns the items declared in the config.
+
+        By default, this controller is the owner of all config items.
+        However if this controller has sub-controllers that are the real owners
+        of some items, this method should use to specify which sub-controller is
+        the owner of which item (identified with name and pkey).
+        """
+        if pkey == "axes":
+            return self._motor_calc
+        else:
+            return self
+
+    def _load_config(self):
+        pass
+
+    def _get_subitem_default_module(self, class_name, cfg, parent_key):
+        if parent_key == "counters":
+            return "bliss.common.counter"
+        else:
+            raise NotImplementedError
+
+    def _get_subitem_default_class_name(self, cfg, parent_key):
+        if parent_key == "counters":
+            return "SamplingCounter"
+        else:
+            raise NotImplementedError
+
+    def _create_subitem_from_config(
+        self, name, cfg, parent_key, item_class, item_obj=None
+    ):
+
+        if item_obj is not None:
+            return item_obj
+
+        if parent_key == "counters":
+            tag = cfg["tag"]
+            if tag not in self.motor_names and tag not in self.EXTRA_COUNTER_TAGS:
+                raise ValueError(f"Unknown tag {cfg['tag']} for counter {name}")
+            cnt = item_class(name, self._scc, mode=SamplingMode.LAST)
+            cnt.tag = cfg["tag"]
+            return cnt
+        else:
+            raise NotImplementedError
+
+    def _init(self):
+        self._motor_calc._initialize_config()
+        self.calc_controller = self._motor_calc
+
+        # load counters declared in config
+        for cfg in self.config.get("counters", []):
+            self._get_subitem(cfg["name"])
+
+    def close(self):
+        self._close()
+
+    def _close(self):
+        if self._motor_calc is not None:
+            self._motor_calc.close()
+            self._motor_calc = None
+
+    def _calc_UB(self):
+        sample = self.sample
+        if sample.get_n_reflections() >= 2:
+            sample.computeUB()
+            print("(UB computed using Busing-Levy)")
+
+    def _calc_geo(self):
+        if self._motor_calc is not None:
+            self._motor_calc.update()
+
+    def _check_motor_calc(self):
+        if self._motor_calc is None:
+            raise RuntimeError("No HKLMotor controller defined")
+
+    def __info__(self):
+        self._calc_geo()
+        return self._geometry.info(self._motor_names)
+
+    def __del__(self):
+        self._close()
+
+    def __prepare_hklmotors_config(self):
+        """Prepare axes config for the HKLMotors sub-controller.
+
+        Add pseudo-axes that are not declared in the config.
+        """
+
+        real_names = list(self.axis_names)
+        pseudo_names = list(self.pseudo_names)
+
+        axes_cfgs = self._config.get("axes")
+        for cfg in axes_cfgs:
+            axis_name = cfg["name"]
+            axis_tag = cfg["tags"]
+
+            # check if axes tags are valid
+            if axis_tag.startswith("real") or axis_tag.startswith("param"):
+                axis_calc_name = axis_tag.split()[1]
+                if axis_calc_name in real_names:
+                    real_names.remove(axis_calc_name)
+                else:
+                    if axis_calc_name != "energy":
+                        raise KeyError(
+                            f"{axis_calc_name} is not not a valid real axis tag"
+                        )
+            else:
+                if axis_tag in pseudo_names:
+                    pseudo_names.remove(axis_tag)
+                else:
+                    raise KeyError(f"{axis_tag} is not a valid pseudo axis tag")
+
+        # check that all required reals have been found in config
+        if len(real_names):
+            raise KeyError(f"Missing real axis tags {real_names}")
+
+        # get remaining pseudo axis not declared in config
+        for axis_name in pseudo_names:
+            cfg = {"name": axis_name, "tags": axis_name}
+            axes_cfgs.append(cfg)
+
+        return {"axes": axes_cfgs}
+
+    def __motor_2_geo_name(self, motor_name):
+        for geoname, motname in self._motor_names.items():
+            if motname == motor_name:
+                return geoname
+        if motor_name in self._geometry.get_axis_names():
+            return motor_name
+        else:
+            raise ValueError("[{0}] is not a valid motor name.\n".format(motor_name))
+
+    def __ref_get_result(self, hkl_pos_wl):
+        (hkl, pos, wl) = hkl_pos_wl
+        return hkl + tuple([pos[name] for name in self.axis_names])
+
+    def __ref_get_pars(self, fname, pars):
+        if type(pars) is not tuple:
+            raise ValueError(self.__ref_get_usage(fname))
+        if len(pars) == 3:
+            return (pars, None)
+        if len(pars) - 3 != len(self.axis_names):
+            raise ValueError(
+                "Missing some motor values.\n{0}".format(self.__ref_get_usage(fname))
+            )
+        pos = dict(list(zip(self.axis_names, pars[3:])))
+        return (pars[:3], pos)
+
+    def __ref_get_usage(self, fname):
+        if fname.startswith("or"):
+            return "Use : {0}.{1}=(H,K,L) or {0}.{1}=({2})".format(
+                self.name, fname, ",".join(self.refhead)
+            )
+        else:
+            return "Use : {0}.{1}(H,K,L) or {0}.{1}({2})".format(
+                self.name, fname, ",".join(self.refhead)
+            )
+
+    @property
+    def counters(self):
+        return self._scc.counters
+
+    @property
+    def config(self):
+        return self._config
+
+    @autocomplete_property
+    def calc_controller(self) -> HKLMotors:
+        self._check_motor_calc()
+        return self._motor_calc
+
+    @calc_controller.setter
+    def calc_controller(self, hklmot: HKLMotors):
+        self._motor_calc = hklmot
+        self._motor_names = dict()
+        all_axis = self._motor_calc.reals + self._motor_calc.pseudos
+        for axis in all_axis:
+            tag = self._motor_calc._axis_tag(axis)
+            self._motor_names[tag] = axis.name
+        names = self._geometry.get_axis_constant_names("hkl")
+        if len(names):
+            frozen = self._settings.get("frozen_angles", None)
+            if frozen is not None:
+                pos = dict(
+                    [(name, val) for name, val in frozen.items() if name in names]
+                )
+                self._motor_calc.frozen_angles = pos
+
+    @property
+    def geometry_name(self):
+        return self._geometry.get_name()
+
+    @autocomplete_property
+    def geometry(self):
+        return self._geometry
+
+    @autocomplete_property
+    def sample(self):
+        return self._geometry.get_sample()
+
+    @property
+    def motor_names(self):
+        self._check_motor_calc()
+        return self._motor_names
+
+    @property
+    def motor_limits(self):
+        self._check_motor_calc()
+        lim_dict = dict()
+        for name in self.axis_names:
+            axis = self.get_axis(name)
+            lim_dict[axis.name] = axis.limits
+        return lim_dict
+
+    @property
+    def geo_limits(self):
+        lim_dict = dict()
+        for name, value in self._geometry.get_axis_limits().items():
+            lim_dict[self._motor_names.get(name, name)] = value
+        return lim_dict
+
+    @geo_limits.setter
+    def geo_limits(self, lim_dict):
+        geo_limits = dict()
+        if self._motor_calc is None:
+            for name, value in lim_dict.items():
+                geo_limits[self.__motor_2_geo_name(name)] = value
+        else:
+            mot_limits = self.motor_limits
+            for name, value in lim_dict.items():
+                geo_limits[self.__motor_2_geo_name(name)] = (
+                    max(mot_limits[name][0], value[0]),
+                    min(mot_limits[name][1], value[1]),
+                )
+        self._geometry.set_axis_limits(geo_limits)
+
+    @property
+    def axis_names(self):
+        return self._geometry.get_axis_names()
+
+    @property
+    def axis_pos(self):
+        return self._geometry.get_axis_pos()
+
+    @property
+    def pseudo_names(self):
+        return self._geometry.get_pseudo_names()
+
+    @property
+    def pseudo_pos(self):
+        return self._geometry.get_pseudo_pos()
+
+    @property
+    def hkl(self):
+        self._calc_geo()
+        pseudos = self._geometry.get_pseudo_pos()
+        hkl = tuple([pseudos[key] for key in ["hkl_h", "hkl_k", "hkl_l"]])
+        return hkl
+
+    @property
+    def pos(self):
+        self._calc_geo()
+        axis_pos = self._geometry.get_axis_pos()
+        pos = tuple([axis_pos[key] for key in self._geometry.get_axis_names()])
+        return pos
+
+    @property
+    def energy(self):
+        return self._geometry.get_energy()
+
+    @energy.setter
+    def energy(self, energy):
+        self._geometry.set_energy(energy)
+
+    @property
+    def wavelength(self):
+        return self._geometry.get_wavelength()
+
+    @wavelength.setter
+    def wavelength(self, wavelength):
+        self._geometry.set_wavelength(wavelength)
+
+    @property
+    def hklmode(self):
+        return self._geometry.get_mode("hkl")
+
+    @hklmode.setter
+    def hklmode(self, mode):
+        prev_mode = self._geometry.get_mode("hkl")
+        if mode != prev_mode and self._motor_calc is not None:
+            self._motor_calc.unfreeze()
+            self._settings["frozen_angles"] = self._motor_calc.frozen_angles
+        self._geometry.set_mode("hkl", mode)
+
+    @property
+    def hklmode_list(self):
+        return self._geometry.get_mode_names()["hkl"]
+
+    @property
+    def lattice(self):
+        return self.sample.get_lattice()
+
+    @lattice.setter
+    def lattice(self, lattice):
+        self.sample.set_lattice(*lattice)
+        self._calc_UB()
+        self._calc_geo()
+
+    @property
+    def reciprocal_lattice(self):
+        return self.sample.get_reciprocal_lattice()
+
+    @property
+    def UB(self):
+        return self.sample.get_UB()
+
+    @UB.setter
+    def UB(self, ub_array):
+        self.sample.set_UB(ub_array)
+        self._calc_geo()
+
+    @property
+    def or0(self):
+        if self.sample.get_n_reflections() < 1:
+            raise ValueError("Primary reflection not yet defined")
+        return self.__ref_get_result(self.sample.get_ref0())
+
+    @or0.setter
+    def or0(self, pars):
+        (hkl, pos) = self.__ref_get_pars("or0", pars)
+        if pos is None:
+            self._calc_geo()
+            pos = self._geometry.get_axis_pos()
+        self.sample.set_ref0(hkl, pos)
+        self._calc_UB()
+        self._calc_geo()
+
+    @property
+    def or1(self):
+        if self.sample.get_n_reflections() < 2:
+            raise ValueError("Secondary reflection not yet defined")
+        return self.__ref_get_result(self.sample.get_ref1())
+
+    @or1.setter
+    def or1(self, pars):
+        (hkl, pos) = self.__ref_get_pars("or1", pars)
+        if pos is None:
+            self._calc_geo()
+            pos = self._geometry.get_axis_pos()
+        self.sample.set_ref1(hkl, pos)
+        self._calc_UB()
+        self._calc_geo()
+
+    @property
+    def frozen_angles_names(self):
+        return self._geometry.get_axis_constant_names("hkl")
+
+    @property
+    def frozen_angles(self):
+        self._check_motor_calc()
+        pos_dict = self._motor_calc.frozen_angles
+        return pos_dict
+
+    @property
+    def reflist(self):
+        return tuple(map(self.__ref_get_result, self.sample.get_reflections()))
+
+    @reflist.setter
+    def reflist(self, reflist):
+        self.sample.remove_reflections()
+        for ref in reflist:
+            pars = self.__ref_get_pars("reflist", ref)
+            self.sample.add_one_reflection(*pars)
+
+    @property
+    def refhead(self):
+        return ("H", "K", "L") + tuple(
+            [self.motor_names.get(name, name) for name in self.axis_names]
+        )
+
+    def or_swap(self):
+        self.sample.swap_reflections(0, 1)
+        self._calc_UB()
+        self._calc_geo()
+
+    def get_axis(self, axis_tag):
+        self._check_motor_calc()
+        motor_name = self._motor_names.get(axis_tag, None)
+        if motor_name is None:
+            raise ValueError("Unknown axis name [{0}]".format(axis_tag))
+        return self._motor_calc.get_axis(motor_name)
+
+    def motor_pos_2_str(self, axis_pos):
+        axis_names = self._geometry.get_axis_names()
+        hstr = [
+            "{0:>10.10s}".format(self._motor_names.get(name, name))
+            for name in axis_names
+        ]
+        vstr = ["{0:10.4f}".format(axis_pos[name]) for name in axis_names]
+        return "{0}\n{1}\n".format(" ".join(hstr), " ".join(vstr))
+
+    def pseudo_pos_2_str(self, pos_dict):
+        pstr = "H K L = {pos[hkl_h]:f} {pos[hkl_k]:f} {pos[hkl_l]:f}\n".format(
+            pos=pos_dict
+        )
+        for name, value in list(pos_dict.items()):
+            if name[0:3] != "hkl":
+                pstr += "{0:20s} = {1:f}\n".format(name, value)
+        return pstr
+
+    def check_pos(self, *pos):
+        axis_names = self._geometry.get_axis_names()
+        if len(pos) != len(axis_names):
+            raise ValueError(
+                "Should gives {0} positions: {1}".format(
+                    len(axis_names),
+                    " ".join(
+                        [self._motor_names.get(name, name) for name in axis_names]
+                    ),
+                )
+            )
+        axis_pos = dict(list(zip(axis_names, pos)))
+        self._geometry.set_axis_pos(axis_pos)
+        calc_pseudo = self._geometry.get_pseudo_pos()
+        print("\nCalculated Positions:\n")
+        print((self.pseudo_pos_2_str(calc_pseudo)))
+        print((self.motor_pos_2_str(axis_pos)))
+        self._calc_geo()
+
+    def show_pos(self):
+        self._calc_geo()
+        print((self.pseudo_pos_2_str(self._geometry.get_pseudo_pos())))
+        print((self.motor_pos_2_str(self._geometry.get_axis_pos())))
+
+    def show_ref(self):
+        print(self.sample.info(self._motor_names))
+
+    def show_geo(self):
+        self._calc_geo()
+        print(self._geometry.info(self._motor_names))
+
+    def show(self):
+        self.show_geo()
+
+    def compute_solution(self, h, k, l, all_solutions=None):  # noqa: E741
+        """Compute real motors positions for a given hkl position,
+        without modifing current motor positions (reals and pseudos).
+        An empty list can be passed via 'all_solutions' argument to obtain
+        all the possible solutions.
+
+        Return (axis_pos, pseudo_pos, all_solutions)
+        """
+
+        # use frozen, if any, instead of current value for calculation
+        self._geometry.set_axis_pos(self.frozen_angles, update=False)
+        self._geometry.set_pseudo_pos(
+            {"hkl_h": h, "hkl_k": k, "hkl_l": l}, all_solutions=all_solutions
+        )
+        axis_pos = self._geometry.get_axis_pos()
+        self._geometry.set_axis_pos(axis_pos)
+        pseudo_pos = self._geometry.get_pseudo_pos()
+        self._calc_geo()
+        return axis_pos, pseudo_pos
+
+    def check_hkl(self, h, k, l, show_all_solutions=False):  # noqa: E741
+        if show_all_solutions:
+            all_solutions = []
+        else:
+            all_solutions = None
+
+        axis_pos, pseudo_pos = self.compute_solution(
+            h, k, l, all_solutions=all_solutions
+        )
+
+        print("\nCalculated Positions:\n")
+        print((self.pseudo_pos_2_str(pseudo_pos)))
+        print((self.motor_pos_2_str(axis_pos)))
+
+        if all_solutions is not None:
+            print("Other possible solutions:\n")
+            lines = [
+                self.motor_pos_2_str(axis_pos).split("\n")[1]
+                for axis_pos in all_solutions[1:]
+            ]
+            lines.append("")
+            print("\n".join(lines))
+
+    def do_hkl_trajectory(self, hkl1, hkl2, intervals, count_time, interpolation=1):
+        self._check_motor_calc()
+        print("\n>>> Computes trajectory ...")
+        npoints = intervals + 1
+        trajectory = self._motor_calc.calc_trajectory(
+            ("hkl_h", "hkl_k", "hkl_l"),
+            hkl1,
+            hkl2,
+            npoints,
+            count_time,
+            interpolation,
+        )
+        print(">>> Prepare trajectory ...")
+        trajectory.prepare()
+        print(">>> Move to start position HKL={0} ...".format(hkl1))
+        trajectory.move_to_start()
+        print("Start position:")
+        self.show_pos()
+        print(">>> Move to end position HKL={0} along trajectory ...".format(hkl2))
+        trajectory.move_to_end()
+        print("End position:")
+        self.show_pos()
+        print(">>> Done.\n")
+
+    def check_hklscan(self, hkl1, hkl2, intervals):
+        axis_names = self._geometry.get_axis_names()
+        (h1, k1, l1) = hkl1
+        (h2, k2, l2) = hkl2
+        errfound = 0
+        hstr = [
+            "{0:>10.10s}".format(self._motor_names.get(name, name))
+            for name in axis_names
+        ]
+        print(
+            ("{0:>8.8s} {1:>8.8s} {2:>8.8s} {3}".format("H", "K", "L", " ".join(hstr)))
+        )
+        npoints = intervals + 1
+        for (h, k, l) in zip(
+            numpy.linspace(h1, h2, npoints),
+            numpy.linspace(k1, k2, npoints),
+            numpy.linspace(l1, l2, npoints),
+        ):
+            try:
+                # use frozen, if any, instead of current value for calculation
+                self._geometry.set_axis_pos(self.frozen_angles, update=False)
+                self._geometry.set_pseudo_pos({"hkl_h": h, "hkl_k": k, "hkl_l": l})
+            except Exception:
+                print("Cannot compute HKL = ({0}, {1}, {2})".format(h, k, l))
+                errfound += 1
+                continue
+            axis_pos = self._geometry.get_axis_pos()
+            pos_str = ["{0:10.4f}".format(axis_pos[name]) for name in axis_names]
+            print(("{0:8.4f} {1:8.4f} {2:8.4f} {3}".format(h, k, l, " ".join(pos_str))))
+        self._calc_geo()
+        if errfound:
+            print(
+                "\n!!! Failed to compute {0} points (/{1}) !!!".format(
+                    errfound, npoints
+                )
+            )
+
+    def move_hkl(
+        self, h, k, l, print_motion=True, display_dependencies=True  # noqa: E741
+    ):
+        self._check_motor_calc()
+        h_motor = self._motor_calc.get_axis(self._motor_names["hkl_h"])
+        k_motor = self._motor_calc.get_axis(self._motor_names["hkl_k"])
+        l_motor = self._motor_calc.get_axis(self._motor_names["hkl_l"])
+        motor_pos = {h_motor: h, k_motor: k, l_motor: l}
+        _move(
+            motor_pos,
+            print_motion=print_motion,
+            display_dependencies=display_dependencies,
+        )
+
+    def umove_hkl(self, h, k, l, display_dependencies=True):  # noqa: E741
+        from bliss.shell.pt.umove import umove
+
+        self._check_motor_calc()
+        h_motor = self._motor_calc.get_axis(self._motor_names["hkl_h"])
+        k_motor = self._motor_calc.get_axis(self._motor_names["hkl_k"])
+        l_motor = self._motor_calc.get_axis(self._motor_names["hkl_l"])
+
+        motor_pos = {h_motor: h, k_motor: k, l_motor: l}
+
+        umove(
+            motor_pos,
+            display_dependencies=display_dependencies,
+        )
+
+    def refadd(self, *pars):
+        (hkl, pos) = self.__ref_get_pars("addref", pars)
+        if pos is None:
+            self._calc_geo()
+            pos = self._geometry.get_axis_pos()
+        self.sample.add_one_reflection(hkl, pos)
+
+    def refdel(self, *index):
+        idxlist = list(index)
+        idxlist.sort()
+        idxlist.reverse()
+        for idx in idxlist:
+            self.sample.remove_one_reflection(idx)
+
+    def reffit(self):
+        sample = self.sample
+        nref = sample.get_n_reflections()
+        if nref == 2:
+            sample.computeUB()
+            print("(UB computed using Busing-Levy)")
+            self._calc_geo()
+        elif nref > 2:
+            sample.affine()
+            print("(UB computed using {0} reflections)".format(nref))
+            self._calc_geo()
+        else:
+            raise ValueError("Not enough reflections to computes UB !!")
+
+    def refsave(self, filename):
+        with open(filename, "w") as reffile:
+            reffile.write(
+                "#" + tabulate.tabulate(self.reflist, self.refhead, "plain") + "\n"
+            )
+
+    def refload(self, filename):
+        reflist = list()
+        with open(filename, "r") as reffile:
+            for line in reffile.readlines():
+                if line.startswith("#"):
+                    continue
+                if len(line.split()) > 3:
+                    reflist.append(tuple(map(float, line.split())))
+        self.reflist = tuple(reflist)
+
+    def freeze(self, *vals):
+        if self.hklmode in self.PSI_CONSTANT_MODES:
+            if len(vals):
+                psi_value = vals[0]
+                self._geometry.set_mode_pars("hkl", self.hklmode, {"psi": psi_value})
+            else:
+                psi_value = self._geometry.get_mode_pars("hkl", self.hklmode)["psi"]
+            print("Freeze psi to {0}".format(psi_value))
+        else:
+            self._check_motor_calc()
+            names = self._geometry.get_axis_constant_names("hkl")
+            if not len(names):
+                print(
+                    (
+                        "in hkl [{0}] mode, no constant angles to freeze".format(
+                            self._geometry.get_mode("hkl")
+                        )
+                    )
+                )
+            else:
+                if not len(vals):
+                    self._motor_calc.freeze(names)
+                    pos_dict = self._motor_calc.frozen_angles
+                else:
+                    if len(vals) != len(names):
+                        raise ValueError(
+                            "Missing positions. Should give angles for [{0}]".format(
+                                " ".join(names)
+                            )
+                        )
+                    pos_dict = dict(list(zip(names, vals)))
+                    self._motor_calc.frozen_angles = pos_dict
+                self._settings["frozen_angles"] = pos_dict
+                for name, pos in list(pos_dict.items()):
+                    print(
+                        (
+                            "Freeze {0} [{1}] to {2:.4f}".format(
+                                self._motor_names[name], name, pos
+                            )
+                        )
+                    )
+
+    def unfreeze(self):
+        if self.hklmode in self.PSI_CONSTANT_MODES:
+            print("Cannot unfreeze psi in {0} mode.\n".format(self.hklmode))
+        else:
+            self._check_motor_calc()
+            names = list(self._motor_calc.frozen_angles.keys())
+            if not len(names):
+                print("No frozen angles.\n")
+            else:
+                for name in names:
+                    print(
+                        ("Unfreeze {0} [{1}]\n".format(self._motor_names[name], name))
+                    )
+                self._motor_calc.unfreeze()
+                self._settings["frozen_angles"] = self._motor_calc.frozen_angles
+
+    def pr_freeze(self):
+        if self.hklmode in self.PSI_CONSTANT_MODES:
+            psi_value = self._geometry.get_mode_pars("hkl", self.hklmode)["psi"]
+            print("Frozen angles:")
+            print("psi = {0:.4f}".format(psi_value))
+        else:
+            self._check_motor_calc()
+            if not len(self._geometry.get_axis_constant_names("hkl")):
+                print(
+                    "No frozen angles in current hkl mode [{0}].".format(self.hklmode)
+                )
+            else:
+                pos_dict = self._motor_calc.frozen_angles
+                if not len(pos_dict):
+                    print("No frozen angles defined.")
+                else:
+                    print("Frozen angles:")
+                    for name, pos in list(pos_dict.items()):
+                        print(
+                            (
+                                "{0} [{1}] = {2:.4f}".format(
+                                    self._motor_names[name], name, pos
+                                )
+                            )
+                        )
+
+    def scan_metadata(self):
+        meta_dict = {"@NX_class": "NXcollection"}
+        meta_dict["UB"] = self.UB.tolist()
+        meta_dict["or0"] = self.or0
+        meta_dict["or1"] = self.or1
+        meta_dict["energy"] = self.energy
+        meta_dict["wavelength"] = self.wavelength
+        meta_dict["lattice"] = self.lattice
+        return meta_dict

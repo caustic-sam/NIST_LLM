@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<group NX_class="NXentry" groupName="${entry}">
+    <group NX_class="NXsample" groupName="sample">
+      <name record="final" ESRF_description="Name of the sample" ESRF_mandatory="Mandatory" NAPItype="NX_CHAR">${Sample_name}</name>
+    </group>
+</group>

@@ -1,0 +1,145 @@
+VERSION 1.3.2
+
+Compatibility with numpy 2.0
+
+VERSION 1.3.1
+
+Wrap Beam class and allow parallelization by energy.
+
+VERSION 1.3.0
+
+Speed up multilayer fluorescence calculation.
+
+Remove doxygen generated documentation from version control.
+
+VERSION 1.2.1
+
+Provide additional methods to simplify debugging from python.
+
+Add doxygen generated documentation.
+
+Update build mechanisms
+
+VERSION 1.2.0
+
+Provide support for user beam filters and attenuators defined as transmission tables.
+
+VERSION 1.1.9
+
+Provide access to default element properties. 
+
+VERSION 1.1.8
+
+Python 3.8 wheels and generated code.
+
+VERSION 1.1.7
+
+Minor bug fixes
+
+Python 3.8beta wheels
+
+VERSION 1.1.6
+
+Fix clang problem related to compiler return value optimization.
+
+VERSION 1.1.5
+
+Fix Python 3.7 build
+
+VERSION 1.1.4
+
+Correct bug in getMultilayerFluorescence affecting the calculation of escape
+peaks.
+
+Implement a cache for calculation of escape peaks.
+
+Introduce the "ratio" key in escape lines to provide the escape ratio.
+
+VERSION 1.1.3
+
+Implement a calculation cache.
+
+Implement a configurable threshold on emission rate of an x-ray line to
+consider secondary excitation originated from that emission line.
+
+Correct problem calculating partial photoelectric cross sections in the
+vicinity of absoprtion edges.
+
+VERSION 1.1.2
+
+Correct inconsistency on M-shell data
+
+Correct problem calculating partial photoelectric cross-sections close to the
+Mo edge.
+
+VERSION 1.1.1
+
+Correct error on internal method name (issue #18)
+
+VERSION 1.1.0
+
+Forced release to comply with PyPI.
+
+VERSION 1.0.9
+
+Allow to set a data directory from the environemnt.
+
+Get rid of unused code.
+
+Adapt for PyMca-like initialization with PyMca versions relying nn fisx data.
+
+VERSION 1.0.8
+
+Add source of the data to the data files.
+
+Specific additions for Debian testing during build.
+
+VERSION 1.0.7
+
+Deal with incorrect line endings in data files
+
+Include use case example as part of the test suite
+
+Add testing information to README.rst
+
+Implement Travis and AppVeyor testing in repository
+
+VERSION 1.0.6
+
+Allow building without a cython installation
+
+Tests comparing against PyMca only taken into account if PyMca5 installed
+
+VERSION 1.0.5
+
+Correct error preventing compilation with Visual Studio 2015
+
+Tests passing under Python 3.5
+
+VERSION 1.0.4
+
+Workaround issue calculating secondary excitation due to scattering of the incident beam when the incident beam is normal to the sample surface.
+
+VERSION 1.0.3
+
+Add a new Elements constructor.
+
+VERSION 1.0.2
+
+Give correct weight to elastic scattering contribution.
+
+VERSION 1.0.1
+
+Add conda recipe.
+
+Correct test suite.
+
+Correct bug reading PyMca configuration files.
+
+VERSION 1.0.0
+
+First release.
+
+Secondary excitation due to fluorescence and elastic scattering considered.
+
+Tertiary implemented via an approximation method.

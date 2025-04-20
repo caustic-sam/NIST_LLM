@@ -1,0 +1,44 @@
+/* -*- coding: utf-8 -*- */
+/*
+ * This file is part of the bliss project
+ *
+ * Copyright (c) Beamline Control Unit, ESRF
+ * Distributed under the GNU LGPLv3. See LICENSE for more info.
+*/
+
+.notifications {
+  position: fixed;
+  z-index: 9999;
+}
+
+/* Positioning */
+.notifications.top-right {
+  right: 10px;
+  top: 55px;
+}
+
+.notifications.top-left {
+  left: 10px;
+  top: 55px;
+}
+
+.notifications.bottom-left {
+  left: 10px;
+  bottom: 25px;
+}
+
+.notifications.bottom-right {
+  right: 10px;
+  bottom: 25px;
+}
+
+/* Notification Element */
+.notifications > div {
+  position: relative;
+  margin: 5px 0px;
+}
+
+.notifications > div > a.close.pull-right {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}

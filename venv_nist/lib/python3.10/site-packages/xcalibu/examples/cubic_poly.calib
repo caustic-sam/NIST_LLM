@@ -1,0 +1,16 @@
+# Cubic POLY
+
+CALIB_NAME = poly cubic
+CALIB_TYPE = POLY
+CALIB_TIME = 1400076973.280716
+CALIB_ORDER = 3
+CALIB_XMIN = -10
+CALIB_XMAX = 5
+CALIB_DESC = "un polynome d'ordre 3 : 1.0 + 0.6·x¹ + 0.6·x² + 0.06·x³"
+
+
+C0 = 1.0
+C1 = 0.6
+C2 = 0.6
+C3 = 0.06
+

@@ -1,0 +1,43 @@
+# ─────────────────────────────
+# 🧰 CORE UTILITIES
+# ─────────────────────────────
+numpy==1.23.0               # Base numerical library; required by nearly everything
+pandas==2.0.3               # Data manipulation; depends on numpy >=1.21.0
+requests==2.32.3           # HTTP library; used throughout the stack
+
+# ─────────────────────────────
+# 🧠 DATA SCIENCE & ML
+# ─────────────────────────────
+scikit-learn==1.6.1         # Machine learning models and tools
+scipy==1.10.1               # Scientific computing; dependency of scikit-learn
+joblib==1.4.2               # Used by scikit-learn for model persistence
+
+# ─────────────────────────────
+# 📊 VISUALIZATION & UI
+# ─────────────────────────────
+matplotlib==3.7.1           # Required by wordcloud, bliss, pymca5
+pillow==11.1.0              # Imaging; required by wordcloud, matplotlib
+streamlit==1.40.1           # UI framework for apps
+
+# ─────────────────────────────
+# 📚 NLP STACK
+# ─────────────────────────────
+spacy==3.8.5                # NLP toolkit
+nltk==3.9.1                 # Classic NLP library; required by sumy
+sumy==0.11.0  
+wordcloud==1.9.2              # Text summarization library; uses nltk
+
+# ─────────────────────────────
+# 🌐 SCRAPING & PARSING
+# ─────────────────────────────
+beautifulsoup4==4.13.4      # HTML/XML parsing
+feedparser==6.0.11          # RSS feed parsing
+PyPDF2==3.0.1  
+pdfminer.six             # PDF text extraction
+
+# ─────────────────────────────
+# 🔌 ASYNC + I/O
+# ─────────────────────────────
+aiohttp==3.11.17            # Async HTTP client
+
+

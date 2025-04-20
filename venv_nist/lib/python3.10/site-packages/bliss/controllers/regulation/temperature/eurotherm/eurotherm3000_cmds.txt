@@ -1,0 +1,60 @@
+# ======= Eurotherm 3000 commands dict ============
+#
+#
+# { model_number: {"cmd": (register, dtype, dp), } ,  }
+# dp is decimal point
+
+#  model_number = 3504  => 3504/3508  process controllers
+# 85 Loop.1.OP.Ch1Out -100 100
+# 126 Loop.1.OP.Ch2Out -100 100
+{   
+3504 : {
+
+    "Programmer.Run.ProgStatus": (23, 'H', 0),
+    "auto_man_select": (273, 'H', 0), # OK
+    "instrument_ident": (122, 'H', 0), # OK
+    # "Access.IM": (199, 'H', 0),
+    # "Instrument.Display.Units": (516, 'H', 0),
+    "Instrument.InstInfo.Version": (107, 'H', 0),
+ 
+    "Loop.1.Main.ActiveOut": (4, 'H',1),
+    ### idem pc_output_power
+
+    "Loop.1.OP.Ch1Out": (85, 'H',1),
+    "Loop.1.OP.Ch2Out": (126, 'H',1),    
+
+    ## with old devices, it was 1
+    ##"process_variable": (289, 'H', 1), # only 1 decimal point
+    "process_variable": (22727, 'f', 0), # float  
+    
+    # "target_setpoint": (2, 'H', 1), # only 1 decimal point
+    "target_setpoint": (22730, 'f', 0), # float     
+    
+    "Loop.Main.WorkingSP": (5, 'H', 1), # only 1 decimal point
+    "Loop.Main.WorkingSP": (22732, 'f', 0), # float     
+
+
+
+    # "loop.PID.ProportionalBand":(6, 'H', 0),   # only 1 decimal point
+    "loop.PID.ProportionalBand":(22791, 'f', 0), # float
+    "loop.PID2.ProportionalBand":(22807, 'f', 0), # float    
+    
+    # "Loop.PID.IntegralTime": (49, 'H', 0),
+    "Loop.PID.IntegralTime": (22793, 'f', 0),
+    "Loop.PID2.IntegralTime": (22809, 'f', 0),    
+    
+    # "Loop.PID.DerivativeTime": (9, 'H', 0),
+    "Loop.PID.DerivativeTime": (22795, 'f', 0),
+    "Loop.PID2.DerivativeTime": (22811, 'f', 0),
+    
+    # "setpoint1": (24, 'H'),
+    "setpoint": (22730, 'f', 0),
+
+    "Loop.SP.Rate": (35, 'H', 1),
+    
+
+    },
+
+
+}
+

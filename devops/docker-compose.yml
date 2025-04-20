@@ -1,0 +1,14 @@
+# devops/docker-compose.yml
+
+services:
+  nist_llm:
+    build:
+      context: ..
+      dockerfile: devops/Dockerfile
+    ports:
+      - "8501:8501" # Expose Streamlit on port 8501
+    volumes:
+      - ..:/app
+      - ../data/nist_llm.db:/app/data/nist_llm.db  # Ensure the database file is accessible
+    environment:
+      - PYTHONUNBUFFERED=1

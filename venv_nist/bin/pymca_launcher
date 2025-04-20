@@ -1,0 +1,166 @@
+#!/Users/jm/Projects/NIST_LLM/venv_nist/bin/python
+# coding: utf-8
+#/*##########################################################################
+# Copyright (C) 2016 European Synchrotron Radiation Facility
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#
+#############################################################################*/
+"""This program can be used to execute any PyMca5 module by providing a module
+name as the first command line argument. The module name can be either a fully
+qualified name, or a short module name.
+
+A few shortcut commands, corresponding to legacy PyMca scripts, are also
+understood: edfviewer, elementsinfo, mca2edf, peakidentifier, pymca,
+pymcabatch, pymcapostbatch, pymcaroitool, rgbcorrelator
+"""
+import argparse
+import os
+import sys
+from importlib import import_module
+
+__authors__ = ["P. Knobel"]
+__license__ = "MIT"
+__date__ = "16/08/2016"
+
+# shortcut commands (previous scripts)
+shortcuts = {
+    'edfviewer': "PyMca5.PyMcaGui.pymca.EdfFileSimpleViewer",
+    'elementsinfo': "PyMca5.PyMcaGui.physics.xrf.ElementsInfo",
+    'mca2edf': "PyMca5.PyMcaGui.pymca.Mca2Edf",
+    'peakidentifier': "PyMca5.PyMcaGui.PeakIdentifier",
+    'pymca': "PyMca5.PyMcaGui.pymca.PyMcaMain",
+    'pymcabatch': "PyMca5.PyMcaGui.pymca.PyMcaBatch",
+    'pymcapostbatch': "PyMca5.PyMcaGui.pymca.PyMcaPostBatch",
+    'pymcaroitool': "PyMca5.PyMcaGui.pymca.QStackWidget",
+    'rgbcorrelator': "PyMca5.PyMcaGui.pymca.PyMcaPostBatch",
+}
+
+parser = argparse.ArgumentParser(description=__doc__)
+# first command line argument
+parser.add_argument('command',
+                    nargs='?',
+                    help='Name of module whose main() function you want to' +
+                         ' run, or "help" to print a help message. If this' +
+                         ' argument is omitted, run "PyMcaMain"')
+
+# remaining command-line arguments
+parser.add_argument('mainargs', nargs=argparse.REMAINDER,
+                    help='Arguments passed to the main() function, or name' +
+                         ' of a module if command is "help"')
+
+if len(sys.argv) > 1 and sys.argv[1].startswith("-")\
+        and not sys.argv[1] in ["-h", "--help"]:
+    # special case with no command but optional arguments for PyMcaMain
+    # example: pymca_launcher -f ...
+    # In that case, the parser raises a SystemExit (unrecognized arguments)
+    class Args:
+        command = None
+        mainargs = sys.argv[1:]
+
+    args = Args()
+else:
+    args = parser.parse_args()
+
+print_docstring = False
+if args.command == "help":
+    if args.mainargs:
+        # pymca_launcher help command
+        print_docstring = True
+        args.command = args.mainargs[0]
+    else:
+        # pymca_launcher help
+        parser.print_help()
+        parser.exit()
+
+if args.command in shortcuts:
+    modname = shortcuts[args.command]
+elif args.command is None:
+    modname = "PyMca5.PyMcaGui.pymca.PyMcaMain"
+else:
+    modname = args.command
+
+try:
+    # if command is a fully qualified module name
+    m = import_module(modname)
+except ImportError:
+    # try prepending PyMca5
+    try:
+        m = import_module("PyMca5.PyMca." + modname)
+    except ImportError:
+        m = None
+
+
+def execute(pyfname):
+    if not os.path.isfile(pyfname):
+        raise IOError("Could not find file " + pyfname)
+    if sys.version < '3.0':
+        execfile(pyfname)
+    else:
+        exec (compile(open(pyfname).read(), pyfname, 'exec'))
+
+
+if m is not None:
+    # help
+    if print_docstring:
+        if m.__doc__ is not None:
+            msg = "Module docstring:\n" + m.__doc__ + "\n\n"
+        else:
+            msg = "No module level docstring found\n\n"
+        if hasattr(m, "main"):
+            if m.main.__doc__ is not None:
+                msg += "main() docstring:\n" + m.main.__doc__ + "\n"
+            else:
+                msg += "No docstring found for main() function\n"
+        else:
+            msg += "No main() function found\n"
+        print(msg)
+        sys.exit(0)
+
+    # remove launcher script from the command line
+    if args.command is not None:
+        sys.argv = sys.argv[1:]
+
+    # run main() function
+    if hasattr(m, "main"):
+        main = getattr(m, "main")
+        status = main(*args.mainargs)
+        sys.exit(status)
+
+    # try executing the .py source file
+    else:
+        fname = m.__file__
+        if fname.endswith(".pyc") and os.path.exists(fname[:-1]):
+            fname = fname[:-1]
+        execute(fname)
+
+else:
+    # frozen binary issue on linux
+    print("Could not import module " + modname)
+    fname = os.path.join(os.path.dirname(sys.executable),
+                         *modname.split(".")) + ".py"
+
+    if os.path.isfile(fname):
+        print("Trying to execute " + fname)
+        execute(fname)
+    else:
+        print("Failed to execute %s" % modname)
+        sys.exit(1)
+
+

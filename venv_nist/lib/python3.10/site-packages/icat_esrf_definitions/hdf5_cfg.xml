@@ -1,0 +1,1439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<group NX_class="NXentry" groupName="${entry}">
+    <title ESRF_description="Name of the dataset" ESRF_mandatory="Mandatory" NAPItype="NX_CHAR">${datasetName}</title>
+    <scanNumber ESRF_description="Scan number" ESRF_mandatory="Mandatory" NAPItype="NX_CHAR">${scanNumber}</scanNumber>
+    <proposal ESRF_description="Proposal code" ESRF_mandatory="Mandatory" NAPItype="NX_CHAR">${proposal}</proposal>
+    <dataset_type record="final" ESRF_description="Scan type can be 'step_by_step' or 'continuous'" NAPItype="NX_CHAR">${scanType}</dataset_type>
+    <folder_path ESRF_description="Scan starting date" ESRF_mandatory="Mandatory" NAPItype="NX_CHAR">${location}</folder_path>
+    <start_time ESRF_description="Scan starting date" ESRF_mandatory="Mandatory" NAPItype="NX_DATE_TIME">${startDate}</start_time>
+    <end_time ESRF_description="Scan ending date" record="final" ESRF_mandatory="Mandatory" NAPItype="NX_DATE_TIME">${endDate}</end_time>
+    <definition ESRF_description="Techniques used to collect this dataset" NAPItype="NX_CHAR">${definition}</definition>
+    <technique_pid ESRF_description="List of space-separated techniques identifiers used to collect this dataset, eg. PaNET ids" NAPItype="NX_CHAR">${technique_pid}</technique_pid>
+    <doi_abstract ESRF_description="Abstract of the DOI" NAPItype="NX_CHAR">${DOI_abstract}</doi_abstract>
+    <doi_title ESRF_description="Title fo the DOI" NAPItype="NX_CHAR">${DOI_title}</doi_title>
+    <doi_users ESRF_description="Users of the DOI. Comma separated string" NAPItype="NX_CHAR">${DOI_users}</doi_users>
+    <project_name ESRF_description="Name of project" NAPItype="NX_CHAR">${Project_name}</project_name>
+    <machine ESRF_description="Name of the machine that collects the data" NAPItype="NX_CHAR">${machine}</machine>
+    <software ESRF_description="Name of the software that collects the data" NAPItype="NX_CHAR">${software}</software>
+    <group_by ESRF_description="Comma separated list of parameters name that will be used to represent the data acquisition as a tree. Mostly for visualization purposes" NAPItype="NX_CHAR">${group_by}</group_by>
+    <group NX_class="NXsubentry" groupName="SAXS">
+        <definition ESRF_description="Technique used to collect this dataset" NAPItype="NX_CHAR">${saxs_definition}</definition>
+        <version ESRF_description="Version" NAPItype="NX_CHAR">${saxs_definition.version}</version>
+        <directory record="final" ESRF_description="Data collection directory" NAPItype="NX_CHAR">${SAXS_directory}</directory>
+        <experimentType record="final" ESRF_description="Type of experiment" NAPItype="NX_CHAR">${SAXS_experimentType}</experimentType>
+        <prefix record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_prefix}</prefix>
+        <maskFile record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_maskFile}</maskFile>
+        <numberFrames record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_numberFrames}</numberFrames>
+        <timePerFrame record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_timePerFrame}</timePerFrame>
+        <concentration record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_concentration}</concentration>
+        <comments record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_comments}</comments>
+        <code record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_code}</code>
+        <detector_distance record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_detector_distance}</detector_distance>
+        <waveLength record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_waveLength}</waveLength>
+        <pixelSizeX record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_pixelSizeX}</pixelSizeX>
+        <pixelSizeY record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_pixelSizeY}</pixelSizeY>
+        <beam_center_x record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_beam_center_x}</beam_center_x>
+        <beam_center_y record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_beam_center_y}</beam_center_y>
+        <normalisation record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_normalisation}</normalisation>
+        <diode_currents record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_diode_currents}</diode_currents>
+        <acronym record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_acronym}</acronym>
+        <transmission record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_transmission}</transmission>
+        <storage_temperature record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_storage_temperature}</storage_temperature>
+        <exposure_temperature record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_exposure_temperature}</exposure_temperature>
+        <column_type record="final" ESRF_description="HPLC column type. [ex. Agilent BioSEC 130]" NAPItype="NX_CHAR">${SAXS_column_type}</column_type>
+        <flow_rate record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_flow_rate}</flow_rate>
+        <hplc_port record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_hplc_port}</hplc_port>
+        <sample_type record="final" ESRF_description="It can be buffer or sample" NAPItype="NX_CHAR">${SAXS_sample_type}</sample_type>
+        <run_number record="final" ESRF_description="It can be buffer or sample" NAPItype="NX_CHAR">${SAXS_run_number}</run_number>
+        <experiment_type record="final" ESRF_description="It the kind of experiment: sample changer or HPLC" NAPItype="NX_CHAR">${SAXS_experiment_type}</experiment_type>
+        <guinier_rg record="final" ESRF_description="Guinier radius of giration" NAPItype="NX_CHAR">${SAXS_guinier_rg}</guinier_rg>
+        <guinier_points record="final" ESRF_description="Points of the Guinier region" NAPItype="NX_CHAR">${SAXS_guinier_points}</guinier_points>
+        <guinier_i0 record="final" ESRF_description="Guinier radius of giration" NAPItype="NX_CHAR">${SAXS_guinier_i0}</guinier_i0>
+        <rg record="final" ESRF_description="Calculated radious of giration. It can be calculated with Gnom or BIFT" NAPItype="NX_CHAR">${SAXS_rg}</rg>
+        <total record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_total}</total>
+        <d_max record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_d_max}</d_max>
+        <porod_volume record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_porod_volume}</porod_volume>
+        <porod_MM_volume_estimation record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_porod_MM_volume_estimation}</porod_MM_volume_estimation>
+        <frames_averaged record="final" ESRF_description="" NAPItype="NX_CHAR">${SAXS_frames_averaged}</frames_averaged>
+    </group>
+    <group NX_class="NXsubentry" groupName="MX">
+        <aperture record="final" ESRF_description="Aperture size in microns" NAPItype="NX_CHAR">${MX_aperture}</aperture>
+        <kappa_settings_id record="final" ESRF_description="Identifier used to distinguished between multiple kappa setting within the same data collection" NAPItype="NX_CHAR">${MX_kappa_settings_id}</kappa_settings_id>
+        <beamShape record="final" ESRF_description="Beam shape at sample position" NAPItype="NX_CHAR">${MX_beamShape}</beamShape>
+        <beamSizeAtSampleX record="final" ESRF_description="Horizontal beam size in mm at sample position" NAPItype="NX_CHAR" units="mm">${MX_beamSizeAtSampleX}</beamSizeAtSampleX>
+        <beamSizeAtSampleY record="final" ESRF_description="Vertical beam size in mm at sample position" NAPItype="NX_CHAR" units="mm">${MX_beamSizeAtSampleY}</beamSizeAtSampleY>
+        <dataCollectionId record="final" ESRF_description="ISPyB data collection id" NAPItype="NX_CHAR">${MX_dataCollectionId}</dataCollectionId>
+        <detectorDistance record="final" ESRF_description="Distance from detector to sample position" NAPItype="NX_CHAR" units="mm">${MX_detectorDistance}</detectorDistance>
+        <directory record="final" ESRF_description="Data collection directory" NAPItype="NX_CHAR">${MX_directory}</directory>
+        <exposureTime record="final" ESRF_description="Exposure time per frame" NAPItype="NX_CHAR" units="s">${MX_exposureTime}</exposureTime>
+        <flux record="final" ESRF_description="Photon flux at the sample position" NAPItype="NX_CHAR" units="photons/s">${MX_flux}</flux>
+        <fluxEnd record="final" ESRF_description="Flux in photon/s before data collection" NAPItype="NX_CHAR">${MX_fluxEnd}</fluxEnd>
+        <motorsName record="final" ESRF_description="Motor names" NAPItype="NX_CHAR">${MX_motors_name}</motorsName>
+        <motorsValue record="final" ESRF_description="Motor positions in mm" NAPItype="NX_CHAR">${MX_motors_value}</motorsValue>
+        <numberOfImages record="final" ESRF_description="Number of images" NAPItype="NX_CHAR">${MX_numberOfImages}</numberOfImages>
+        <oscillationOverlap record="final" ESRF_description="Overlap between frames" NAPItype="NX_CHAR" units="degrees">${MX_oscillationOverlap}</oscillationOverlap>
+        <oscillationRange record="final" ESRF_description="Degrees rotated per frame" NAPItype="NX_CHAR" units="degrees">${MX_oscillationRange}</oscillationRange>
+        <oscillationStart record="final" ESRF_description="Starting angle of data collection" NAPItype="NX_CHAR" units="degrees">${MX_oscillationStart}</oscillationStart>
+        <resolution record="final" ESRF_description="Resolution at the edge of the detector" NAPItype="NX_CHAR" units="angstroms">${MX_resolution}</resolution>
+        <resolution_at_corner record="final" ESRF_description="Resolution at the corner of the detector" NAPItype="NX_CHAR" units="angstroms">${MX_resolution_at_corner}</resolution_at_corner>
+        <scanType record="final" ESRF_description="mxCuBE experiment type" NAPItype="NX_CHAR">${MX_scanType}</scanType>
+        <startImageNumber record="final" ESRF_description="Data collection image start number" NAPItype="NX_CHAR">${MX_startImageNumber}</startImageNumber>
+        <template record="final" ESRF_description="Image file name template" NAPItype="NX_CHAR">${MX_template}</template>
+        <transmission record="final" ESRF_description="Transmission in %" NAPItype="NX_CHAR">${MX_transmission}</transmission>
+        <wavelength record="final" ESRF_description="Wavelength in A" NAPItype="NX_CHAR">${MX_wavelength}</wavelength>
+        <xBeam record="final" ESRF_description="Horizontal beam centre in mm" NAPItype="NX_CHAR">${MX_xBeam}</xBeam>
+        <yBeam record="final" ESRF_description="Vertical beam centre in mm" NAPItype="NX_CHAR">${MX_yBeam}</yBeam>
+        <rotation_axis record="final" ESRF_description="Name of the rotation axis" NAPItype="NX_CHAR">${MX_rotation_axis}</rotation_axis>
+        <axis_range record="final" ESRF_description="Axis range" NAPItype="NX_CHAR">${MX_axis_range}</axis_range>
+        <axis_start record="final" ESRF_description="Rotation start angle" NAPItype="NX_CHAR">${MX_axis_start}</axis_start>
+        <axis_end record="final" ESRF_description="Rotation end angle" NAPItype="NX_CHAR">${MX_axis_end}</axis_end>
+        <group NX_class="NXcollection" groupName="SAD">
+            <min_resolution record="final" ESRF_description="SAD minimal resolution" NAPItype="NX_CHAR" units="angstrom">${MXSAD_min_resolution}</min_resolution>
+            <max_resolution record="final" ESRF_description="SAD maximal resolution" NAPItype="NX_CHAR" units="angstrom">${MXSAD_max_resolution}</max_resolution>
+            <enantiomorph record="final" ESRF_description="SAD enantiomorph" NAPItype="NX_CHAR">${MXSAD_enantiomorph}</enantiomorph>
+            <space_group record="final" ESRF_description="SAD space group" NAPItype="NX_CHAR">${MXSAD_space_group}</space_group>
+            <step record="final" ESRF_description="SAD step" NAPItype="NX_CHAR">${MXSAD_step}</step>
+            <solvent record="final" ESRF_description="SAD solvent" NAPItype="NX_CHAR">${MXSAD_solvent}</solvent>
+            <pseudo_free_cc record="final" ESRF_description="SAD pseudo_free_cc" NAPItype="NX_CHAR">${MXSAD_pseudo_free_cc}</pseudo_free_cc>
+            <cc_partial_model record="final" ESRF_description="SAD cc_partial_model" NAPItype="NX_CHAR">${MXSAD_cc_partial_model}</cc_partial_model>
+            <chain_count record="final" ESRF_description="SAD chain_count" NAPItype="NX_CHAR">${MXSAD_chain_count}</chain_count>
+            <residues_count record="final" ESRF_description="SAD residues_count" NAPItype="NX_CHAR">${MXSAD_residues_count}</residues_count>
+            <average_fragment_length record="final" ESRF_description="SAD average_fragment_length" NAPItype="NX_CHAR">${MXSAD_average_fragment_length}</average_fragment_length>
+            <PDB_file record="final" ESRF_description="SAD PDB file path" NAPItype="NX_CHAR" units="">${MXSAD_PDB_file}</PDB_file>
+            <MTZ_file record="final" ESRF_description="SAD MTZ file path" NAPItype="NX_CHAR" units="">${MXSAD_MTZ_file}</MTZ_file>
+        </group>
+        <group NX_class="NXcollection" groupName="MR">
+            <step record="final" ESRF_description="MR Step" NAPItype="NX_CHAR" units="">${MXMR_step}</step>
+            <space_group record="final" ESRF_description="MR space group" NAPItype="NX_CHAR" units="">${MXMR_space_group}</space_group>
+            <min_resolution record="final" ESRF_description="MR min resolution" NAPItype="NX_CHAR" units="">${MXMR_min_resolution}</min_resolution>
+            <max_resolution record="final" ESRF_description="MR max resolution" NAPItype="NX_CHAR" units="">${MXMR_max_resolution}</max_resolution>
+            <group NX_class="NXcollection" groupName="Phasing">
+                <source record="final" ESRF_description="Describes the pdb suource: Alphafold, user, unit cell" NAPItype="NX_CHAR" units="">${MXMRPhasing_source}</source>
+                <search_model record="final" ESRF_description="Identifier to the search model. It can be a link" NAPItype="NX_CHAR" units="">${MXMRPhasing_search_model}</search_model>
+                <space_group record="final" ESRF_description="Phasing space group" NAPItype="NX_CHAR" units="">${MXMRPhasing_space_group}</space_group>
+                <number_of_search_models_found record="final" ESRF_description="Models found" NAPItype="NX_CHAR" units="">${MXMRPhasing_number_of_search_models_found}</number_of_search_models_found>
+                <best_RFZ record="final" ESRF_description="Best RFZ" NAPItype="NX_CHAR" units="">${MXMRPhasing_best_RFZ}</best_RFZ>
+                <best_TFZ record="final" ESRF_description="Best TTZ" NAPItype="NX_CHAR" units="">${MXMRPhasing_best_TFZ}</best_TFZ>
+                <LLG record="final" ESRF_description="Best LLG" NAPItype="NX_CHAR" units="">${MXMRPhasing_LLG}</LLG>
+                <monomer_form_count record="final" ESRF_description="Number of monomers" NAPItype="NX_CHAR" units="">${MXMRPhasing_monomer_form_count}</monomer_form_count>
+                <RFZ_list record="final" ESRF_description="List of RFZ" NAPItype="NX_CHAR" units="">${MXMRPhasing_RFZ_list}</RFZ_list>
+                <TFZ_list record="final" ESRF_description="List of TFZ" NAPItype="NX_CHAR" units="">${MXMRPhasing_TFZ_list}</TFZ_list>
+                <PDB_file record="final" ESRF_description="pdb file path" NAPItype="NX_CHAR" units="">${MXMRPhasing_PDB_file}</PDB_file>
+                <MTZ_file record="final" ESRF_description="MTZ file path" NAPItype="NX_CHAR" units="">${MXMRPhasing_MTZ_file}</MTZ_file>
+                <MAP_2FOFC record="final" ESRF_description="2FOFC map file path" NAPItype="NX_CHAR" units="">${MXMRPhasing_MAP_2FOFC}</MAP_2FOFC>
+                <MAP_FOFC record="final" ESRF_description="FOFC map file path" NAPItype="NX_CHAR" units="">${MXMRPhasing_MAP_FOFC}</MAP_FOFC>
+            </group>
+            <group NX_class="NXcollection" groupName="Refinement">
+                <R_free record="final" ESRF_description="Free-r" NAPItype="NX_CHAR" units="">${MXMRRefinement_R_free}</R_free>
+                <R_cryst record="final" ESRF_description="R crystal" NAPItype="NX_CHAR" units="">${MXMRRefinement_R_cryst}</R_cryst>
+                <PDB_file record="final" ESRF_description="List of TFZ" NAPItype="NX_CHAR" units="">${MXMRRefinement_PDB_file}</PDB_file>
+                <MTZ_file record="final" ESRF_description="List of TFZ" NAPItype="NX_CHAR" units="">${MXMRRefinement_MTZ_file}</MTZ_file>
+                <MAP_FOFC record="final" ESRF_description="MAP_FOFC file path" NAPItype="NX_CHAR" units="">${MXMRRefinement_MAP_FOFC}</MAP_FOFC>
+                <MAP_2FOFC record="final" ESRF_description="MAP_2FOFC file path" NAPItype="NX_CHAR" units="">${MXMRRefinement_MAP_2FOFC}</MAP_2FOFC>
+            </group>
+            <group NX_class="NXcollection" groupName="LigandFitting">
+                <ligand_FOFC_CC record="final" ESRF_description="Ligand FOFC_CC" NAPItype="NX_CHAR" units="">${MXMRLigandFitting_ligand_FOFC_CC}</ligand_FOFC_CC>
+                <R_free record="final" ESRF_description="Free-r" NAPItype="NX_CHAR" units="">${MXMRLigandFitting_R_free}</R_free>
+                <R_cryst record="final" ESRF_description="R crystal" NAPItype="NX_CHAR" units="">${MXMRLigandFitting_R_cryst}</R_cryst>
+                <B_factor record="final" ESRF_description="B factor" NAPItype="NX_CHAR" units="">${MXMRLigandFitting_B_factor}</B_factor>
+                <occupancy record="final" ESRF_description="Occupancy" NAPItype="NX_CHAR" units="">${MXMRLigandFitting_occupancy}</occupancy>
+                <PDB_file record="final" ESRF_description="pdb file path" NAPItype="NX_CHAR" units="">${MXMRLigandFitting_PDB_file}</PDB_file>
+                <MTZ_file record="final" ESRF_description="mtz file" NAPItype="NX_CHAR" units="">${MXMRLigandFitting_MTZ_file}</MTZ_file>
+                <PNG_2FOFC record="final" ESRF_description="snapshot of the ligand in 2FO-FC electron density" NAPItype="NX_CHAR" units="">${MXMRLigandFitting_PNG_2FOFC}</PNG_2FOFC>
+                <PNG_FOFC record="final" ESRF_description="snapshot of the ligand in FO-FC electron density" NAPItype="NX_CHAR" units="">${MXMRLigandFitting_PNG_FOFC}</PNG_FOFC>
+                <GIF_file record="final" ESRF_description="animated GIF of the ligand in FO-FC electron density" NAPItype="NX_CHAR" units="">${MXMRLigandFitting_GIF_file}</GIF_file>
+                <ligand_XYZ record="final" ESRF_description="x,y,z coordinates of the ligand" NAPItype="NX_CHAR" units="">${MXMRLigandFitting_ligand_XYZ}</ligand_XYZ>
+                <ligand_name record="final" ESRF_description="name of the ligand" NAPItype="NX_CHAR" units="">${MXMRLigandFitting_ligand_name}</ligand_name>
+                <MAP_FOFC record="final" ESRF_description="MAP_FOFC file path" NAPItype="NX_CHAR" units="">${MXMRLigandFitting_MAP_FOFC}</MAP_FOFC>
+                <MAP_2FOFC record="final" ESRF_description="MAP_2FOFC file path" NAPItype="NX_CHAR" units="">${MXMRLigandFitting_MAP_2FOFC}</MAP_2FOFC>
+            </group>
+        </group>
+        <position_id record="final" ESRF_description="Identifier of the position within the crystal" NAPItype="NX_CHAR">${MX_position_id}</position_id>
+        <characterisation_id record="final" ESRF_description="Identifier of the characterisation" NAPItype="NX_CHAR">${MX_characterisation_id}</characterisation_id>
+        <crystalPositionName record="final" ESRF_description="Centered position, line and grid ID" NAPItype="NX_CHAR">${MX_crystalPositionName}</crystalPositionName>
+        <group NX_class="NXcollection" groupName="AutoprocIntegration">
+            <start_image_number ESRF_description="First image number of the integration" NAPItype="NX_CHAR">${MXAutoprocIntegration_start_image_number}</start_image_number>
+            <end_image_number ESRF_description="Last image number of the integration" NAPItype="NX_CHAR">${MXAutoprocIntegration_end_image_number}</end_image_number>
+            <detector_distance ESRF_description="Refined detector distance" NAPItype="NX_CHAR">${MXAutoprocIntegration_detector_distance}</detector_distance>
+            <beam_x ESRF_description="Refined beam x" NAPItype="NX_CHAR">${MXAutoprocIntegration_beam_x}</beam_x>
+            <beam_y ESRF_description="Refined beam y" NAPItype="NX_CHAR">${MXAutoprocIntegration_beam_y}</beam_y>
+            <rotation_axis_x ESRF_description="X position of the rotation axis" NAPItype="NX_CHAR">${MXAutoprocIntegration_rotation_axis_x}</rotation_axis_x>
+            <rotation_axis_y ESRF_description="Y position of the rotation axis" NAPItype="NX_CHAR">${MXAutoprocIntegration_rotation_axis_y}</rotation_axis_y>
+            <rotation_axis_z ESRF_description="Z position of the rotation axis" NAPItype="NX_CHAR">${MXAutoprocIntegration_rotation_axis_z}</rotation_axis_z>
+            <beam_vector_x ESRF_description="Vector X" NAPItype="NX_CHAR">${MXAutoprocIntegration_beam_vector_x}</beam_vector_x>
+            <beam_vector_y ESRF_description="Vector Y" NAPItype="NX_CHAR">${MXAutoprocIntegration_beam_vector_y}</beam_vector_y>
+            <beam_vector_z ESRF_description="Vector Z" NAPItype="NX_CHAR">${MXAutoprocIntegration_beam_vector_z}</beam_vector_z>
+            <space_group ESRF_description="Space group" NAPItype="NX_CHAR">${MXAutoprocIntegration_space_group}</space_group>
+            <cell_a ESRF_description="cell a" NAPItype="NX_CHAR">${MXAutoprocIntegration_cell_a}</cell_a>
+            <cell_b ESRF_description="cell b" NAPItype="NX_CHAR">${MXAutoprocIntegration_cell_b}</cell_b>
+            <cell_c ESRF_description="cell c" NAPItype="NX_CHAR">${MXAutoprocIntegration_cell_c}</cell_c>
+            <cell_alpha ESRF_description="cell alpha" NAPItype="NX_CHAR">${MXAutoprocIntegration_cell_alpha}</cell_alpha>
+            <cell_beta ESRF_description="cell beta" NAPItype="NX_CHAR">${MXAutoprocIntegration_cell_beta}</cell_beta>
+            <cell_gamma ESRF_description="cell gamma" NAPItype="NX_CHAR">${MXAutoprocIntegration_cell_gamma}</cell_gamma>
+            <anomalous ESRF_description="anomalous" NAPItype="NX_CHAR">${MXAutoprocIntegration_anomalous}</anomalous>
+            <group NX_class="NXcollection" groupName="Scaling">
+                <overall_resolution_limit_low ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_resolution_limit_low}</overall_resolution_limit_low>
+                <overall_resolution_limit_high ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_resolution_limit_high}</overall_resolution_limit_high>
+                <overall_r_merge ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_r_merge}</overall_r_merge>
+                <overall_r_meas_within_IPlus_IMinus ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_r_meas_within_IPlus_IMinus}</overall_r_meas_within_IPlus_IMinus>
+                <overall_r_meas_all_IPlus_IMinus ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_r_meas_all_IPlus_IMinus}</overall_r_meas_all_IPlus_IMinus>
+                <overall_r_pim_within_IPlus_IMinus ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_r_pim_within_IPlus_IMinus}</overall_r_pim_within_IPlus_IMinus>
+                <overall_r_pim_all_IPlus_IMinus ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_r_pim_all_IPlus_IMinus}</overall_r_pim_all_IPlus_IMinus>
+                <overall_fractional_partial_bias ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_fractional_partial_bias}</overall_fractional_partial_bias>
+                <overall_n_total_observations ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_n_total_observations}</overall_n_total_observations>
+                <overall_n_total_unique_observations ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_n_total_unique_observations}</overall_n_total_unique_observations>
+                <overall_mean_I_over_sigI ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_mean_I_over_sigI}</overall_mean_I_over_sigI>
+                <overall_completeness ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_completeness}</overall_completeness>
+                <overall_multiplicity ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_multiplicity}</overall_multiplicity>
+                <overall_anomalous_completeness ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_anomalous_completeness}</overall_anomalous_completeness>
+                <overall_anomalous_multiplicity ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_anomalous_multiplicity}</overall_anomalous_multiplicity>
+                <overall_anomalous ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_anomalous}</overall_anomalous>
+                <overall_cc_half ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_cc_half}</overall_cc_half>
+                <overall_ccAno ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_ccAno}</overall_ccAno>
+                <overall_sigAno ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_sigAno}</overall_sigAno>
+                <overall_isa ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_isa}</overall_isa>
+                <overall_completeness_spherical ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_completeness_spherical}</overall_completeness_spherical>
+                <overall_completeness_ellipsoidal ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_completeness_ellipsoidal}</overall_completeness_ellipsoidal>
+                <overall_anomalous_completeness_spherical ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_anomalous_completeness_spherical}</overall_anomalous_completeness_spherical>
+                <overall_anomalous_completeness_ellipsoidal ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_overall_anomalous_completeness_ellipsoidal}</overall_anomalous_completeness_ellipsoidal>
+                <inner_resolution_limit_low ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_resolution_limit_low}</inner_resolution_limit_low>
+                <inner_resolution_limit_high ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_resolution_limit_high}</inner_resolution_limit_high>
+                <inner_r_merge ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_r_merge}</inner_r_merge>
+                <inner_r_meas_within_IPlus_IMinus ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_r_meas_within_IPlus_IMinus}</inner_r_meas_within_IPlus_IMinus>
+                <inner_r_meas_all_IPlus_IMinus ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_r_meas_all_IPlus_IMinus}</inner_r_meas_all_IPlus_IMinus>
+                <inner_r_pim_within_IPlus_IMinus ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_r_pim_within_IPlus_IMinus}</inner_r_pim_within_IPlus_IMinus>
+                <inner_r_pim_all_IPlus_IMinus ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_r_pim_all_IPlus_IMinus}</inner_r_pim_all_IPlus_IMinus>
+                <inner_fractional_partial_bias ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_fractional_partial_bias}</inner_fractional_partial_bias>
+                <inner_n_total_observations ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_n_total_observations}</inner_n_total_observations>
+                <inner_n_total_unique_observations ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_n_total_unique_observations}</inner_n_total_unique_observations>
+                <inner_mean_I_over_sigI ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_mean_I_over_sigI}</inner_mean_I_over_sigI>
+                <inner_completeness ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_completeness}</inner_completeness>
+                <inner_multiplicity ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_multiplicity}</inner_multiplicity>
+                <inner_anomalous_completeness ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_anomalous_completeness}</inner_anomalous_completeness>
+                <inner_anomalous_multiplicity ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_anomalous_multiplicity}</inner_anomalous_multiplicity>
+                <inner_anomalous ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_anomalous}</inner_anomalous>
+                <inner_cc_half ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_cc_half}</inner_cc_half>
+                <inner_ccAno ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_ccAno}</inner_ccAno>
+                <inner_sigAno ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_sigAno}</inner_sigAno>
+                <inner_isa ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_isa}</inner_isa>
+                <inner_completeness_spherical ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_completeness_spherical}</inner_completeness_spherical>
+                <inner_completeness_ellipsoidal ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_completeness_ellipsoidal}</inner_completeness_ellipsoidal>
+                <inner_anomalous_completeness_spherical ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_anomalous_completeness_spherical}</inner_anomalous_completeness_spherical>
+                <inner_anomalous_completeness_ellipsoidal ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_inner_anomalous_completeness_ellipsoidal}</inner_anomalous_completeness_ellipsoidal>
+                <outer_resolution_limit_low ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_resolution_limit_low}</outer_resolution_limit_low>
+                <outer_resolution_limit_high ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_resolution_limit_high}</outer_resolution_limit_high>
+                <outer_r_merge ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_r_merge}</outer_r_merge>
+                <outer_r_meas_within_IPlus_IMinus ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_r_meas_within_IPlus_IMinus}</outer_r_meas_within_IPlus_IMinus>
+                <outer_r_meas_all_IPlus_IMinus ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_r_meas_all_IPlus_IMinus}</outer_r_meas_all_IPlus_IMinus>
+                <outer_r_pim_within_IPlus_IMinus ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_r_pim_within_IPlus_IMinus}</outer_r_pim_within_IPlus_IMinus>
+                <outer_r_pim_all_IPlus_IMinus ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_r_pim_all_IPlus_IMinus}</outer_r_pim_all_IPlus_IMinus>
+                <outer_fractional_partial_bias ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_fractional_partial_bias}</outer_fractional_partial_bias>
+                <outer_n_total_observations ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_n_total_observations}</outer_n_total_observations>
+                <outer_n_total_unique_observations ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_n_total_unique_observations}</outer_n_total_unique_observations>
+                <outer_mean_I_over_sigI ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_mean_I_over_sigI}</outer_mean_I_over_sigI>
+                <outer_completeness ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_completeness}</outer_completeness>
+                <outer_multiplicity ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_multiplicity}</outer_multiplicity>
+                <outer_anomalous_completeness ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_anomalous_completeness}</outer_anomalous_completeness>
+                <outer_anomalous_multiplicity ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_anomalous_multiplicity}</outer_anomalous_multiplicity>
+                <outer_anomalous ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_anomalous}</outer_anomalous>
+                <outer_cc_half ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_cc_half}</outer_cc_half>
+                <outer_ccAno ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_ccAno}</outer_ccAno>
+                <outer_sigAno ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_sigAno}</outer_sigAno>
+                <outer_isa ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_isa}</outer_isa>
+                <outer_completeness_spherical ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_completeness_spherical}</outer_completeness_spherical>
+                <outer_completeness_ellipsoidal ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_completeness_ellipsoidal}</outer_completeness_ellipsoidal>
+                <outer_anomalous_completeness_spherical ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_anomalous_completeness_spherical}</outer_anomalous_completeness_spherical>
+                <outer_anomalous_completeness_ellipsoidal ESRF_description="" NAPItype="NX_CHAR">${MXAutoprocIntegrationScaling_outer_anomalous_completeness_ellipsoidal}</outer_anomalous_completeness_ellipsoidal>
+            </group>
+        </group>
+    </group>
+    <group NX_class="NXsubentry" groupName="EM">
+        <protein_acronym ESRF_description="Protein acronym" NAPItype="NX_CHAR">${EM_protein_acronym}</protein_acronym>
+        <voltage ESRF_description="Voltage" NAPItype="NX_CHAR">${EM_voltage}</voltage>
+        <magnification ESRF_description="Magnification" NAPItype="NX_CHAR">${EM_magnification}</magnification>
+        <images_count ESRF_description="Number of images in movie" NAPItype="NX_CHAR">${EM_images_count}</images_count>
+        <position_x ESRF_description="Position X" NAPItype="NX_CHAR">${EM_position_x}</position_x>
+        <position_y ESRF_description="Position Y" NAPItype="NX_CHAR">${EM_position_y}</position_y>
+        <dose_initial ESRF_description="Dose initial" NAPItype="NX_CHAR">${EM_dose_initial}</dose_initial>
+        <dose_per_frame ESRF_description="Dose per frame" NAPItype="NX_CHAR">${EM_dose_per_frame}</dose_per_frame>
+        <spherical_aberration ESRF_description="Spherical aberration" NAPItype="NX_CHAR">${EM_spherical_aberration}</spherical_aberration>
+        <amplitude_contrast ESRF_description="Amplitude contrast" NAPItype="NX_CHAR">${EM_amplitude_contrast}</amplitude_contrast>
+        <sampling_rate ESRF_description="samplingRate" NAPItype="NX_CHAR">${EM_sampling_rate}</sampling_rate>
+        <tilt_angle ESRF_description="tilt_angle" NAPItype="NX_CHAR">${EM_tilt_angle}</tilt_angle>
+        <grid_name ESRF_description="grid_name" NAPItype="NX_CHAR">${EM_grid_name}</grid_name>
+        <group NX_class="NXcollection" groupName="motioncorrection">
+            <total_motion ESRF_description="Total motion of the sample" NAPItype="NX_CHAR">${EMMotionCorrection_total_motion}</total_motion>
+            <average_motion ESRF_description="Average motion" NAPItype="NX_CHAR">${EMMotionCorrection_average_motion}</average_motion>
+            <frame_range ESRF_description="Motion frame range" NAPItype="NX_CHAR">${EMMotionCorrection_frame_range}</frame_range>
+            <frame_dose ESRF_description="Dose/frame" NAPItype="NX_CHAR">${EMMotionCorrection_frame_dose}</frame_dose>
+            <total_dose ESRF_description="Total dose" NAPItype="NX_CHAR">${EMMotionCorrection_total_dose}</total_dose>
+        </group>
+        <group NX_class="NXcollection" groupName="ctf">
+            <resolution_limit ESRF_description="Limit of the resolution" NAPItype="NX_CHAR">${EMCTF_resolution_limit}</resolution_limit>
+            <correlation ESRF_description="" NAPItype="NX_CHAR">${EMCTF_correlation}</correlation>
+            <defocus_u ESRF_description="" NAPItype="NX_CHAR">${EMCTF_defocus_u}</defocus_u>
+            <defocus_v ESRF_description="" NAPItype="NX_CHAR">${EMCTF_defocus_v}</defocus_v>
+            <angle ESRF_description="" NAPItype="NX_CHAR">${EMCTF_angle}</angle>
+            <estimated_b_factor ESRF_description="" NAPItype="NX_CHAR">${EMCTF_estimated_b_factor}</estimated_b_factor>
+        </group>
+    </group>
+    <group NX_class="NXsubentry" groupName="PTYCHO">
+        <propagation record="final" ESRF_description="Propagation may be near or far" NAPItype="NX_CHAR">${PTYCHO_propagation}</propagation>
+        <beamSize record="final" ESRF_description="Beam size on the sample in microns" NAPItype="NX_FLOAT" units="micron">${PTYCHO_beamSize}</beamSize>
+        <stepSize record="final" ESRF_description="Step size during scan" NAPItype="NX_FLOAT" units="micron">${PTYCHO_stepSize}</stepSize>
+        <focusToDetectorDistance record="final" ESRF_description="Focus to detector distance" NAPItype="NX_FLOAT" units="mm">${PTYCHO_focusToDetectorDistance}</focusToDetectorDistance>
+        <countTime record="final" ESRF_description="Step size during scan" NAPItype="NX_FLOAT" units="s">${PTYCHO_countTime}</countTime>
+        <parameters record="final" ESRF_description="Ptycho parameters" NAPItype="NX_CHAR">${PTYCHO_parameters}</parameters>
+        <tomoParameters record="final" ESRF_description="Ptycho tomography parameters" NAPItype="NX_CHAR">${PTYCHO_tomoParameters}</tomoParameters>
+        <refN record="final" ESRF_description="Ptycho parameters" NAPItype="NX_FLOAT">${PTYCHO_refN}</refN>
+        <darkN record="final" ESRF_description="Ptycho parameters" NAPItype="NX_FLOAT">${PTYCHO_darkN}</darkN>
+        <pixelSize record="final" ESRF_description="Ptycho parameters" NAPItype="NX_CHAR" units="micron">${PTYCHO_pixelSize}</pixelSize>
+        <group NX_class="NXcollection" groupName="Axis1">
+            <name ESRF_description="Scan motor in the horizontal direction" NAPItype="NX_CHAR">${PTYCHO_Axis1_name}</name>
+            <range ESRF_description="Range of the moves in microns" NAPItype="NX_FLOAT" units="micron">${PTYCHO_Axis1_range}</range>
+        </group>
+        <group NX_class="NXcollection" groupName="Axis2">
+            <name ESRF_description="Scan motor in the vertical direction" NAPItype="NX_CHAR">${PTYCHO_Axis2_name}</name>
+            <range ESRF_description="Range of the moves in microns" NAPItype="NX_FLOAT" units="micron">${PTYCHO_Axis2_range}</range>
+        </group>
+    </group>
+    <group NX_class="NXsubentry" groupName="FLUO">
+        <pixelSize record="final" ESRF_description="" NAPItype="NX_FLOAT" units="micron">${FLUO_pixelSize}</pixelSize>
+        <dwellTime record="final" ESRF_description="" NAPItype="NX_FLOAT" units="s">${FLUO_dwellTime}</dwellTime>
+        <scanDim_1 record="final" ESRF_description="" NAPItype="NX_FLOAT">${FLUO_scanDim1}</scanDim_1>
+        <scanDim_2 record="final" ESRF_description="" NAPItype="NX_FLOAT">${FLUO_scanDim2}</scanDim_2>
+        <scanRange_1 record="final" ESRF_description="" NAPItype="NX_FLOAT" units="micron">${FLUO_scanRange1}</scanRange_1>
+        <scanRange_2 record="final" ESRF_description="" NAPItype="NX_FLOAT" units="micron">${FLUO_scanRange2}</scanRange_2>
+        <scanAxis_1 record="final" ESRF_description="" NAPItype="NX_CHAR">${FLUO_scanAxis1}</scanAxis_1>
+        <scanAxis_2 record="final" ESRF_description="" NAPItype="NX_CHAR">${FLUO_scanAxis2}</scanAxis_2>
+        <i0 NAPItype="NX_FLOAT" ESRF_description="Incident intensity" units="">${FLUO_i0}</i0>
+        <it NAPItype="NX_FLOAT" ESRF_description="Transmitted intensity" units="">${FLUO_it}</it>
+        <group NX_class="NXcollection" groupName="measurement">
+            <current_start record="initial" ESRF_description="Machine current" NAPItype="NX_FLOAT64" units="mA">${Source_current_start}</current_start>
+            <current_end record="final" ESRF_description="Machine current" NAPItype="NX_FLOAT64" units="mA">${InstrumentSource_current_end}</current_end>
+            <i0_start record="initial" ESRF_description="Incident flux" NAPItype="NX_FLOAT64" units="photons/s">${TOMO_i0_start}</i0_start>
+            <it_start record="initial" ESRF_description="Transmitted flux" NAPItype="NX_FLOAT64" units="photons/s">${TOMO_it_start}</it_start>
+            <i0_end record="final" ESRF_description="Incident flux" NAPItype="NX_FLOAT64" units="photons/s">${TOMO_i0_end}</i0_end>
+            <it_end record="final" ESRF_description="Transmitted flux" NAPItype="NX_FLOAT64" units="photons/s">${TOMO_it_end}</it_end>
+        </group>
+    </group>
+    <group NX_class="NXsubentry" groupName="TOMO">
+        <group NX_class="NXcollection" groupName="acquisition">
+            <technique ESRF_description="Technique used for hierarchical phase-contrast tomography" NAPItype="NX_CHAR">${TOMOAcquisition_technique}</technique>
+            <proj_n ESRF_description="Number of projections images" NAPItype="NX_FLOAT">${TOMOAcquisition_proj_n}</proj_n>
+            <flat_n ESRF_description="Number of flat field images" NAPItype="NX_FLOAT">${TOMOAcquisition_flat_n}</flat_n>
+            <dark_n ESRF_description="Number of dark field images" NAPItype="NX_FLOAT">${TOMOAcquisition_dark_n}</dark_n>
+            <flat_on ESRF_description="Interval for capturing flat field images" NAPItype="NX_FLOAT">${TOMOAcquisition_flat_on}</flat_on>
+            <y_step ESRF_description="Translation step size in the Y-axis for flat images" NAPItype="NX_FLOAT" units="mm">${TOMOAcquisition_y_step}</y_step>
+            <z_step ESRF_description="Translation step size in the Z-axis for flat images" NAPItype="NX_FLOAT" units="mm">${TOMOAcquisition_z_step}</z_step>
+            <start_angle ESRF_description="Start angle of the tomographic acquisition" NAPItype="NX_FLOAT" units="deg">${TOMOAcquisition_start_angle}</start_angle>
+            <exposure_time record="final" ESRF_description="Exposure time per projection" NAPItype="NX_FLOAT" units="s">${TOMOAcquisition_exposure_time}</exposure_time>
+            <sample_detector_distance ESRF_description="Distance between sample and detector" NAPItype="NX_FLOAT" units="mm">${TOMOAcquisition_sample_detector_distance}</sample_detector_distance>
+            <source_sample_distance ESRF_description="Distance between source and sample" NAPItype="NX_FLOAT" units="mm">${TOMOAcquisition_source_sample_distance}</source_sample_distance>
+            <energy ESRF_description="Beam energy" NAPItype="NX_FLOAT" units="keV">${TOMOAcquisition_energy}</energy>
+            <half_acquisition ESRF_description="Half-acquisition mode enabled" NAPItype="NX_BOOLEAN">${TOMOAcquisition_half_acquisition}</half_acquisition>
+            <type ESRF_description="Acquisition type (e.g., half, full, or quarter acquisition)" NAPItype="NX_CHAR">${TOMOAcquisition_type}</type>
+            <camera_pixel_size ESRF_description="Pixel size of the camera hardware" NAPItype="NX_FLOAT" units="micron">${TOMOAcquisition_camera_pixel_size}</camera_pixel_size>
+            <sample_pixel_size ESRF_description="Pixel size in the sample space after all magnifications" NAPItype="NX_FLOAT" units="micron">${TOMOAcquisition_sample_pixel_size}</sample_pixel_size>
+            <optic_magnified_pixel_size ESRF_description="Pixel size in the sample space after magnification of the optics" NAPItype="NX_FLOAT" units="micron">${TOMOAcquisition_optic_magnified_pixel_size}</optic_magnified_pixel_size>
+            <magnification ESRF_description="Magnification factor of the optics" NAPItype="NX_FLOAT">${TOMOAcquisition_magnification}</magnification>
+            <beam_magnification ESRF_description="Magnification factor from the beam divergence" NAPItype="NX_FLOAT">${TOMOAcquisition_beam_magnification}</beam_magnification>
+            <read_srcur ESRF_description="Enable real-time beam intensity measurement" NAPItype="NX_BOOLEAN">${TOMOAcquisition_read_srcur}</read_srcur>
+            <srcur_start ESRF_description="Beam intensity before scan" NAPItype="NX_FLOAT" units="mA">${TOMOAcquisition_srcur_start}</srcur_start>
+            <srcur_stop ESRF_description="Beam intensity after scan" NAPItype="NX_FLOAT" units="mA">${TOMOAcquisition_srcur_stop}</srcur_stop>
+            <scan_range ESRF_description="Rotation range for tomography" NAPItype="NX_FLOAT" units="deg">${TOMOAcquisition_scan_range}</scan_range>
+            <scan_type ESRF_description="Type of scan used for the projection scan (e.g. INTERLACED, STEP, CONTINUOUS)" NAPItype="NX_CHAR">${TOMOAcquisition_scan_type}</scan_type>
+            <acc_exposure_time ESRF_description="Accumulated exposure time per frame" NAPItype="NX_FLOAT" units="s">${TOMOAcquisition_acc_exposure_time}</acc_exposure_time>
+            <acc_frames_count ESRF_description="Number of frames in accumulation mode" NAPItype="NX_FLOAT">${TOMOAcquisition_acc_frames_count}</acc_frames_count>
+            <accel_disp ESRF_description="Acceleration displacement for the rotation stage" NAPItype="NX_FLOAT" units="mm">${TOMOAcquisition_accel_disp}</accel_disp>
+            <beam_check ESRF_description="Suspend scan if no beam is detected" NAPItype="NX_BOOLEAN">${TOMOAcquisition_beam_check}</beam_check>
+            <camera_x_mot ESRF_description="Motor for moving the camera along the beam axis" NAPItype="NX_CHAR">${TOMOAcquisition_camera_x_mot}</camera_x_mot>
+            <camera_acq_mode ESRF_description="Acquisition mode of the camera" NAPItype="NX_CHAR">${TOMOAcquisition_camera_acq_mode}</camera_acq_mode>
+            <camera_flip_horz ESRF_description="Horizontal flip of the camera (left-right)" NAPItype="NX_BOOLEAN">${TOMOAcquisition_camera_flip_horz}</camera_flip_horz>
+            <camera_flip_vert ESRF_description="Vertical flip of the camera (up-down)" NAPItype="NX_BOOLEAN">${TOMOAcquisition_camera_flip_vert}</camera_flip_vert>
+            <latency_time ESRF_description="Extra readout time for the camera" NAPItype="NX_FLOAT" units="s">${TOMOAcquisition_latency_time}</latency_time>
+            <no_images_at_end ESRF_description="Capture of images at the end of scan disabled" NAPItype="NX_BOOLEAN">${TOMOAcquisition_no_images_at_end}</no_images_at_end>
+            <no_flat_at_end ESRF_description="Capture of flat images at the end of scan disabled" NAPItype="NX_BOOLEAN">${TOMOAcquisition_no_flat_at_end}</no_flat_at_end>
+            <optic_name ESRF_description="Name of optic used" NAPItype="NX_CHAR">${TOMOAcquisition_optic_name}</optic_name>
+            <optic_type ESRF_description="Type of optic used" NAPItype="NX_CHAR">${TOMOAcquisition_optic_type}</optic_type>
+            <scintillator ESRF_description="Name of the scintillator used" NAPItype="NX_CHAR">${TOMOAcquisition_scintillator}</scintillator>
+            <duration ESRF_description="Time it took for the acquisition sequence to run" NAPItype="NX_FLOAT" units="s">${TOMOAcquisition_duration}</duration>
+            <comment ESRF_description="Additional comments" NAPItype="NX_CHAR">${TOMOAcquisition_comment}</comment>
+            <group NX_class="NXcollection" groupName="zseries">
+                <z_mot ESRF_description="Motor mnemonic for Z-axis" NAPItype="NX_CHAR">${TOMOAcquisitionZseries_z_mot}</z_mot>
+                <z_start ESRF_description="Initial position of the motor on the Z-axis (first stage)" NAPItype="NX_FLOAT" units="mm">${TOMOAcquisitionZseries_z_start}</z_start>
+                <z_delta ESRF_description="Incremental value for the Z-axis stage" NAPItype="NX_FLOAT" units="mm">${TOMOAcquisitionZseries_z_delta}</z_delta>
+                <z_n_steps ESRF_description="Number of steps for the Z-axis stage" NAPItype="NX_FLOAT">${TOMOAcquisitionZseries_z_n_steps}</z_n_steps>
+                <duration ESRF_description="Time it took for the acquisition z-series sequence to run" NAPItype="NX_FLOAT" units="s">${TOMOAcquisitionZseries_duration}</duration>
+            </group>
+        </group>
+        <experiment_type record="final" ESRF_description="Type of experiment conducted" NAPItype="NX_CHAR">${TOMO_experiment_type}</experiment_type>
+        <ftomo_par ESRF_description="Parameters for Fourier-tomography" NAPItype="NX_CHAR">${TOMO_ftomo_par}</ftomo_par>
+        <xshutter_time ESRF_description="Shutter closing time for the detector" NAPItype="NX_FLOAT" units="ms">${TOMO_xshutter_time}</xshutter_time>
+        <images_per_step ESRF_description="Number of images captured per step" NAPItype="NX_FLOAT">${TOMO_images_per_step}</images_per_step>
+        <interlaced ESRF_description="Enable interlaced scanning" NAPItype="NX_FLOAT">${TOMO_interlaced}</interlaced>
+        <nested ESRF_description="Enable nested scanning for topotomo" NAPItype="NX_FLOAT">${TOMO_nested}</nested>
+        <save_separate_dark_image ESRF_description="Save separate dark field images" NAPItype="NX_FLOAT">${TOMO_save_separate_dark_image}</save_separate_dark_image>
+        <auto_update_ref ESRF_description="Automatically update references if set" NAPItype="NX_FLOAT">${TOMO_auto_update_ref}</auto_update_ref>
+        <images_at_end_as_quali ESRF_description="Use images at end of scan for quality check" NAPItype="NX_FLOAT">${TOMO_images_at_end_as_quali}</images_at_end_as_quali>
+        <live_correction ESRF_description="Enable live correction of dark fields" NAPItype="NX_FLOAT">${TOMO_live_correction}</live_correction>
+        <mono_tune_on_ref ESRF_description="Tune monochromator before capturing flat images" NAPItype="NX_FLOAT">${TOMO_mono_tune_on_ref}</mono_tune_on_ref>
+        <no_accel_corr ESRF_description="Disable acceleration correction" NAPItype="NX_FLOAT">${TOMO_no_accel_corr}</no_accel_corr>
+        <open_slits_on_quali ESRF_description="Open slits for quality check images" NAPItype="NX_FLOAT">${TOMO_open_slits_on_quali}</open_slits_on_quali>
+        <optics_eye_piece ESRF_description="Magnification factor from optics" NAPItype="NX_FLOAT">${TOMO_optics_eye_piece}</optics_eye_piece>
+        <readout_time ESRF_description="Readout time of the camera" NAPItype="NX_FLOAT" units="s">${TOMO_readout_time}</readout_time>
+        <flat_power ESRF_description="Power of the motor for capturing flat images" NAPItype="NX_FLOAT">${TOMO_flat_power}</flat_power>
+        <rounding_correction ESRF_description="Apply rounding corrections to projections" NAPItype="NX_FLOAT">${TOMO_rounding_correction}</rounding_correction>
+        <safe_time ESRF_description="Extra time to ensure safe readout" NAPItype="NX_FLOAT" units="s">${TOMO_safe_time}</safe_time>
+        <shift_turns ESRF_description="Number of rotation turns to shift" NAPItype="NX_FLOAT">${TOMO_shift_turns}</shift_turns>
+        <speed_corr_factor ESRF_description="Correction factor for rotation speed" NAPItype="NX_FLOAT">${TOMO_speed_corr_factor}</speed_corr_factor>
+        <mono_tune_on_start ESRF_description="Tune monochromator before scan starts" NAPItype="NX_FLOAT">${TOMO_mono_tune_on_start}</mono_tune_on_start>
+        <soft_version ESRF_description="Software version, hostname, and path" NAPItype="NX_CHAR">${TOMO_soft_version}</soft_version>
+        <vacuum_value ESRF_description="Vacuum measurement values" NAPItype="NX_FLOAT">${TOMO_vacuum_value}</vacuum_value>
+        <vacuum_name ESRF_description="Vacuum measurement names" NAPItype="NX_CHAR">${TOMO_vacuum_name}</vacuum_name>
+        <sx0 ESRF_description="Focus position on X-axis" NAPItype="NX_FLOAT" units="mm">${TOMO_sx0}</sx0>
+        <camera_time ESRF_description="Integration time of the camera" NAPItype="NX_FLOAT" units="s">${TOMO_camera_time}</camera_time>
+        <i0 ESRF_description="Incident beam intensity" NAPItype="NX_FLOAT" units="">${TOMO_i0}</i0>
+        <it ESRF_description="Transmitted beam intensity" NAPItype="NX_FLOAT" units="">${TOMO_it}</it>
+        <interlaced_roundtrip ESRF_description="Interlaced scanning: same or opposite directions" NAPItype="NX_FLOAT">${TOMO_interlaced_roundtrip}</interlaced_roundtrip>
+        <scanning_mode ESRF_description="Mode of scanning" NAPItype="NX_CHAR">${TOMO_scanning_mode}</scanning_mode>
+        <x_pixel_n ESRF_description="Number of pixels in the x-direction" NAPItype="NX_FLOAT" units="">${TOMO_x_pixel_n}</x_pixel_n>
+        <y_pixel_n ESRF_description="Number of pixels in the y-direction" NAPItype="NX_FLOAT" units="">${TOMO_y_pixel_n}</y_pixel_n>
+        <surface_dose ESRF_description="Radiation dose at the surface" NAPItype="NX_FLOAT" units="Gy/s">${TOMO_surface_dose}</surface_dose>
+        <voi_dose ESRF_description="Radiation dose within the volume of interest (VOI)" NAPItype="NX_FLOAT" units="Gy/s">${TOMO_voi_dose}</voi_dose>
+        <total_voi_dose ESRF_description="Total accumulated dose within the volume of interest (VOI)" NAPItype="NX_FLOAT" units="kGy">${TOMO_total_voi_dose}</total_voi_dose>
+        <reference_description ESRF_description="Approach used to generate reference frames for flat field subtraction" NAPItype="NX_CHAR">${TOMO_reference_description}</reference_description>
+        <subframe_nb ESRF_description="Number of subframes" NAPItype="NX_FLOAT">${TOMO_subframe_nb}</subframe_nb>
+        <idNames ESRF_description="Insertion device for ID beamlines" NAPItype="NX_CHAR">${TOMO_idNames}</idNames>
+        <scanRadix ESRF_description="Common prefix for scan datasets, useful for locating original radiographs" NAPItype="NX_CHAR">${TOMO_scanRadix}</scanRadix>
+        <propagationDistance ESRF_description="Distance between the sample and detector" NAPItype="NX_FLOAT" units="mm">${TOMO_propagationDistance}</propagationDistance>
+        <xStages ESRF_description="Number of scans in x-direction; allows 3D mosaic scans" NAPItype="NX_FLOAT" units="">${TOMO_xStages}</xStages>
+        <yStages ESRF_description="Number of scans in y-direction; allows 3D mosaic scans" NAPItype="NX_FLOAT" units="">${TOMO_yStages}</yStages>
+        <zStages ESRF_description="Number of scans in z-direction; allows 3D mosaic scans" NAPItype="NX_FLOAT" units="">${TOMO_zStages}</zStages>
+        <min32to16bits ESRF_description="Min value for scaling 32-bit float to 16-bit unsigned integer" NAPItype="NX_FLOAT" units="">${TOMO_min32to16bits}</min32to16bits>
+        <max32to16bits ESRF_description="Max value for scaling 32-bit float to 16-bit unsigned integer" NAPItype="NX_FLOAT" units="">${TOMO_max32to16bits}</max32to16bits>
+        <jp2CompressRatio ESRF_description="JPEG2000 compression ratio (default ~10x)" NAPItype="NX_FLOAT" units="">${TOMO_jp2CompressRatio}</jp2CompressRatio>
+        <group NX_class="NXcollection" groupName="reconstruction">
+            <angle_offset ESRF_description="Angle offset for the reconstruction in degrees" NAPItype="NX_FLOAT" units="degree">${TOMOReconstruction_angle_offset}</angle_offset>
+            <angles_file ESRF_description="File path for angles used in reconstruction" NAPItype="NX_CHAR">${TOMOReconstruction_angles_file}</angles_file>
+            <axis_correction_file ESRF_description="File path for axis correction data" NAPItype="NX_CHAR">${TOMOReconstruction_axis_correction_file}</axis_correction_file>
+            <centered_axis ESRF_description="Whether the reconstruction is centered on the axis" NAPItype="NX_BOOLEAN">${TOMOReconstruction_centered_axis}</centered_axis>
+            <clip_outer_circle ESRF_description="Whether to clip the outer circle of the reconstruction" NAPItype="NX_BOOLEAN">${TOMOReconstruction_clip_outer_circle}</clip_outer_circle>
+            <cor_options ESRF_description="Options for center of rotation correction" NAPItype="NX_CHAR">${TOMOReconstruction_cor_options}</cor_options>
+            <enable_halftomo ESRF_description="Enable half-tomography mode" NAPItype="NX_BOOLEAN">${TOMOReconstruction_enable_halftomo}</enable_halftomo>
+            <end_x ESRF_description="End X coordinate (in pixels) for reconstruction" NAPItype="NX_INT">${TOMOReconstruction_end_x}</end_x>
+            <end_y ESRF_description="End Y coordinate (in pixels) for reconstruction" NAPItype="NX_INT">${TOMOReconstruction_end_y}</end_y>
+            <end_z ESRF_description="End Z coordinate (in pixels) for reconstruction" NAPItype="NX_INT">${TOMOReconstruction_end_z}</end_z>
+            <fbp_filter_cutoff ESRF_description="Cutoff frequency for the FBP filter" NAPItype="NX_FLOAT">${TOMOReconstruction_fbp_filter_cutoff}</fbp_filter_cutoff>
+            <fbp_filter_type ESRF_description="Type of FBP filter used" NAPItype="NX_CHAR">${TOMOReconstruction_fbp_filter_type}</fbp_filter_type>
+            <method ESRF_description="Reconstruction method used (e.g., FBP, SIRT)" NAPItype="NX_CHAR">${TOMOReconstruction_method}</method>
+            <optim_algorithm ESRF_description="Optimization algorithm used for reconstruction" NAPItype="NX_CHAR">${TOMOReconstruction_optim_algorithm}</optim_algorithm>
+            <padding_type ESRF_description="Padding type for reconstruction" NAPItype="NX_CHAR">${TOMOReconstruction_padding_type}</padding_type>
+            <preconditioning_filter ESRF_description="Preconditioning filter applied to the reconstruction" NAPItype="NX_CHAR">${TOMOReconstruction_preconditioning_filter}</preconditioning_filter>
+            <rotation_axis_position ESRF_description="Position of the rotation axis in pixels" NAPItype="NX_FLOAT">${TOMOReconstruction_rotation_axis_position}</rotation_axis_position>
+            <start_x ESRF_description="Start X coordinate (in pixels) for reconstruction" NAPItype="NX_INT">${TOMOReconstruction_start_x}</start_x>
+            <start_y ESRF_description="Start Y coordinate (in pixels) for reconstruction" NAPItype="NX_INT">${TOMOReconstruction_start_y}</start_y>
+            <start_z ESRF_description="Start Z coordinate (in pixels) for reconstruction" NAPItype="NX_INT">${TOMOReconstruction_start_z}</start_z>
+            <translation_movements_file ESRF_description="File path for translation movements data" NAPItype="NX_CHAR">${TOMOReconstruction_translation_movements_file}</translation_movements_file>
+            <weight_tv ESRF_description="Total variation weight for reconstruction" NAPItype="NX_FLOAT">${TOMOReconstruction_weight_tv}</weight_tv>
+            <voxel_size_x ESRF_description="Voxel size in X direction" NAPItype="NX_FLOAT" units="micron">${TOMOReconstruction_voxel_size_x}</voxel_size_x>
+            <voxel_size_y ESRF_description="Voxel size in Y direction" NAPItype="NX_FLOAT" units="micron">${TOMOReconstruction_voxel_size_y}</voxel_size_y>
+            <voxel_size_z ESRF_description="Voxel size in Z direction" NAPItype="NX_FLOAT" units="micron">${TOMOReconstruction_voxel_size_z}</voxel_size_z>
+            <group NX_class="NXcollection" groupName="phase">
+                <ctf_advanced_params ESRF_description="Advanced parameters for CTF phase retrieval" NAPItype="NX_CHAR">${TOMOReconstructionPhase_ctf_advanced_params}</ctf_advanced_params>
+                <ctf_geometry ESRF_description="CTF phase retrieval geometry" NAPItype="NX_CHAR">${TOMOReconstructionPhase_ctf_geometry}</ctf_geometry>
+                <delta_beta ESRF_description="Delta-beta ratio for phase retrieval" NAPItype="NX_FLOAT">${TOMOReconstructionPhase_delta_beta}</delta_beta>
+                <detector_sample_distance ESRF_description="Detector-sample distance for phase retrieval" NAPItype="NX_FLOAT" units="mm">${TOMOReconstructionPhase_detector_sample_distance}</detector_sample_distance>
+                <method ESRF_description="Phase retrieval method used" NAPItype="NX_CHAR">${TOMOReconstructionPhase_method}</method>
+                <padding_type ESRF_description="Padding type for phase retrieval" NAPItype="NX_CHAR">${TOMOReconstructionPhase_padding_type}</padding_type>
+                <unsharp_coeff ESRF_description="Unsharp coefficient for phase retrieval" NAPItype="NX_FLOAT">${TOMOReconstructionPhase_unsharp_coeff}</unsharp_coeff>
+                <unsharp_method ESRF_description="Unsharp method used for phase retrieval" NAPItype="NX_CHAR">${TOMOReconstructionPhase_unsharp_method}</unsharp_method>
+                <unsharp_sigma ESRF_description="Unsharp sigma for phase retrieval" NAPItype="NX_FLOAT">${TOMOReconstructionPhase_unsharp_sigma}</unsharp_sigma>
+                <nb_voxel_x ESRF_description="Reconstructed volume length in pixels (x-direction)" NAPItype="NX_FLOAT" units="">${TOMOReconstruction_nb_voxel_x}</nb_voxel_x>
+                <nb_voxel_y ESRF_description="Reconstructed volume length in pixels (y-direction)" NAPItype="NX_FLOAT" units="">${TOMOReconstruction_nb_voxel_y}</nb_voxel_y>
+                <nb_voxel_z ESRF_description="Reconstructed volume length in pixels (z-direction)" NAPItype="NX_FLOAT" units="">${TOMOReconstruction_nb_voxel_z}</nb_voxel_z>
+            </group>
+        </group>
+    </group>
+    <group NX_class="NXsubentry" groupName="MRT">
+        <mscType ESRF_description="Multislit Type" NAPItype="NX_CHAR">${MRT_mscType}</mscType>
+        <doseRate ESRF_description="Dose Rate" NAPItype="NX_CHAR" units="Gy/s/mA">${MRT_doseRate}</doseRate>
+        <ctcMot ESRF_description="C-to-C Motor" NAPItype="NX_CHAR">${MRT_ctcMot}</ctcMot>
+        <ctcSpacing ESRF_description="C-to-C Spacing" NAPItype="NX_CHAR" units="micron">${MRT_ctcSpacing}</ctcSpacing>
+        <ctcN ESRF_description="Number of Irradiations" NAPItype="NX_CHAR">${MRT_ctcN}</ctcN>
+        <crossMot ESRF_description="Crossfiring Motor" NAPItype="NX_CHAR">${MRT_crossMot}</crossMot>
+        <crossAngle ESRF_description="Crossfiring Angle" NAPItype="NX_CHAR" units="deg">${MRT_crossAngle}</crossAngle>
+        <crossN ESRF_description="Number of Crossfiring" NAPItype="NX_CHAR">${MRT_crossN}</crossN>
+        <intlcdMot ESRF_description="Interlaced Motor" NAPItype="NX_CHAR">${MRT_intlcdMot}</intlcdMot>
+        <intlcdOff ESRF_description="Interlaced Offset" NAPItype="NX_CHAR" units="micron">${MRT_intlcdOff}</intlcdOff>
+        <expoStart ESRF_description="Z Start Position" NAPItype="NX_CHAR" units="mm">${MRT_expoStart}</expoStart>
+        <expoStop ESRF_description="Z Stop Position" NAPItype="NX_CHAR" units="mm">${MRT_expoStop}</expoStop>
+        <expoSpeed ESRF_description="Z Last Speed" NAPItype="NX_CHAR" units="mm/s">${MRT_expoSpeed}</expoSpeed>
+        <IC01 ESRF_description="Counts on ION chamber 0-1" NAPItype="NX_CHAR">${MRT_IC01}</IC01>
+        <IC02 ESRF_description="Counts on ION chamber 0-2" NAPItype="NX_CHAR">${MRT_IC02}</IC02>
+        <IC0MU1 ESRF_description="Counts on ION MUSST chamber 0-1" NAPItype="NX_CHAR">${MRT_IC0MU1}</IC0MU1>
+        <IC0MU2 ESRF_description="Counts on ION MUSST chamber 0-2" NAPItype="NX_CHAR">${MRT_IC0MU2}</IC0MU2>
+        <IONCH1 ESRF_description="Counts on ION chamber 1" NAPItype="NX_CHAR">${MRT_IONCH1}</IONCH1>
+        <IONCH2 ESRF_description="Counts on ION chamber 2" NAPItype="NX_CHAR">${MRT_IONCH2}</IONCH2>
+        <dose ESRF_description="Dose Planned" NAPItype="NX_CHAR" units="Gy">${MRT_dose}</dose>
+        <beamHeight ESRF_description="Beam Vertical Width" NAPItype="NX_CHAR" units="microns">${MRT_beamHeight}</beamHeight>
+        <beamSize ESRF_description="Microbeam Width" NAPItype="NX_CHAR" units="microns">${MRT_beamSize}</beamSize>
+    </group>
+    <group NX_class="NXsubentry" groupName="HOLO">
+        <n ESRF_description="Number of planes for holography" NAPItype="NX_FLOAT">${HOLO_N}</n>
+        <sampleDetectorDistances ESRF_description="Sample/detector distances for all planes used" NAPItype="NX_CHAR">${HOLO_holoSampleDetectorDistances}</sampleDetectorDistances>
+        <sourceSampleDistances ESRF_description="Source/sample distances for all planes used" NAPItype="NX_CHAR">${HOLO_holoSourceSampleDistances}</sourceSampleDistances>
+        <im01NumEnd ESRF_description="Index of last sample image in plane 1" NAPItype="NX_FLOAT">${HOLO_im01_num_end}</im01NumEnd>
+        <im01NumStart ESRF_description="Index of first sample image in plane 1" NAPItype="NX_FLOAT">${HOLO_im01_num_start}</im01NumStart>
+        <im02NumEnd ESRF_description="Index of last sample image in plane 2" NAPItype="NX_FLOAT">${HOLO_im02_num_end}</im02NumEnd>
+        <im02NumStart ESRF_description="Index of first sample image in plane 2" NAPItype="NX_FLOAT">${HOLO_im02_num_start}</im02NumStart>
+        <im03NumEnd ESRF_description="Index of last sample image in plane 3" NAPItype="NX_FLOAT">${HOLO_im03_num_end}</im03NumEnd>
+        <im03NumStart ESRF_description="Index of first sample image in plane 3" NAPItype="NX_FLOAT">${HOLO_im03_num_start}</im03NumStart>
+        <im04NumEnd ESRF_description="Index of last sample image in plane 4" NAPItype="NX_FLOAT">${HOLO_im04_num_end}</im04NumEnd>
+        <im04NumStart ESRF_description="Index of first sample image in plane 4" NAPItype="NX_FLOAT">${HOLO_im04_num_start}</im04NumStart>
+        <ref01NumEnd ESRF_description="Index of last reference image in plane 1" NAPItype="NX_FLOAT">${HOLO_ref01_num_end}</ref01NumEnd>
+        <ref02NumEnd ESRF_description="Index of last reference image in plane 2" NAPItype="NX_FLOAT">${HOLO_ref02_num_end}</ref02NumEnd>
+        <ref02NumStart ESRF_description="Index of first reference image in plane 2" NAPItype="NX_FLOAT">${HOLO_ref02_num_start}</ref02NumStart>
+        <ref03NumEnd ESRF_description="Index of last reference image in plane 3" NAPItype="NX_FLOAT">${HOLO_ref03_num_end}</ref03NumEnd>
+        <ref03NumStart ESRF_description="Index of first reference image in plane 3" NAPItype="NX_FLOAT">${HOLO_ref03_num_start}</ref03NumStart>
+        <ref04NumEnd ESRF_description="Index of last reference image in plane 4" NAPItype="NX_FLOAT">${HOLO_ref04_num_end}</ref04NumEnd>
+        <ref04NumStart ESRF_description="Index of first reference image in plane 4" NAPItype="NX_FLOAT">${HOLO_ref04_num_start}</ref04NumStart>
+        <darkNumStart ESRF_description="Index of first dark image" NAPItype="NX_FLOAT">${HOLO_dark_num_start}</darkNumStart>
+        <darkNumEnd ESRF_description="Index of last dark image" NAPItype="NX_FLOAT">${HOLO_dark_num_end}</darkNumEnd>
+        <pixelSize ESRF_description="Pixel size of first distance in micron" NAPItype="NX_FLOAT" units="s">${HOLO_pixelSize}</pixelSize>
+    </group>
+    <group NX_class="NXsubentry" groupName="SSX">
+        <group NX_class="NXcollection" groupName="jet">
+            <speed ESRF_description="Jet's speed" NAPItype="NX_CHAR">${SSXJet_speed}</speed>
+            <size ESRF_description="Jet's size" NAPItype="NX_CHAR">${SSXJet_size}</size>
+        </group>
+        <group NX_class="NXcollection" groupName="chip">
+            <horizontal_spacing NAPItype="NX_CHAR">${SSXChip_horizontal_spacing}</horizontal_spacing>
+            <vertical_spacing NAPItype="NX_CHAR">${SSXChip_vertical_spacing}</vertical_spacing>
+            <row_number NAPItype="NX_CHAR">${SSXChip_row_number}</row_number>
+            <column_number NAPItype="NX_CHAR">${SSXChip_column_number}</column_number>
+            <model NAPItype="NX_CHAR">${SSXChip_model}</model>
+        </group>
+    </group>
+    <group NX_class="NXsubentry" groupName="WAXS">
+        <definition ESRF_description="Technique used to collect this dataset" NAPItype="NX_CHAR">${xrf_definition}</definition>
+    </group>
+    <group NX_class="NXsubentry" groupName="HTXRPD">
+        <energy ESRF_description="Beam energy" NAPItype="NX_FLOAT" units="keV">${HTXRPD_energy}</energy>
+        <exposureTime ESRF_description="Requested exposure time per diffraction pattern" NAPItype="NX_FLOAT" units="s">${HTXRPD_exposureTime}</exposureTime>
+        <distance ESRF_description="The perpendicular sample-detector distance" NAPItype="NX_FLOAT" units="mm">${HTXRPD_distance}</distance>
+        <sampleVibration ESRF_description="The vibration speed of the powder sample (0-100 %)" NAPItype="NX_FLOAT" units="">${HTXRPD_sampleVibration}</sampleVibration>
+    </group>
+    <group NX_class="NXsubentry" groupName="SXDM">
+        <beamSizeVertical record="final" ESRF_description="Vertical beam size on the sample in microns" NAPItype="NX_FLOAT" units="micron">${SXDM_beamSizeVertical}</beamSizeVertical>
+        <beamSizeHorizontal record="final" ESRF_description="Horizontal beam size on the sample in microns" NAPItype="NX_FLOAT" units="micron">${SXDM_beamSizeHorizontal}</beamSizeHorizontal>
+    </group>
+    <group NX_class="NXsubentry" groupName="BCDI">
+        <beamSizeVertical record="final" ESRF_description="Vertical beam size on the sample in microns" NAPItype="NX_FLOAT" units="micron">${BCDI_beamSizeVertical}</beamSizeVertical>
+        <beamSizeHorizontal record="final" ESRF_description="Horizontal beam size on the sample in microns" NAPItype="NX_FLOAT" units="micron">${BCDI_beamSizeHorizontal}</beamSizeHorizontal>
+    </group>
+    <group NX_class="NXsample" groupName="sample">
+        <name record="final" ESRF_description="Name of the sample" ESRF_mandatory="Mandatory" NAPItype="NX_CHAR">${Sample_name}</name>
+        <description record="final" ESRF_description="Description of the sample" NAPItype="NX_CHAR">${Sample_description}</description>
+        <distance record="final" ESRF_description="Translation of the sample along the Z-direction of the laboratory coordinate system" NAPItype="NX_CHAR">${Sample_distance}</distance>
+        <support record="final" ESRF_description="Name of the support used to collect the sample. It can be a chip, plate, jet, etc..." NAPItype="NX_CHAR">${Sample_support}</support>
+        <group NX_class="NXnote" groupName="notes">
+            <notes record="final" NAPItype="NX_CHAR">${Sample_notes}</notes>
+        </group>
+        <situation record="final" ESRF_description="The atmosphere will be one of the components, which is where its details will be stored; the relevant components will be indicated by the entry in the sample_component member." NAPItype="NX_CHAR">${Sample_situation}</situation>
+        <ub_matrix record="final" ESRF_description="UB matrix of single crystal sample using Busing-Levy convention: W. R. Busing and H. A. Levy (1967). Acta Cryst. 22, 457-464. This is the multiplication of the orientation_matrix, given above, with the BB matrix which can be derived from the lattice constants." NAPItype="NX_CHAR">${Sample_ub_matrix}</ub_matrix>
+        <temperature_env record="final" ESRF_description="Additional sample temperature environment information" NAPItype="NX_CHAR">${Sample_temperature_env}</temperature_env>
+        <chemical_formula record="final" ESRF_description="Chemical formula of the sample" NAPItype="NX_CHAR">${Sample_chemical_formula}</chemical_formula>
+        <group NX_class="NXpositioner" groupName="positioners">
+            <name NAPItype="NX_CHAR">${SamplePositioners_name}</name>
+            <value NAPItype="NX_CHAR">${SamplePositioners_value}</value>
+        </group>
+        <group NX_class="NXcollection" groupName="protein">
+            <acronym NAPItype="NX_CHAR" ESRF_description="Acronym of the protein">${SampleProtein_acronym}</acronym>
+            <name NAPItype="NX_CHAR" ESRF_description="Acronym of the protein">${SampleProtein_name}</name>
+        </group>
+        <group NX_class="NXcollection" groupName="changer">
+            <position NAPItype="NX_CHAR" ESRF_description="Sample changer position">${SampleChanger_position}</position>
+        </group>
+        <group NX_class="NXcollection" groupName="patient">
+            <institute NAPItype="NX_CHAR" ESRF_description="Institute of origin of the patient">${SamplePatient_institute}</institute>
+            <number NAPItype="NX_CHAR" ESRF_description="Number of the patient">${SamplePatient_number}</number>
+            <age NAPItype="NX_CHAR" ESRF_description="Age of the patient" units="years">${SamplePatient_age}</age>
+            <sex NAPItype="NX_CHAR" ESRF_description="Sex of the patient">${SamplePatient_sex}</sex>
+            <weight NAPItype="NX_CHAR" ESRF_description="Weight of the patient" units="kg">${SamplePatient_weight}</weight>
+            <size NAPItype="NX_CHAR" ESRF_description="Size of the patient" units="cm">${SamplePatient_size}</size>
+            <info NAPItype="NX_CHAR" ESRF_description="Information about the patient">${SamplePatient_info}</info>
+            <organ_name NAPItype="NX_CHAR" ESRF_description="Name of the organ">${SamplePatient_organ_name}</organ_name>
+            <organ_description NAPItype="NX_CHAR" ESRF_description="Name of the organ">${SamplePatient_organ_description}</organ_description>
+        </group>
+        <group NX_class="NXenvironment" groupName="environment">
+            <name NAPItype="NX_CHAR" ESRF_description="Apparatus identification code/model number; e.g. OC100 011">${SampleEnvironment_name}</name>
+            <type NAPItype="NX_CHAR" ESRF_description="Type of apparatus. This could be the SE codes in scheduling database; e.g. OC/100">${SampleEnvironment_type}</type>
+            <description NAPItype="NX_CHAR" ESRF_description="Description of the apparatus; e.g. 100mm bore orange cryostat with Roots pump">${SampleEnvironment_description}</description>
+            <group NX_class="NXsensor" groupName="sensors" ESRF_description="Parameters for controlling external conditions">
+                <name NAPItype="NX_CHAR">${SampleEnvironmentSensors_name}</name>
+                <value NAPItype="NX_CHAR">${SampleEnvironmentSensors_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXsubentry" groupName="tracking">
+            <group NX_class="NXsubentry" groupName="shipment">
+                <id NAPItype="NX_CHAR" ESRF_description="Identifier of the shipment">${SampleTrackingShipment_id}</id>
+                <name NAPItype="NX_CHAR" ESRF_description="Name of the shipment">${SampleTrackingShipment_name}</name>
+            </group>
+            <group NX_class="NXsubentry" groupName="parcel">
+                <id NAPItype="NX_CHAR" ESRF_description="Identifier of the parcel">${SampleTrackingParcel_id}</id>
+                <id NAPItype="NX_CHAR" ESRF_description="Storage conditions of the parcel. Example: -80 degrees">${SampleTrackingParcel_storage_condition}</id>
+            </group>
+            <group NX_class="NXcollection" groupName="container">
+                <type NAPItype="NX_CHAR" ESRF_description="Type of container. Example: unipuck, spinepuck, etc...">${SampleTrackingContainer_type}</type>
+                <capacity NAPItype="NX_CHAR" ESRF_description="Total capacity of the container">${SampleTrackingContainer_capaticy}</capacity>
+                <position NAPItype="NX_CHAR" ESRF_description="Position of the sample within the container">${SampleTrackingContainer_position}</position>
+                <id NAPItype="NX_CHAR" ESRF_description="Identifier of the container">${SampleTrackingContainer_id}</id>
+            </group>
+        </group>
+        <group NX_class="NXcollection" groupName="localisation">
+            <name NAPItype="NX_CHAR" ESRF_description="Name of the localisation">${SampleLocalisation_name}</name>
+            <country NAPItype="NX_CHAR" ESRF_description="Country">${SampleLocalisation_country}</country>
+            <continental_region NAPItype="NX_CHAR" ESRF_description="Continental region">${SampleLocalisation_continental_region}</continental_region>
+        </group>
+        <group NX_class="NXcollection" groupName="paleo">
+            <scientific_domain NAPItype="NX_CHAR" ESRF_description="Scientific domain">${SamplePaleo_scientific_domain}</scientific_domain>
+            <repository_institution NAPItype="NX_CHAR" ESRF_description="Repository institution">${SamplePaleo_repository_institution}</repository_institution>
+            <collection_number NAPItype="NX_CHAR" ESRF_description="Collection number in the repository institution">${SamplePaleo_collection_number}</collection_number>
+            <group NX_class="NXcollection" groupName="geological_time">
+                <formation NAPItype="NX_CHAR" ESRF_description="Formation">${SamplePaleoGeologicalTime_formation}</formation>
+                <era NAPItype="NX_CHAR" ESRF_description="Era">${SamplePaleoGeologicalTime_era}</era>
+                <period NAPItype="NX_CHAR" ESRF_description="Period">${SamplePaleoGeologicalTime_period}</period>
+                <epoch NAPItype="NX_CHAR" ESRF_description="Epoch">${SamplePaleoGeologicalTime_epoch}</epoch>
+            </group>
+            <group NX_class="NXcollection" groupName="classification">
+                <species NAPItype="NX_CHAR" ESRF_description="Species">${SamplePaleoClassification_species}</species>
+                <material_type NAPItype="NX_CHAR" ESRF_description="Material Type">${SamplePaleoClassification_material_type}</material_type>
+                <clade1 NAPItype="NX_CHAR" ESRF_description="Clade 1">${SamplePaleoClassification_clade1}</clade1>
+                <clade2 NAPItype="NX_CHAR" ESRF_description="Clade 2">${SamplePaleoClassification_clade2}</clade2>
+                <clade3 NAPItype="NX_CHAR" ESRF_description="Clade 3">${SamplePaleoClassification_clade3}</clade3>
+                <clade4 NAPItype="NX_CHAR" ESRF_description="Clade 4">${SamplePaleoClassification_clade4}</clade4>
+                <clade5 NAPItype="NX_CHAR" ESRF_description="Clade 5">${SamplePaleoClassification_clade5}</clade5>
+                <clade6 NAPItype="NX_CHAR" ESRF_description="Clade 6">${SamplePaleoClassification_clade6}</clade6>
+            </group>
+        </group>
+    </group>
+    <group NX_class="NXfresnel_zone_plate" groupName="fresnel_zone_plate">
+        <outer_diameter NAPItype="NX_CHAR" ESRF_description="">${Fresnel_zone_plate_outer_diameter}</outer_diameter>
+        <outermost_zone_width NAPItype="NX_CHAR" ESRF_description="">${Fresnel_zone_plate_outermost_zone_width}</outermost_zone_width>
+        <central_stop_diameter NAPItype="NX_CHAR" ESRF_description="">${Fresnel_zone_plate_central_stop_diameter}</central_stop_diameter>
+        <fabrication NAPItype="NX_CHAR" ESRF_description="how the zone plate was manufactured. Any of these values: etched | plated | zone doubled | other">${Fresnel_zone_plate_fabrication}</fabrication>
+        <zone_height NAPItype="NX_CHAR" ESRF_description="">${Fresnel_zone_plate_zone_height}</zone_height>
+        <zone_material NAPItype="NX_CHAR" ESRF_description="">${Fresnel_zone_plate_zone_material}</zone_material>
+        <zone_support_material NAPItype="NX_CHAR" ESRF_description="Material present between the zones. This is usually only present for the “zone doubled” fabrication process">${Fresnel_zone_plate_zone_support_material}</zone_support_material>
+        <central_stop_material NAPItype="NX_CHAR" ESRF_description="">${Fresnel_zone_plate_central_stop_material}</central_stop_material>
+        <central_stop_thickness NAPItype="NX_CHAR" ESRF_description="">${Fresnel_zone_plate_central_stop_thickness}</central_stop_thickness>
+        <support_membrane_material NAPItype="NX_CHAR" ESRF_description="">${Fresnel_zone_plate_support_membrane_material}</support_membrane_material>
+        <distance NAPItype="NX_CHAR" ESRF_description="">${Fresnel_zone_plate_distance}</distance>
+        <component_index NAPItype="NX_CHAR" ESRF_description="">${Fresnel_zone_plate_component_index}</component_index>
+    </group>
+    <group NX_class="NXaperture" groupName="aperture">
+        <description ESRF_description="Declares which child group contains a path leading to a NXdata group. It is recommended (as of NIAC2014) to use this attribute to help define the path to the default dataset to be plotted. See https://www.nexusformat.org/2014_How_to_find_default_data.html for a summary of the discussion." NAPItype="NX_CHAR">${Aperture_description}</description>
+        <material ESRF_description="Absorbing material of the aperture" NAPItype="NX_CHAR">${Aperture_material}</material>
+        <group NX_class="NXgeometry" groupName="geometry">
+            <vertical ESRF_description="Optional description/label. Probably only present if we are an additional reference point for components rather than the location of a real component." NAPItype="NX_CHAR">${ApertureGeometry_vertical}</vertical>
+            <horizontal ESRF_description="" NAPItype="NX_CHAR">${ApertureGeometry_horizontal}</horizontal>
+            <transformation ESRF_description="" NAPItype="NX_CHAR">${ApertureGeometry_transformation}</transformation>
+            <distance ESRF_description="" NAPItype="NX_CHAR">${ApertureGeometry_distance}</distance>
+            <component_index ESRF_description="Position of the component along the beam path. The sample is at 0, components upstream have negative component_index, components downstream have positive component_index." NAPItype="NX_CHAR">${ApertureGeometry_component_index}</component_index>
+        </group>
+    </group>
+    <group NX_class="NXmirror" groupName="mirror">
+        <type ESRF_description="Any of these values: single: mirror with a single material as a reflecting surface, multi: mirror with stacked, multiple layers as a reflecting surface" NAPItype="NX_CHAR">${Mirror_type}</type>
+        <description ESRF_description="description of this mirror" NAPItype="NX_CHAR">${Mirror_description}</description>
+        <interior_atmosphere ESRF_description="Any of these values: vacuum | helium | argon" NAPItype="NX_CHAR">${Mirror_interior_atmosphere}</interior_atmosphere>
+        <substrate_material ESRF_description="" NAPItype="NX_CHAR">${Mirror_substrate_material}</substrate_material>
+        <coating_material ESRF_description="" NAPItype="NX_CHAR">${Mirror_coating_material}</coating_material>
+        <group NX_class="NXgeometry" groupName="geometry">
+            <vertical ESRF_description="Optional description/label. Probably only present if we are an additional reference point for components rather than the location of a real component." NAPItype="NX_CHAR">${MirrorGeometry_vertical}</vertical>
+            <horizontal ESRF_description="" NAPItype="NX_CHAR">${MirrorGeometry_horizontal}</horizontal>
+            <transformation ESRF_description="" NAPItype="NX_CHAR">${MirrorGeometry_transformation}</transformation>
+            <distance ESRF_description="" NAPItype="NX_CHAR">${MirrorGeometry_distance}</distance>
+            <component_index ESRF_description="Position of the component along the beam path. The sample is at 0, components upstream have negative component_index, components downstream have positive component_index." NAPItype="NX_CHAR">${MirrorGeometry_component_index}</component_index>
+        </group>
+    </group>
+    <group NX_class="NXinstrument" groupName="instrument">
+        <name ESRF_description="ID of the beamline" NAPItype="NX_CHAR">${beamlineID}</name>
+        <group NX_class="NXcollection" groupName="variables">
+            <name NAPItype="NX_CHAR">${InstrumentVariables_name}</name>
+            <value NAPItype="NX_CHAR">${InstrumentVariables_value}</value>
+        </group>
+        <group NX_class="NXpositioner" groupName="positioners">
+            <name NAPItype="NX_CHAR">${InstrumentPositioners_name}</name>
+            <value NAPItype="NX_CHAR">${InstrumentPositioners_value}</value>
+        </group>
+        <group NX_class="NXbeam" groupName="beam">
+            <incident_beam_divergence ESRF_description="Beam crossfire in degrees parallel to the laboratory X axis" NAPItype="NX_CHAR">${InstrumentBeam_incident_beam_divergence}</incident_beam_divergence>
+            <horizontal_incident_beam_divergence ESRF_description="Horizontal beam crossfire in degrees parallel to the laboratory X axis" NAPItype="NX_CHAR">${InstrumentBeam_horizontal_incident_beam_divergence}</horizontal_incident_beam_divergence>
+            <vertical_incident_beam_divergence ESRF_description="Vertical beam crossfire in degrees parallel to the laboratory X axis" NAPItype="NX_CHAR">${InstrumentBeam_vertical_incident_beam_divergence}</vertical_incident_beam_divergence>
+            <final_polarization ESRF_description="Polarization vector on leaving beamline component using Stokes notation (see incident_polarization_stokes)." NAPItype="NX_CHAR">${InstrumentBeam_final_polarization}</final_polarization>
+        </group>
+        <group NX_class="NXmonochromator" groupName="monochromator">
+            <name NAPItype="NX_CHAR">${InstrumentMonochromator_name}</name>
+            <energy NAPItype="NX_CHAR">${InstrumentMonochromator_energy}</energy>
+            <wavelength NAPItype="NX_CHAR">${InstrumentMonochromator_wavelength}</wavelength>
+            <group NX_class="NXcrystal" groupName="crystal">
+                <usage NAPItype="NX_CHAR">${InstrumentMonochromatorCrystal_usage}</usage>
+                <d_spacing NAPItype="NX_CHAR">${InstrumentMonochromatorCrystal_d_spacing}</d_spacing>
+                <type NAPItype="NX_CHAR">${InstrumentMonochromatorCrystal_type}</type>
+                <reflection NAPItype="NX_CHAR">${InstrumentMonochromatorCrystal_reflection}</reflection>
+            </group>
+        </group>
+        <group NX_class="NXsource" groupName="source">
+            <mode NAPItype="NX_CHAR">${InstrumentSource_mode}</mode>
+            <current NAPItype="NX_CHAR">${InstrumentSource_current}</current>
+            <distance ESRF_description="Effective distance from sample Distance as seen by radiation from sample. This number should be negative to signify that it is upstream of the sample." NAPItype="NX_CHAR">${InstrumentSource_distance}</distance>
+            <name ESRF_description="Name of source" NAPItype="NX_CHAR">${InstrumentSource_name}</name>
+            <type ESRF_description="type of radiation source (pick one from the enumerated list and spell exactly). Spallation Neutron Source, Pulsed Reactor Neutron Source, Reactor Neutron Source, Synchrotron X-ray Source, Pulsed Muon Source, Rotating Anode X-ray,Fixed Tube X-ray,UV Laser,Free-Electron Laser,Optical Laser,Ion Source,UV Plasma Source" NAPItype="NX_CHAR">${InstrumentSource_type}</type>
+            <probe ESRF_description="type of radiation probe" NAPItype="NX_CHAR">${InstrumentSource_probe}</probe>
+            <emittance_x ESRF_description="Source emittance (nm-rad) in X (horizontal) direction." NAPItype="NX_CHAR">${InstrumentSource_emittance_x}</emittance_x>
+            <emittance_y ESRF_description="Source emittance (nm-rad) in Y (horizontal) direction." NAPItype="NX_CHAR">${InstrumentSource_emittance_y}</emittance_y>
+        </group>
+        <group NX_class="NXsource" groupName="laser01">
+            <name ESRF_description="https://manual.nexusformat.org/classes/base_classes/NXsource.html#nxsource-name-field" NAPItype="NX_CHAR">${InstrumentLaser01_name}</name>
+            <type ESRF_description="Type of source. https://manual.nexusformat.org/classes/base_classes/NXsource.html#nxsource-type-field" NAPItype="NX_CHAR">${InstrumentLaser01_type}</type>
+            <probe ESRF_description="Type of radiation. https://manual.nexusformat.org/classes/base_classes/NXsource.html#nxsource-probe-field" NAPItype="NX_CHAR">${InstrumentLaser01_probe}</probe>
+            <energy ESRF_description="Energy emitted in a single pulse. https://manual.nexusformat.org/classes/base_classes/NXsource.html#nxsource-energy-field" NAPItype="NX_FLOAT">${InstrumentLaser01_energy}</energy>
+            <wavelength ESRF_description="Wavelength emitted in a single pulse." NAPItype="NX_FLOAT" units="m">${InstrumentLaser01_wavelength}</wavelength>
+            <repetition_rate ESRF_description="Pulse Repetition Frequency." NAPItype="NX_FLOAT">${InstrumentLaser01_repetition_rate}</repetition_rate>
+            <pulse_width ESRF_description="Time between the start and end of a single pulse. https://manual.nexusformat.org/classes/base_classes/NXsource.html#nxsource-pulse-width-field" NAPItype="NX_FLOAT" units="s">${InstrumentLaser01_pulse_width}</pulse_width>
+            <delay ESRF_description="The time of the start of the laser pulse with respect to the start of the measurement (T=0)" NAPItype="NX_FLOAT" units="s">${InstrumentLaser01_delay}</delay>
+        </group>
+        <group NX_class="NXsource" groupName="laser02">
+            <name ESRF_description="https://manual.nexusformat.org/classes/base_classes/NXsource.html#nxsource-name-field" NAPItype="NX_CHAR">${InstrumentLaser02_name}</name>
+            <type ESRF_description="Type of source. https://manual.nexusformat.org/classes/base_classes/NXsource.html#nxsource-type-field" NAPItype="NX_CHAR">${InstrumentLaser02_type}</type>
+            <probe ESRF_description="Type of radiation. https://manual.nexusformat.org/classes/base_classes/NXsource.html#nxsource-probe-field" NAPItype="NX_CHAR">${InstrumentLaser02_probe}</probe>
+            <energy ESRF_description="Energy emitted in a single pulse. https://manual.nexusformat.org/classes/base_classes/NXsource.html#nxsource-energy-field" NAPItype="NX_FLOAT" units="J">${InstrumentLaser02_energy}</energy>
+            <wavelength ESRF_description="Wavelength emitted in a single pulse." NAPItype="NX_FLOAT" units="m">${InstrumentLaser02_wavelength}</wavelength>
+            <repetition_rate ESRF_description="Pulse Repetition Frequency." NAPItype="NX_FLOAT">${InstrumentLaser02_repetition_rate}</repetition_rate>
+            <pulse_width ESRF_description="Time between the start and end of a single pulse. https://manual.nexusformat.org/classes/base_classes/NXsource.html#nxsource-pulse-width-field" NAPItype="NX_FLOAT" units="s">${InstrumentLaser02_pulse_width}</pulse_width>
+            <delay ESRF_description="The time of the start of the laser pulse with respect to the start of the measurement (T=0)" NAPItype="NX_FLOAT" units="s">${InstrumentLaser02_delay}</delay>
+        </group>
+        <group NX_class="NXslit" groupName="primary_slit">
+            <name NAPItype="NX_CHAR">${InstrumentSlitPrimary_name}</name>
+            <vertical_gap NAPItype="NX_CHAR">${InstrumentSlitPrimary_vertical_gap}</vertical_gap>
+            <vertical_offset NAPItype="NX_CHAR">${InstrumentSlitPrimary_vertical_offset}</vertical_offset>
+            <horizontal_gap NAPItype="NX_CHAR">${InstrumentSlitPrimary_horizontal_gap}</horizontal_gap>
+            <horizontal_offset NAPItype="NX_CHAR">${InstrumentSlitPrimary_horizontal_offset}</horizontal_offset>
+            <blade_up NAPItype="NX_CHAR">${InstrumentSlitPrimary_blade_up}</blade_up>
+            <blade_down NAPItype="NX_CHAR">${InstrumentSlitPrimary_blade_down}</blade_down>
+            <blade_front NAPItype="NX_CHAR">${InstrumentSlitPrimary_blade_front}</blade_front>
+            <blade_back NAPItype="NX_CHAR">${InstrumentSlitPrimary_blade_back}</blade_back>
+        </group>
+        <group NX_class="NXslit" groupName="secondary_slit">
+            <name NAPItype="NX_CHAR">${InstrumentSlitSecondary_name}</name>
+            <vertical_gap NAPItype="NX_CHAR">${InstrumentSlitSecondary_vertical_gap}</vertical_gap>
+            <vertical_offset NAPItype="NX_CHAR">${InstrumentSlitSecondary_vertical_offset}</vertical_offset>
+            <horizontal_gap NAPItype="NX_CHAR">${InstrumentSlitSecondary_horizontal_gap}</horizontal_gap>
+            <horizontal_offset NAPItype="NX_CHAR">${InstrumentSlitSecondary_horizontal_offset}</horizontal_offset>
+            <blade_up NAPItype="NX_CHAR">${InstrumentSlitSecondary_blade_up}</blade_up>
+            <blade_down NAPItype="NX_CHAR">${InstrumentSlitSecondary_blade_down}</blade_down>
+            <blade_front NAPItype="NX_CHAR">${InstrumentSlitSecondary_blade_front}</blade_front>
+            <blade_back NAPItype="NX_CHAR">${InstrumentSlitSecondary_blade_back}</blade_back>
+        </group>
+        <group NX_class="NXslit" groupName="slits">
+            <name NAPItype="NX_CHAR">${InstrumentSlits_name}</name>
+            <vertical_gap NAPItype="NX_CHAR">${InstrumentSlits_vertical_gap}</vertical_gap>
+            <vertical_offset NAPItype="NX_CHAR">${InstrumentSlits_vertical_offset}</vertical_offset>
+            <horizontal_gap NAPItype="NX_CHAR">${InstrumentSlits_horizontal_gap}</horizontal_gap>
+            <horizontal_offset NAPItype="NX_CHAR">${InstrumentSlits_horizontal_offset}</horizontal_offset>
+            <blade_up NAPItype="NX_CHAR">${InstrumentSlits_blade_up}</blade_up>
+            <blade_down NAPItype="NX_CHAR">${InstrumentSlits_blade_down}</blade_down>
+            <blade_front NAPItype="NX_CHAR">${InstrumentSlits_blade_front}</blade_front>
+            <blade_back NAPItype="NX_CHAR">${InstrumentSlits_blade_back}</blade_back>
+        </group>
+        <group NX_class="NXxraylens" groupName="xraylens01">
+            <lens_geometry ESRF_description="Geometry of the lens. Any of these values:paraboloid,spherical,elliptical,hyperbolical" NAPItype="NX_CHAR">${InstrumentXraylens01_lens_geometry}</lens_geometry>
+            <focus_type ESRF_description="The type of focus of the lens. Any of these values:line,point" NAPItype="NX_CHAR">${InstrumentXraylens01_focus_type}</focus_type>
+            <lens_thickness ESRF_description="Thickness of the lens" NAPItype="NX_CHAR">${InstrumentXraylens01_lens_thickness}</lens_thickness>
+            <lens_length ESRF_description="Length of the lens" NAPItype="NX_CHAR">${InstrumentXraylens01_lens_length}</lens_length>
+            <curvature ESRF_description="Radius of the curvature as measured in the middle of the lens" NAPItype="NX_CHAR">${InstrumentXraylens01_curvature}</curvature>
+            <aperture ESRF_description="Diameter of the lens" NAPItype="NX_CHAR">${InstrumentXraylens01_aperture}</aperture>
+            <number_of_lenses ESRF_description="Number of lenses that make up the compound lens" NAPItype="NX_CHAR">${InstrumentXraylens01_number_of_lenses}</number_of_lenses>
+            <lens_material ESRF_description="Material used to make the lens" NAPItype="NX_CHAR">${InstrumentXraylens01_lens_material}</lens_material>
+        </group>
+        <group NX_class="NXxraylens" groupName="xraylens02">
+            <lens_geometry ESRF_description="Geometry of the lens. Any of these values:paraboloid,spherical,elliptical,hyperbolical" NAPItype="NX_CHAR">${InstrumentXraylens02_lens_geometry}</lens_geometry>
+            <focus_type ESRF_description="The type of focus of the lens. Any of these values:line,point" NAPItype="NX_CHAR">${InstrumentXraylens02_focus_type}</focus_type>
+            <lens_thickness ESRF_description="Thickness of the lens" NAPItype="NX_CHAR">${InstrumentXraylens02_lens_thickness}</lens_thickness>
+            <lens_length ESRF_description="Length of the lens" NAPItype="NX_CHAR">${InstrumentXraylens02_lens_length}</lens_length>
+            <curvature ESRF_description="Radius of the curvature as measured in the middle of the lens" NAPItype="NX_CHAR">${InstrumentXraylens02_curvature}</curvature>
+            <aperture ESRF_description="Diameter of the lens" NAPItype="NX_CHAR">${InstrumentXraylens02_aperture}</aperture>
+            <number_of_lenses ESRF_description="Number of lenses that make up the compound lens" NAPItype="NX_CHAR">${InstrumentXraylens02_number_of_lenses}</number_of_lenses>
+            <lens_material ESRF_description="Material used to make the lens" NAPItype="NX_CHAR">${InstrumentXraylens02_lens_material}</lens_material>
+        </group>
+        <group NX_class="NXxraylens" groupName="xraylens03">
+            <lens_geometry ESRF_description="Geometry of the lens. Any of these values:paraboloid,spherical,elliptical,hyperbolical" NAPItype="NX_CHAR">${InstrumentXraylens03_lens_geometry}</lens_geometry>
+            <focus_type ESRF_description="The type of focus of the lens. Any of these values:line,point" NAPItype="NX_CHAR">${InstrumentXraylens03_focus_type}</focus_type>
+            <lens_thickness ESRF_description="Thickness of the lens" NAPItype="NX_CHAR">${InstrumentXraylens03_lens_thickness}</lens_thickness>
+            <lens_length ESRF_description="Length of the lens" NAPItype="NX_CHAR">${InstrumentXraylens03_lens_length}</lens_length>
+            <curvature ESRF_description="Radius of the curvature as measured in the middle of the lens" NAPItype="NX_CHAR">${InstrumentXraylens03_curvature}</curvature>
+            <aperture ESRF_description="Diameter of the lens" NAPItype="NX_CHAR">${InstrumentXraylens03_aperture}</aperture>
+            <number_of_lenses ESRF_description="Number of lenses that make up the compound lens" NAPItype="NX_CHAR">${InstrumentXraylens03_number_of_lenses}</number_of_lenses>
+            <lens_material ESRF_description="Material used to make the lens" NAPItype="NX_CHAR">${InstrumentXraylens03_lens_material}</lens_material>
+        </group>
+        <group NX_class="NXxraylens" groupName="xraylens04">
+            <lens_geometry ESRF_description="Geometry of the lens. Any of these values:paraboloid,spherical,elliptical,hyperbolical" NAPItype="NX_CHAR">${InstrumentXraylens04_lens_geometry}</lens_geometry>
+            <focus_type ESRF_description="The type of focus of the lens. Any of these values:line,point" NAPItype="NX_CHAR">${InstrumentXraylens04_focus_type}</focus_type>
+            <lens_thickness ESRF_description="Thickness of the lens" NAPItype="NX_CHAR">${InstrumentXraylens04_lens_thickness}</lens_thickness>
+            <lens_length ESRF_description="Length of the lens" NAPItype="NX_CHAR">${InstrumentXraylens04_lens_length}</lens_length>
+            <curvature ESRF_description="Radius of the curvature as measured in the middle of the lens" NAPItype="NX_CHAR">${InstrumentXraylens04_curvature}</curvature>
+            <aperture ESRF_description="Diameter of the lens" NAPItype="NX_CHAR">${InstrumentXraylens04_aperture}</aperture>
+            <number_of_lenses ESRF_description="Number of lenses that make up the compound lens" NAPItype="NX_CHAR">${InstrumentXraylens04_number_of_lenses}</number_of_lenses>
+            <lens_material ESRF_description="Material used to make the lens" NAPItype="NX_CHAR">${InstrumentXraylens04_lens_material}</lens_material>
+        </group>
+        <group NX_class="NXxraylens" groupName="xraylens05">
+            <lens_geometry ESRF_description="Geometry of the lens. Any of these values:paraboloid,spherical,elliptical,hyperbolical" NAPItype="NX_CHAR">${InstrumentXraylens05_lens_geometry}</lens_geometry>
+            <focus_type ESRF_description="The type of focus of the lens. Any of these values:line,point" NAPItype="NX_CHAR">${InstrumentXraylens05_focus_type}</focus_type>
+            <lens_thickness ESRF_description="Thickness of the lens" NAPItype="NX_CHAR">${InstrumentXraylens05_lens_thickness}</lens_thickness>
+            <lens_length ESRF_description="Length of the lens" NAPItype="NX_CHAR">${InstrumentXraylens05_lens_length}</lens_length>
+            <curvature ESRF_description="Radius of the curvature as measured in the middle of the lens" NAPItype="NX_CHAR">${InstrumentXraylens05_curvature}</curvature>
+            <aperture ESRF_description="Diameter of the lens" NAPItype="NX_CHAR">${InstrumentXraylens05_aperture}</aperture>
+            <number_of_lenses ESRF_description="Number of lenses that make up the compound lens" NAPItype="NX_CHAR">${InstrumentXraylens05_number_of_lenses}</number_of_lenses>
+            <lens_material ESRF_description="Material used to make the lens" NAPItype="NX_CHAR">${InstrumentXraylens05_lens_material}</lens_material>
+        </group>
+        <group NX_class="NXxraylens" groupName="xraylens06">
+            <lens_geometry ESRF_description="Geometry of the lens. Any of these values:paraboloid,spherical,elliptical,hyperbolical" NAPItype="NX_CHAR">${InstrumentXraylens06_lens_geometry}</lens_geometry>
+            <focus_type ESRF_description="The type of focus of the lens. Any of these values:line,point" NAPItype="NX_CHAR">${InstrumentXraylens06_focus_type}</focus_type>
+            <lens_thickness ESRF_description="Thickness of the lens" NAPItype="NX_CHAR">${InstrumentXraylens06_lens_thickness}</lens_thickness>
+            <lens_length ESRF_description="Length of the lens" NAPItype="NX_CHAR">${InstrumentXraylens06_lens_length}</lens_length>
+            <curvature ESRF_description="Radius of the curvature as measured in the middle of the lens" NAPItype="NX_CHAR">${InstrumentXraylens06_curvature}</curvature>
+            <aperture ESRF_description="Diameter of the lens" NAPItype="NX_CHAR">${InstrumentXraylens06_aperture}</aperture>
+            <number_of_lenses ESRF_description="Number of lenses that make up the compound lens" NAPItype="NX_CHAR">${InstrumentXraylens06_number_of_lenses}</number_of_lenses>
+            <lens_material ESRF_description="Material used to make the lens" NAPItype="NX_CHAR">${InstrumentXraylens06_lens_material}</lens_material>
+        </group>
+        <group NX_class="NXxraylens" groupName="xraylens07">
+            <lens_geometry ESRF_description="Geometry of the lens. Any of these values:paraboloid,spherical,elliptical,hyperbolical" NAPItype="NX_CHAR">${InstrumentXraylens07_lens_geometry}</lens_geometry>
+            <focus_type ESRF_description="The type of focus of the lens. Any of these values:line,point" NAPItype="NX_CHAR">${InstrumentXraylens07_focus_type}</focus_type>
+            <lens_thickness ESRF_description="Thickness of the lens" NAPItype="NX_CHAR">${InstrumentXraylens07_lens_thickness}</lens_thickness>
+            <lens_length ESRF_description="Length of the lens" NAPItype="NX_CHAR">${InstrumentXraylens07_lens_length}</lens_length>
+            <curvature ESRF_description="Radius of the curvature as measured in the middle of the lens" NAPItype="NX_CHAR">${InstrumentXraylens07_curvature}</curvature>
+            <aperture ESRF_description="Diameter of the lens" NAPItype="NX_CHAR">${InstrumentXraylens07_aperture}</aperture>
+            <number_of_lenses ESRF_description="Number of lenses that make up the compound lens" NAPItype="NX_CHAR">${InstrumentXraylens07_number_of_lenses}</number_of_lenses>
+            <lens_material ESRF_description="Material used to make the lens" NAPItype="NX_CHAR">${InstrumentXraylens07_lens_material}</lens_material>
+        </group>
+        <group NX_class="NXxraylens" groupName="xraylens08">
+            <lens_geometry ESRF_description="Geometry of the lens. Any of these values:paraboloid,spherical,elliptical,hyperbolical" NAPItype="NX_CHAR">${InstrumentXraylens08_lens_geometry}</lens_geometry>
+            <focus_type ESRF_description="The type of focus of the lens. Any of these values:line,point" NAPItype="NX_CHAR">${InstrumentXraylens08_focus_type}</focus_type>
+            <lens_thickness ESRF_description="Thickness of the lens" NAPItype="NX_CHAR">${InstrumentXraylens08_lens_thickness}</lens_thickness>
+            <lens_length ESRF_description="Length of the lens" NAPItype="NX_CHAR">${InstrumentXraylens08_lens_length}</lens_length>
+            <curvature ESRF_description="Radius of the curvature as measured in the middle of the lens" NAPItype="NX_CHAR">${InstrumentXraylens08_curvature}</curvature>
+            <aperture ESRF_description="Diameter of the lens" NAPItype="NX_CHAR">${InstrumentXraylens08_aperture}</aperture>
+            <number_of_lenses ESRF_description="Number of lenses that make up the compound lens" NAPItype="NX_CHAR">${InstrumentXraylens08_number_of_lenses}</number_of_lenses>
+            <lens_material ESRF_description="Material used to make the lens" NAPItype="NX_CHAR">${InstrumentXraylens08_lens_material}</lens_material>
+        </group>
+        <group NX_class="NXxraylens" groupName="xraylens09">
+            <lens_geometry ESRF_description="Geometry of the lens. Any of these values:paraboloid,spherical,elliptical,hyperbolical" NAPItype="NX_CHAR">${InstrumentXraylens09_lens_geometry}</lens_geometry>
+            <focus_type ESRF_description="The type of focus of the lens. Any of these values:line,point" NAPItype="NX_CHAR">${InstrumentXraylens09_focus_type}</focus_type>
+            <lens_thickness ESRF_description="Thickness of the lens" NAPItype="NX_CHAR">${InstrumentXraylens09_lens_thickness}</lens_thickness>
+            <lens_length ESRF_description="Length of the lens" NAPItype="NX_CHAR">${InstrumentXraylens09_lens_length}</lens_length>
+            <curvature ESRF_description="Radius of the curvature as measured in the middle of the lens" NAPItype="NX_CHAR">${InstrumentXraylens09_curvature}</curvature>
+            <aperture ESRF_description="Diameter of the lens" NAPItype="NX_CHAR">${InstrumentXraylens09_aperture}</aperture>
+            <number_of_lenses ESRF_description="Number of lenses that make up the compound lens" NAPItype="NX_CHAR">${InstrumentXraylens09_number_of_lenses}</number_of_lenses>
+            <lens_material ESRF_description="Material used to make the lens" NAPItype="NX_CHAR">${InstrumentXraylens09_lens_material}</lens_material>
+        </group>
+        <group NX_class="NXxraylens" groupName="xraylens10">
+            <lens_geometry ESRF_description="Geometry of the lens. Any of these values:paraboloid,spherical,elliptical,hyperbolical" NAPItype="NX_CHAR">${InstrumentXraylens10_lens_geometry}</lens_geometry>
+            <focus_type ESRF_description="The type of focus of the lens. Any of these values:line,point" NAPItype="NX_CHAR">${InstrumentXraylens10_focus_type}</focus_type>
+            <lens_thickness ESRF_description="Thickness of the lens" NAPItype="NX_CHAR">${InstrumentXraylens10_lens_thickness}</lens_thickness>
+            <lens_length ESRF_description="Length of the lens" NAPItype="NX_CHAR">${InstrumentXraylens10_lens_length}</lens_length>
+            <curvature ESRF_description="Radius of the curvature as measured in the middle of the lens" NAPItype="NX_CHAR">${InstrumentXraylens10_curvature}</curvature>
+            <aperture ESRF_description="Diameter of the lens" NAPItype="NX_CHAR">${InstrumentXraylens10_aperture}</aperture>
+            <number_of_lenses ESRF_description="Number of lenses that make up the compound lens" NAPItype="NX_CHAR">${InstrumentXraylens10_number_of_lenses}</number_of_lenses>
+            <lens_material ESRF_description="Material used to make the lens" NAPItype="NX_CHAR">${InstrumentXraylens10_lens_material}</lens_material>
+        </group>
+        <group NX_class="NXattenuator" groupName="attenuator01">
+            <description NAPItype="NX_CHAR">${InstrumentAttenuator01_description}</description>
+            <type NAPItype="NX_CHAR">${InstrumentAttenuator01_type}</type>
+            <thickness NAPItype="NX_CHAR">${InstrumentAttenuator01_thickness}</thickness>
+            <status NAPItype="NX_CHAR">${InstrumentAttenuator01_status}</status>
+            <distance NAPItype="NX_CHAR">${InstrumentAttenuator01_distance}</distance>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentAttenuator01Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentAttenuator01Positioners_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXattenuator" groupName="attenuator02">
+            <type NAPItype="NX_CHAR">${InstrumentAttenuator02_type}</type>
+            <thickness NAPItype="NX_CHAR">${InstrumentAttenuator02_thickness}</thickness>
+            <status NAPItype="NX_CHAR">${InstrumentAttenuator02_status}</status>
+            <distance NAPItype="NX_CHAR">${InstrumentAttenuator02_distance}</distance>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentAttenuator02Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentAttenuator02Positioners_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXattenuator" groupName="attenuator03">
+            <type NAPItype="NX_CHAR">${InstrumentAttenuator03_type}</type>
+            <thickness NAPItype="NX_CHAR">${InstrumentAttenuator03_thickness}</thickness>
+            <status NAPItype="NX_CHAR">${InstrumentAttenuator03_status}</status>
+            <distance NAPItype="NX_CHAR">${InstrumentAttenuator03_distance}</distance>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentAttenuator03Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentAttenuator03Positioners_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXattenuator" groupName="attenuator04">
+            <type NAPItype="NX_CHAR">${InstrumentAttenuator04_type}</type>
+            <thickness NAPItype="NX_CHAR">${InstrumentAttenuator04_thickness}</thickness>
+            <status NAPItype="NX_CHAR">${InstrumentAttenuator04_status}</status>
+            <distance NAPItype="NX_CHAR">${InstrumentAttenuator04_distance}</distance>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentAttenuator04Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentAttenuator04Positioners_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXattenuator" groupName="attenuator05">
+            <type NAPItype="NX_CHAR">${InstrumentAttenuator05_type}</type>
+            <thickness NAPItype="NX_CHAR">${InstrumentAttenuator05_thickness}</thickness>
+            <status NAPItype="NX_CHAR">${InstrumentAttenuator05_status}</status>
+            <distance NAPItype="NX_CHAR">${InstrumentAttenuator05_distance}</distance>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentAttenuator05Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentAttenuator05Positioners_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXattenuator" groupName="attenuator06">
+            <type NAPItype="NX_CHAR">${InstrumentAttenuator06_type}</type>
+            <thickness NAPItype="NX_CHAR">${InstrumentAttenuator06_thickness}</thickness>
+            <status NAPItype="NX_CHAR">${InstrumentAttenuator06_status}</status>
+            <distance NAPItype="NX_CHAR">${InstrumentAttenuator06_distance}</distance>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentAttenuator06Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentAttenuator06Positioners_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXattenuator" groupName="attenuator07">
+            <type NAPItype="NX_CHAR">${InstrumentAttenuator07_type}</type>
+            <thickness NAPItype="NX_CHAR">${InstrumentAttenuator07_thickness}</thickness>
+            <status NAPItype="NX_CHAR">${InstrumentAttenuator07_status}</status>
+            <distance NAPItype="NX_CHAR">${InstrumentAttenuator07_distance}</distance>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentAttenuator07Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentAttenuator07Positioners_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXattenuator" groupName="attenuator08">
+            <type NAPItype="NX_CHAR">${InstrumentAttenuator08_type}</type>
+            <thickness NAPItype="NX_CHAR">${InstrumentAttenuator08_thickness}</thickness>
+            <status NAPItype="NX_CHAR">${InstrumentAttenuator08_status}</status>
+            <distance NAPItype="NX_CHAR">${InstrumentAttenuator08_distance}</distance>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentAttenuator08Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentAttenuator08Positioners_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXattenuator" groupName="attenuator09">
+            <type NAPItype="NX_CHAR">${InstrumentAttenuator09_type}</type>
+            <thickness NAPItype="NX_CHAR">${InstrumentAttenuator09_thickness}</thickness>
+            <status NAPItype="NX_CHAR">${InstrumentAttenuator09_status}</status>
+            <distance NAPItype="NX_CHAR">${InstrumentAttenuator09_distance}</distance>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentAttenuator09Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentAttenuator09Positioners_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXattenuator" groupName="attenuator10">
+            <type NAPItype="NX_CHAR">${InstrumentAttenuator10_type}</type>
+            <thickness NAPItype="NX_CHAR">${InstrumentAttenuator10_thickness}</thickness>
+            <status NAPItype="NX_CHAR">${InstrumentAttenuator10_status}</status>
+            <distance NAPItype="NX_CHAR">${InstrumentAttenuator10_distance}</distance>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentAttenuator10Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentAttenuator10Positioners_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXattenuator" groupName="attenuator11">
+            <type NAPItype="NX_CHAR">${InstrumentAttenuator11_type}</type>
+            <thickness NAPItype="NX_CHAR">${InstrumentAttenuator11_thickness}</thickness>
+            <status NAPItype="NX_CHAR">${InstrumentAttenuator11_status}</status>
+            <distance NAPItype="NX_CHAR">${InstrumentAttenuator11_distance}</distance>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentAttenuator11Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentAttenuator11Positioners_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXattenuator" groupName="attenuator12">
+            <type NAPItype="NX_CHAR">${InstrumentAttenuator12_type}</type>
+            <thickness NAPItype="NX_CHAR">${InstrumentAttenuator12_thickness}</thickness>
+            <status NAPItype="NX_CHAR">${InstrumentAttenuator12_status}</status>
+            <distance NAPItype="NX_CHAR">${InstrumentAttenuator12_distance}</distance>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentAttenuator12Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentAttenuator12Positioners_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXattenuator" groupName="attenuator13">
+            <type NAPItype="NX_CHAR">${InstrumentAttenuator13_type}</type>
+            <thickness NAPItype="NX_CHAR">${InstrumentAttenuator13_thickness}</thickness>
+            <status NAPItype="NX_CHAR">${InstrumentAttenuator13_status}</status>
+            <distance NAPItype="NX_CHAR">${InstrumentAttenuator13_distance}</distance>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentAttenuator13Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentAttenuator13Positioners_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXattenuator" groupName="attenuator14">
+            <type NAPItype="NX_CHAR">${InstrumentAttenuator14_type}</type>
+            <thickness NAPItype="NX_CHAR">${InstrumentAttenuator14_thickness}</thickness>
+            <status NAPItype="NX_CHAR">${InstrumentAttenuator14_status}</status>
+            <distance NAPItype="NX_CHAR">${InstrumentAttenuator14_distance}</distance>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentAttenuator14Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentAttenuator14Positioners_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXattenuator" groupName="attenuator15">
+            <type NAPItype="NX_CHAR">${InstrumentAttenuator15_type}</type>
+            <thickness NAPItype="NX_CHAR">${InstrumentAttenuator15_thickness}</thickness>
+            <status NAPItype="NX_CHAR">${InstrumentAttenuator15_status}</status>
+            <distance NAPItype="NX_CHAR">${InstrumentAttenuator15_distance}</distance>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentAttenuator15Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentAttenuator15Positioners_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXinsertion_device" groupName="insertion_device">
+            <group NX_class="NXpositioner" groupName="gap">
+                <name NAPItype="NX_CHAR">${InstrumentInsertionDevice_gap_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentInsertionDevice_gap_value}</value>
+            </group>
+            <group NX_class="NXpositioner" groupName="taper">
+                <name NAPItype="NX_CHAR">${InstrumentInsertionDevice_taper_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentInsertionDevice_taper_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXCollection" groupName="optics">
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentOpticsPositioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentOpticsPositioners_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXEnvironment" groupName="environment">
+            <group NX_class="NXsensor" groupName="sensors" ESRF_description="Parameters for controlling external conditions">
+                <name NAPItype="NX_CHAR">${InstrumentEnvironmentSensors_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentEnvironmentSensors_value}</value>
+            </group>
+        </group>
+        <group NX_class="NXdetector" groupName="detector01">
+            <name ESRF_description="Name of the detector" NAPItype="NX_CHAR">${InstrumentDetector01_name}</name>
+            <type ESRF_description="Description of type such as He3 gas cylinder, He3 PSD, scintillator, fission chamber, proportion counter, ion chamber, ccd, pixel, image plate, CMOS, …" NAPItype="NX_CHAR">${InstrumentDetector01_type}</type>
+            <manufacturer ESRF_description="Name of the manufacturer of the detector. Example: Dectris" NAPItype="NX_CHAR">${InstrumentDetector01_manufacturer}</manufacturer>
+            <model ESRF_description="Model of the detector. Example: Pilatus3_6M" NAPItype="NX_CHAR">${InstrumentDetector01_model}</model>
+            <preset_time NAPItype="NX_FLOAT" ESRF_description="Desired measuring time">${InstrumentDetector01_preset_time}</preset_time>
+            <live_time NAPItype="NX_FLOAT" ESRF_description="Time the detector has been actually measuring (elapsed_time - dead_time)">${InstrumentDetector01_elapsed_live_time}</live_time>
+            <elapsed_time NAPItype="NX_FLOAT" ESRF_description="Time elapsed between start and stop of the measurement">${InstrumentDetector01_elapsed_real_time}</elapsed_time>
+            <calibration NAPItype="NX_CHAR" ESRF_description="For MCA detectors, coefficients a, b, c to compute a scale based on channel number as a + b * x + c * x * x ">${InstrumentDetector01_calibration}</calibration>
+            <description ESRF_description="name/manufacturer/model/etc. information" NAPItype="NX_CHAR">${InstrumentDetector01_description}</description>
+            <local_name ESRF_description="Local name for the detector" NAPItype="NX_CHAR">${InstrumentDetector01_local_name}</local_name>
+            <x_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector01_x_pixel_size}</x_pixel_size>
+            <y_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector01_y_pixel_size}</y_pixel_size>
+            <calibration_date NAPItype="NX_CHAR">${InstrumentDetector01_calibration_date}</calibration_date>
+            <layout ESRF_description="How the detector is represented. Any of these values: point | linear | area" NAPItype="NX_CHAR">${InstrumentDetector01_layout}</layout>
+            <beam_center_x ESRF_description="This is the x position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector01_beam_center_x}</beam_center_x>
+            <beam_center_y ESRF_description="This is the y position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector01_beam_center_y}</beam_center_y>
+            <flatfield_applied ESRF_description="True when the flat field correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector01_flat_field_applied}</flatfield_applied>
+            <pixel_mask ESRF_description="The 32-bit pixel mask for the detector" NAPItype="NX_CHAR">${InstrumentDetector01_pixel_mask}</pixel_mask>
+            <pixel_mask_applied ESRF_description="True when the pixel mask correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector01_pixel_mask_applied}</pixel_mask_applied>
+            <countrate_correction_applied ESRF_description="Counting detectors usually are not able to measure all incoming particles, especially at higher count-rates. Count-rate correction is applied to account for these errors." NAPItype="NX_CHAR">${InstrumentDetector01_countrate_correction_applied}</countrate_correction_applied>
+            <saturation_value ESRF_description="The value at which the detector goes into saturation. Especially common to CCD detectors, the data is known to be invalid above this value." NAPItype="NX_CHAR">${InstrumentDetector01_saturation_value}</saturation_value>
+            <threshold_energy ESRF_description="Single photon counter detectors can be adjusted for a certain energy range in which they work optimally. This is the energy setting for this." NAPItype="NX_CHAR">${InstrumentDetector01_threshold_energy}</threshold_energy>
+            <sensor_thickness ESRF_desription="" NAPItype="NX_CHAR">${InstrumentDetector01_sensor_thickness}</sensor_thickness>
+            <sensor_material ESRF_description="At times, radiation is not directly sensed by the detector. Rather, the detector might sense the output from some converter like a scintillator. This is the name of this converter material." NAPItype="NX_CHAR">${InstrumentDetector01_sensor_material}</sensor_material>
+            <bit_depth_readout ESRF_description="How many bits the electronics reads per pixel. With CCD’s and single photon counting detectors, this must not align with traditional integer sizes. This can be 4, 8, 12, 14, 16, " NAPItype="NX_CHAR">${InstrumentDetector01_bit_depth_readout}</bit_depth_readout>
+            <distance ESRF_description="This is the distance to the previous component in the instrument; most often the sample. The usage depends on the nature of the detector: Most often it is the distance of the detector assembly. But there are irregular detectors. In this case the distance must be specified for each detector pixel." NAPItype="NX_CHAR">${InstrumentDetector01_distance}</distance>
+            <frame_time ESRF_description="This is time for each frame. This is exposure_time + readout time." NAPItype="NX_CHAR">${InstrumentDetector01_frame_time}</frame_time>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentDetector01Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentDetector01Positioners_value}</value>
+            </group>
+            <group NX_class="NXcollection" groupName="rois" ESRF_description="Names and parameters describing the ROIs applied">
+                <name NAPItype="NX_CHAR">${InstrumentDetector01Rois_name}</name>
+                <value NAPItype="NX_CHAR" ESRF_description="Parameters defining the ROI. Format: R1P1,R1P2 R2P1,R2P2 ... RnP1,RnP2">${InstrumentDetector01Rois_value}</value>
+            </group>
+            <acquisition_mode ESRF_description="The acquisition mode of the detector. Any of these values: gated,triggered,summed,event,histogrammed,decimated" NAPItype="NX_CHAR">${InstrumentDetector01_acquisition_mode}</acquisition_mode>
+        </group>
+        <group NX_class="NXdetector" groupName="detector02">
+            <name ESRF_description="Name of the detector" NAPItype="NX_CHAR">${InstrumentDetector02_name}</name>
+            <type ESRF_description="Description of type such as He3 gas cylinder, He3 PSD, scintillator, fission chamber, proportion counter, ion chamber, ccd, pixel, image plate, CMOS, …" NAPItype="NX_CHAR">${InstrumentDetector02_type}</type>
+            <manufacturer ESRF_description="Name of the manufacturer of the detector. Example: Dectris" NAPItype="NX_CHAR">${InstrumentDetector02_manufacturer}</manufacturer>
+            <model ESRF_description="Model of the detector. Example: Pilatus3_6M" NAPItype="NX_CHAR">${InstrumentDetector02_model}</model>
+            <preset_time NAPItype="NX_FLOAT" ESRF_description="Desired measuring time">${InstrumentDetector02_preset_time}</preset_time>
+            <live_time NAPItype="NX_FLOAT" ESRF_description="Time the detector has been actually measuring (elapsed_time - dead_time)">${InstrumentDetector02_elapsed_live_time}</live_time>
+            <elapsed_time NAPItype="NX_FLOAT" ESRF_description="Time elapsed between start and stop of the measurement">${InstrumentDetector02_elapsed_real_time}</elapsed_time>
+            <calibration NAPItype="NX_CHAR" ESRF_description="For MCA detectors, coefficients a, b, c to compute a scale based on channel number as a + b * x + c * x * x ">${InstrumentDetector02_calibration}</calibration>
+            <description ESRF_description="name/manufacturer/model/etc. information" NAPItype="NX_CHAR">${InstrumentDetector02_description}</description>
+            <local_name ESRF_description="Local name for the detector" NAPItype="NX_CHAR">${InstrumentDetector02_local_name}</local_name>
+            <x_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector02_x_pixel_size}</x_pixel_size>
+            <y_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector02_y_pixel_size}</y_pixel_size>
+            <calibration_date NAPItype="NX_CHAR">${InstrumentDetector02_calibration_date}</calibration_date>
+            <layout ESRF_description="How the detector is represented. Any of these values: point | linear | area" NAPItype="NX_CHAR">${InstrumentDetector02_layout}</layout>
+            <beam_center_x ESRF_description="This is the x position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector02_beam_center_x}</beam_center_x>
+            <beam_center_y ESRF_description="This is the y position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector02_beam_center_y}</beam_center_y>
+            <flatfield_applied ESRF_description="True when the flat field correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector02_flat_field_applied}</flatfield_applied>
+            <pixel_mask ESRF_description="The 32-bit pixel mask for the detector" NAPItype="NX_CHAR">${InstrumentDetector02_pixel_mask}</pixel_mask>
+            <pixel_mask_applied ESRF_description="True when the pixel mask correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector02_pixel_mask_applied}</pixel_mask_applied>
+            <countrate_correction_applied ESRF_description="Counting detectors usually are not able to measure all incoming particles, especially at higher count-rates. Count-rate correction is applied to account for these errors." NAPItype="NX_CHAR">${InstrumentDetector02_countrate_correction_applied}</countrate_correction_applied>
+            <saturation_value ESRF_description="The value at which the detector goes into saturation. Especially common to CCD detectors, the data is known to be invalid above this value." NAPItype="NX_CHAR">${InstrumentDetector02_saturation_value}</saturation_value>
+            <threshold_energy ESRF_description="Single photon counter detectors can be adjusted for a certain energy range in which they work optimally. This is the energy setting for this." NAPItype="NX_CHAR">${InstrumentDetector02_threshold_energy}</threshold_energy>
+            <sensor_thickness ESRF_desription="" NAPItype="NX_CHAR">${InstrumentDetector02_sensor_thickness}</sensor_thickness>
+            <sensor_material ESRF_description="At times, radiation is not directly sensed by the detector. Rather, the detector might sense the output from some converter like a scintillator. This is the name of this converter material." NAPItype="NX_CHAR">${InstrumentDetector02_sensor_material}</sensor_material>
+            <bit_depth_readout ESRF_description="How many bits the electronics reads per pixel. With CCD’s and single photon counting detectors, this must not align with traditional integer sizes. This can be 4, 8, 12, 14, 16, " NAPItype="NX_CHAR">${InstrumentDetector02_bit_depth_readout}</bit_depth_readout>
+            <distance ESRF_description="This is the distance to the previous component in the instrument; most often the sample. The usage depends on the nature of the detector: Most often it is the distance of the detector assembly. But there are irregular detectors. In this case the distance must be specified for each detector pixel." NAPItype="NX_CHAR">${InstrumentDetector02_distance}</distance>
+            <frame_time ESRF_description="This is time for each frame. This is exposure_time + readout time." NAPItype="NX_CHAR">${InstrumentDetector02_frame_time}</frame_time>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentDetector02Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentDetector02Positioners_value}</value>
+            </group>
+            <group NX_class="NXcollection" groupName="rois" ESRF_description="Names and parameters describing the ROIs applied">
+                <name NAPItype="NX_CHAR">${InstrumentDetector02Rois_name}</name>
+                <value NAPItype="NX_CHAR" ESRF_description="Parameters defining the ROI. Format: R1P1,R1P2 R2P1,R2P2 ... RnP1,RnP2">${InstrumentDetector02Rois_value}</value>
+            </group>
+            <acquisition_mode ESRF_description="The acquisition mode of the detector. Any of these values: gated,triggered,summed,event,histogrammed,decimated" NAPItype="NX_CHAR">${InstrumentDetector02_acquisition_mode}</acquisition_mode>
+        </group>
+        <group NX_class="NXdetector" groupName="detector03">
+            <name ESRF_description="Name of the detector" NAPItype="NX_CHAR">${InstrumentDetector03_name}</name>
+            <type ESRF_description="Description of type such as He3 gas cylinder, He3 PSD, scintillator, fission chamber, proportion counter, ion chamber, ccd, pixel, image plate, CMOS, …" NAPItype="NX_CHAR">${InstrumentDetector03_type}</type>
+            <manufacturer ESRF_description="Name of the manufacturer of the detector. Example: Dectris" NAPItype="NX_CHAR">${InstrumentDetector03_manufacturer}</manufacturer>
+            <model ESRF_description="Model of the detector. Example: Pilatus3_6M" NAPItype="NX_CHAR">${InstrumentDetector03_model}</model>
+            <preset_time NAPItype="NX_FLOAT" ESRF_description="Desired measuring time">${InstrumentDetector03_preset_time}</preset_time>
+            <live_time NAPItype="NX_FLOAT" ESRF_description="Time the detector has been actually measuring (elapsed_time - dead_time)">${InstrumentDetector03_elapsed_live_time}</live_time>
+            <elapsed_time NAPItype="NX_FLOAT" ESRF_description="Time elapsed between start and stop of the measurement">${InstrumentDetector03_elapsed_real_time}</elapsed_time>
+            <calibration NAPItype="NX_CHAR" ESRF_description="For MCA detectors, coefficients a, b, c to compute a scale based on channel number as a + b * x + c * x * x ">${InstrumentDetector03_calibration}</calibration>
+            <description ESRF_description="name/manufacturer/model/etc. information" NAPItype="NX_CHAR">${InstrumentDetector03_description}</description>
+            <local_name ESRF_description="Local name for the detector" NAPItype="NX_CHAR">${InstrumentDetector03_local_name}</local_name>
+            <x_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector03_x_pixel_size}</x_pixel_size>
+            <y_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector03_y_pixel_size}</y_pixel_size>
+            <calibration_date NAPItype="NX_CHAR">${InstrumentDetector03_calibration_date}</calibration_date>
+            <layout ESRF_description="How the detector is represented. Any of these values: point | linear | area" NAPItype="NX_CHAR">${InstrumentDetector03_layout}</layout>
+            <beam_center_x ESRF_description="This is the x position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector03_beam_center_x}</beam_center_x>
+            <beam_center_y ESRF_description="This is the y position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector03_beam_center_y}</beam_center_y>
+            <flatfield_applied ESRF_description="True when the flat field correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector03_flat_field_applied}</flatfield_applied>
+            <pixel_mask ESRF_description="The 32-bit pixel mask for the detector" NAPItype="NX_CHAR">${InstrumentDetector03_pixel_mask}</pixel_mask>
+            <pixel_mask_applied ESRF_description="True when the pixel mask correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector03_pixel_mask_applied}</pixel_mask_applied>
+            <countrate_correction_applied ESRF_description="Counting detectors usually are not able to measure all incoming particles, especially at higher count-rates. Count-rate correction is applied to account for these errors." NAPItype="NX_CHAR">${InstrumentDetector03_countrate_correction_applied}</countrate_correction_applied>
+            <saturation_value ESRF_description="The value at which the detector goes into saturation. Especially common to CCD detectors, the data is known to be invalid above this value." NAPItype="NX_CHAR">${InstrumentDetector03_saturation_value}</saturation_value>
+            <threshold_energy ESRF_description="Single photon counter detectors can be adjusted for a certain energy range in which they work optimally. This is the energy setting for this." NAPItype="NX_CHAR">${InstrumentDetector03_threshold_energy}</threshold_energy>
+            <sensor_thickness ESRF_desription="" NAPItype="NX_CHAR">${InstrumentDetector03_sensor_thickness}</sensor_thickness>
+            <sensor_material ESRF_description="At times, radiation is not directly sensed by the detector. Rather, the detector might sense the output from some converter like a scintillator. This is the name of this converter material." NAPItype="NX_CHAR">${InstrumentDetector03_sensor_material}</sensor_material>
+            <bit_depth_readout ESRF_description="How many bits the electronics reads per pixel. With CCD’s and single photon counting detectors, this must not align with traditional integer sizes. This can be 4, 8, 12, 14, 16, " NAPItype="NX_CHAR">${InstrumentDetector03_bit_depth_readout}</bit_depth_readout>
+            <distance ESRF_description="This is the distance to the previous component in the instrument; most often the sample. The usage depends on the nature of the detector: Most often it is the distance of the detector assembly. But there are irregular detectors. In this case the distance must be specified for each detector pixel." NAPItype="NX_CHAR">${InstrumentDetector03_distance}</distance>
+            <frame_time ESRF_description="This is time for each frame. This is exposure_time + readout time." NAPItype="NX_CHAR">${InstrumentDetector03_frame_time}</frame_time>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentDetector03Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentDetector03Positioners_value}</value>
+            </group>
+            <group NX_class="NXcollection" groupName="rois" ESRF_description="Names and parameters describing the ROIs applied">
+                <name NAPItype="NX_CHAR">${InstrumentDetector03Rois_name}</name>
+                <value NAPItype="NX_CHAR" ESRF_description="Parameters defining the ROI. Format: R1P1,R1P2 R2P1,R2P2 ... RnP1,RnP2">${InstrumentDetector03Rois_value}</value>
+            </group>
+            <acquisition_mode ESRF_description="The acquisition mode of the detector. Any of these values: gated,triggered,summed,event,histogrammed,decimated" NAPItype="NX_CHAR">${InstrumentDetector03_acquisition_mode}</acquisition_mode>
+        </group>
+        <group NX_class="NXdetector" groupName="detector04">
+            <name ESRF_description="Name of the detector" NAPItype="NX_CHAR">${InstrumentDetector04_name}</name>
+            <type ESRF_description="Description of type such as He3 gas cylinder, He3 PSD, scintillator, fission chamber, proportion counter, ion chamber, ccd, pixel, image plate, CMOS, …" NAPItype="NX_CHAR">${InstrumentDetector04_type}</type>
+            <manufacturer ESRF_description="Name of the manufacturer of the detector. Example: Dectris" NAPItype="NX_CHAR">${InstrumentDetector04_manufacturer}</manufacturer>
+            <model ESRF_description="Model of the detector. Example: Pilatus3_6M" NAPItype="NX_CHAR">${InstrumentDetector04_model}</model>
+            <preset_time NAPItype="NX_FLOAT" ESRF_description="Desired measuring time">${InstrumentDetector04_preset_time}</preset_time>
+            <live_time NAPItype="NX_FLOAT" ESRF_description="Time the detector has been actually measuring (elapsed_time - dead_time)">${InstrumentDetector04_elapsed_live_time}</live_time>
+            <elapsed_time NAPItype="NX_FLOAT" ESRF_description="Time elapsed between start and stop of the measurement">${InstrumentDetector04_elapsed_real_time}</elapsed_time>
+            <calibration NAPItype="NX_CHAR" ESRF_description="For MCA detectors, coefficients a, b, c to compute a scale based on channel number as a + b * x + c * x * x ">${InstrumentDetector04_calibration}</calibration>
+            <description ESRF_description="name/manufacturer/model/etc. information" NAPItype="NX_CHAR">${InstrumentDetector04_description}</description>
+            <local_name ESRF_description="Local name for the detector" NAPItype="NX_CHAR">${InstrumentDetector04_local_name}</local_name>
+            <x_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector04_x_pixel_size}</x_pixel_size>
+            <y_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector04_y_pixel_size}</y_pixel_size>
+            <calibration_date NAPItype="NX_CHAR">${InstrumentDetector04_calibration_date}</calibration_date>
+            <layout ESRF_description="How the detector is represented. Any of these values: point | linear | area" NAPItype="NX_CHAR">${InstrumentDetector04_layout}</layout>
+            <beam_center_x ESRF_description="This is the x position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector04_beam_center_x}</beam_center_x>
+            <beam_center_y ESRF_description="This is the y position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector04_beam_center_y}</beam_center_y>
+            <flatfield_applied ESRF_description="True when the flat field correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector04_flat_field_applied}</flatfield_applied>
+            <pixel_mask ESRF_description="The 32-bit pixel mask for the detector" NAPItype="NX_CHAR">${InstrumentDetector04_pixel_mask}</pixel_mask>
+            <pixel_mask_applied ESRF_description="True when the pixel mask correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector04_pixel_mask_applied}</pixel_mask_applied>
+            <countrate_correction_applied ESRF_description="Counting detectors usually are not able to measure all incoming particles, especially at higher count-rates. Count-rate correction is applied to account for these errors." NAPItype="NX_CHAR">${InstrumentDetector04_countrate_correction_applied}</countrate_correction_applied>
+            <saturation_value ESRF_description="The value at which the detector goes into saturation. Especially common to CCD detectors, the data is known to be invalid above this value." NAPItype="NX_CHAR">${InstrumentDetector04_saturation_value}</saturation_value>
+            <threshold_energy ESRF_description="Single photon counter detectors can be adjusted for a certain energy range in which they work optimally. This is the energy setting for this." NAPItype="NX_CHAR">${InstrumentDetector04_threshold_energy}</threshold_energy>
+            <sensor_thickness ESRF_desription="" NAPItype="NX_CHAR">${InstrumentDetector04_sensor_thickness}</sensor_thickness>
+            <sensor_material ESRF_description="At times, radiation is not directly sensed by the detector. Rather, the detector might sense the output from some converter like a scintillator. This is the name of this converter material." NAPItype="NX_CHAR">${InstrumentDetector04_sensor_material}</sensor_material>
+            <bit_depth_readout ESRF_description="How many bits the electronics reads per pixel. With CCD’s and single photon counting detectors, this must not align with traditional integer sizes. This can be 4, 8, 12, 14, 16, " NAPItype="NX_CHAR">${InstrumentDetector04_bit_depth_readout}</bit_depth_readout>
+            <distance ESRF_description="This is the distance to the previous component in the instrument; most often the sample. The usage depends on the nature of the detector: Most often it is the distance of the detector assembly. But there are irregular detectors. In this case the distance must be specified for each detector pixel." NAPItype="NX_CHAR">${InstrumentDetector04_distance}</distance>
+            <frame_time ESRF_description="This is time for each frame. This is exposure_time + readout time." NAPItype="NX_CHAR">${InstrumentDetector04_frame_time}</frame_time>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentDetector04Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentDetector04Positioners_value}</value>
+            </group>
+            <group NX_class="NXcollection" groupName="rois" ESRF_description="Names and parameters describing the ROIs applied">
+                <name NAPItype="NX_CHAR">${InstrumentDetector04Rois_name}</name>
+                <value NAPItype="NX_CHAR" ESRF_description="Parameters defining the ROI. Format: R1P1,R1P2 R2P1,R2P2 ... RnP1,RnP2">${InstrumentDetector04Rois_value}</value>
+            </group>
+            <acquisition_mode ESRF_description="The acquisition mode of the detector. Any of these values: gated,triggered,summed,event,histogrammed,decimated" NAPItype="NX_CHAR">${InstrumentDetector04_acquisition_mode}</acquisition_mode>
+        </group>
+        <group NX_class="NXdetector" groupName="detector05">
+            <name ESRF_description="Name of the detector" NAPItype="NX_CHAR">${InstrumentDetector05_name}</name>
+            <type ESRF_description="Description of type such as He3 gas cylinder, He3 PSD, scintillator, fission chamber, proportion counter, ion chamber, ccd, pixel, image plate, CMOS, …" NAPItype="NX_CHAR">${InstrumentDetector05_type}</type>
+            <manufacturer ESRF_description="Name of the manufacturer of the detector. Example: Dectris" NAPItype="NX_CHAR">${InstrumentDetector05_manufacturer}</manufacturer>
+            <model ESRF_description="Model of the detector. Example: Pilatus3_6M" NAPItype="NX_CHAR">${InstrumentDetector05_model}</model>
+            <preset_time NAPItype="NX_FLOAT" ESRF_description="Desired measuring time">${InstrumentDetector05_preset_time}</preset_time>
+            <live_time NAPItype="NX_FLOAT" ESRF_description="Time the detector has been actually measuring (elapsed_time - dead_time)">${InstrumentDetector05_elapsed_live_time}</live_time>
+            <elapsed_time NAPItype="NX_FLOAT" ESRF_description="Time elapsed between start and stop of the measurement">${InstrumentDetector05_elapsed_real_time}</elapsed_time>
+            <calibration NAPItype="NX_CHAR" ESRF_description="For MCA detectors, coefficients a, b, c to compute a scale based on channel number as a + b * x + c * x * x ">${InstrumentDetector05_calibration}</calibration>
+            <description ESRF_description="name/manufacturer/model/etc. information" NAPItype="NX_CHAR">${InstrumentDetector05_description}</description>
+            <local_name ESRF_description="Local name for the detector" NAPItype="NX_CHAR">${InstrumentDetector05_local_name}</local_name>
+            <x_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector05_x_pixel_size}</x_pixel_size>
+            <y_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector05_y_pixel_size}</y_pixel_size>
+            <calibration_date NAPItype="NX_CHAR">${InstrumentDetector05_calibration_date}</calibration_date>
+            <layout ESRF_description="How the detector is represented. Any of these values: point | linear | area" NAPItype="NX_CHAR">${InstrumentDetector05_layout}</layout>
+            <beam_center_x ESRF_description="This is the x position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector05_beam_center_x}</beam_center_x>
+            <beam_center_y ESRF_description="This is the y position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector05_beam_center_y}</beam_center_y>
+            <flatfield_applied ESRF_description="True when the flat field correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector05_flat_field_applied}</flatfield_applied>
+            <pixel_mask ESRF_description="The 32-bit pixel mask for the detector" NAPItype="NX_CHAR">${InstrumentDetector05_pixel_mask}</pixel_mask>
+            <pixel_mask_applied ESRF_description="True when the pixel mask correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector05_pixel_mask_applied}</pixel_mask_applied>
+            <countrate_correction_applied ESRF_description="Counting detectors usually are not able to measure all incoming particles, especially at higher count-rates. Count-rate correction is applied to account for these errors." NAPItype="NX_CHAR">${InstrumentDetector05_countrate_correction_applied}</countrate_correction_applied>
+            <saturation_value ESRF_description="The value at which the detector goes into saturation. Especially common to CCD detectors, the data is known to be invalid above this value." NAPItype="NX_CHAR">${InstrumentDetector05_saturation_value}</saturation_value>
+            <threshold_energy ESRF_description="Single photon counter detectors can be adjusted for a certain energy range in which they work optimally. This is the energy setting for this." NAPItype="NX_CHAR">${InstrumentDetector05_threshold_energy}</threshold_energy>
+            <sensor_thickness ESRF_desription="" NAPItype="NX_CHAR">${InstrumentDetector05_sensor_thickness}</sensor_thickness>
+            <sensor_material ESRF_description="At times, radiation is not directly sensed by the detector. Rather, the detector might sense the output from some converter like a scintillator. This is the name of this converter material." NAPItype="NX_CHAR">${InstrumentDetector05_sensor_material}</sensor_material>
+            <bit_depth_readout ESRF_description="How many bits the electronics reads per pixel. With CCD’s and single photon counting detectors, this must not align with traditional integer sizes. This can be 4, 8, 12, 14, 16, " NAPItype="NX_CHAR">${InstrumentDetector05_bit_depth_readout}</bit_depth_readout>
+            <distance ESRF_description="This is the distance to the previous component in the instrument; most often the sample. The usage depends on the nature of the detector: Most often it is the distance of the detector assembly. But there are irregular detectors. In this case the distance must be specified for each detector pixel." NAPItype="NX_CHAR">${InstrumentDetector05_distance}</distance>
+            <frame_time ESRF_description="This is time for each frame. This is exposure_time + readout time." NAPItype="NX_CHAR">${InstrumentDetector05_frame_time}</frame_time>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentDetector05Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentDetector05Positioners_value}</value>
+            </group>
+            <group NX_class="NXcollection" groupName="rois" ESRF_description="Names and parameters describing the ROIs applied">
+                <name NAPItype="NX_CHAR">${InstrumentDetector05Rois_name}</name>
+                <value NAPItype="NX_CHAR" ESRF_description="Parameters defining the ROI. Format: R1P1,R1P2 R2P1,R2P2 ... RnP1,RnP2">${InstrumentDetector05Rois_value}</value>
+            </group>
+            <acquisition_mode ESRF_description="The acquisition mode of the detector. Any of these values: gated,triggered,summed,event,histogrammed,decimated" NAPItype="NX_CHAR">${InstrumentDetector05_acquisition_mode}</acquisition_mode>
+        </group>
+        <group NX_class="NXdetector" groupName="detector06">
+            <name ESRF_description="Name of the detector" NAPItype="NX_CHAR">${InstrumentDetector06_name}</name>
+            <type ESRF_description="Description of type such as He3 gas cylinder, He3 PSD, scintillator, fission chamber, proportion counter, ion chamber, ccd, pixel, image plate, CMOS, …" NAPItype="NX_CHAR">${InstrumentDetector06_type}</type>
+            <manufacturer ESRF_description="Name of the manufacturer of the detector. Example: Dectris" NAPItype="NX_CHAR">${InstrumentDetector06_manufacturer}</manufacturer>
+            <model ESRF_description="Model of the detector. Example: Pilatus3_6M" NAPItype="NX_CHAR">${InstrumentDetector06_model}</model>
+            <preset_time NAPItype="NX_FLOAT" ESRF_description="Desired measuring time">${InstrumentDetector06_preset_time}</preset_time>
+            <live_time NAPItype="NX_FLOAT" ESRF_description="Time the detector has been actually measuring (elapsed_time - dead_time)">${InstrumentDetector06_elapsed_live_time}</live_time>
+            <elapsed_time NAPItype="NX_FLOAT" ESRF_description="Time elapsed between start and stop of the measurement">${InstrumentDetector06_elapsed_real_time}</elapsed_time>
+            <calibration NAPItype="NX_CHAR" ESRF_description="For MCA detectors, coefficients a, b, c to compute a scale based on channel number as a + b * x + c * x * x ">${InstrumentDetector06_calibration}</calibration>
+            <description ESRF_description="name/manufacturer/model/etc. information" NAPItype="NX_CHAR">${InstrumentDetector06_description}</description>
+            <local_name ESRF_description="Local name for the detector" NAPItype="NX_CHAR">${InstrumentDetector06_local_name}</local_name>
+            <x_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector06_x_pixel_size}</x_pixel_size>
+            <y_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector06_y_pixel_size}</y_pixel_size>
+            <calibration_date NAPItype="NX_CHAR">${InstrumentDetector06_calibration_date}</calibration_date>
+            <layout ESRF_description="How the detector is represented. Any of these values: point | linear | area" NAPItype="NX_CHAR">${InstrumentDetector06_layout}</layout>
+            <beam_center_x ESRF_description="This is the x position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector06_beam_center_x}</beam_center_x>
+            <beam_center_y ESRF_description="This is the y position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector06_beam_center_y}</beam_center_y>
+            <flatfield_applied ESRF_description="True when the flat field correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector06_flat_field_applied}</flatfield_applied>
+            <pixel_mask ESRF_description="The 32-bit pixel mask for the detector" NAPItype="NX_CHAR">${InstrumentDetector06_pixel_mask}</pixel_mask>
+            <pixel_mask_applied ESRF_description="True when the pixel mask correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector06_pixel_mask_applied}</pixel_mask_applied>
+            <countrate_correction_applied ESRF_description="Counting detectors usually are not able to measure all incoming particles, especially at higher count-rates. Count-rate correction is applied to account for these errors." NAPItype="NX_CHAR">${InstrumentDetector06_countrate_correction_applied}</countrate_correction_applied>
+            <saturation_value ESRF_description="The value at which the detector goes into saturation. Especially common to CCD detectors, the data is known to be invalid above this value." NAPItype="NX_CHAR">${InstrumentDetector06_saturation_value}</saturation_value>
+            <threshold_energy ESRF_description="Single photon counter detectors can be adjusted for a certain energy range in which they work optimally. This is the energy setting for this." NAPItype="NX_CHAR">${InstrumentDetector06_threshold_energy}</threshold_energy>
+            <sensor_thickness ESRF_desription="" NAPItype="NX_CHAR">${InstrumentDetector06_sensor_thickness}</sensor_thickness>
+            <sensor_material ESRF_description="At times, radiation is not directly sensed by the detector. Rather, the detector might sense the output from some converter like a scintillator. This is the name of this converter material." NAPItype="NX_CHAR">${InstrumentDetector06_sensor_material}</sensor_material>
+            <bit_depth_readout ESRF_description="How many bits the electronics reads per pixel. With CCD’s and single photon counting detectors, this must not align with traditional integer sizes. This can be 4, 8, 12, 14, 16, " NAPItype="NX_CHAR">${InstrumentDetector06_bit_depth_readout}</bit_depth_readout>
+            <distance ESRF_description="This is the distance to the previous component in the instrument; most often the sample. The usage depends on the nature of the detector: Most often it is the distance of the detector assembly. But there are irregular detectors. In this case the distance must be specified for each detector pixel." NAPItype="NX_CHAR">${InstrumentDetector06_distance}</distance>
+            <frame_time ESRF_description="This is time for each frame. This is exposure_time + readout time." NAPItype="NX_CHAR">${InstrumentDetector06_frame_time}</frame_time>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentDetector06Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentDetector06Positioners_value}</value>
+            </group>
+            <group NX_class="NXcollection" groupName="rois" ESRF_description="Names and parameters describing the ROIs applied">
+                <name NAPItype="NX_CHAR">${InstrumentDetector06Rois_name}</name>
+                <value NAPItype="NX_CHAR" ESRF_description="Parameters defining the ROI. Format: R1P1,R1P2 R2P1,R2P2 ... RnP1,RnP2">${InstrumentDetector06Rois_value}</value>
+            </group>
+            <acquisition_mode ESRF_description="The acquisition mode of the detector. Any of these values: gated,triggered,summed,event,histogrammed,decimated" NAPItype="NX_CHAR">${InstrumentDetector06_acquisition_mode}</acquisition_mode>
+        </group>
+        <group NX_class="NXdetector" groupName="detector07">
+            <name ESRF_description="Name of the detector" NAPItype="NX_CHAR">${InstrumentDetector07_name}</name>
+            <type ESRF_description="Description of type such as He3 gas cylinder, He3 PSD, scintillator, fission chamber, proportion counter, ion chamber, ccd, pixel, image plate, CMOS, …" NAPItype="NX_CHAR">${InstrumentDetector07_type}</type>
+            <manufacturer ESRF_description="Name of the manufacturer of the detector. Example: Dectris" NAPItype="NX_CHAR">${InstrumentDetector07_manufacturer}</manufacturer>
+            <model ESRF_description="Model of the detector. Example: Pilatus3_6M" NAPItype="NX_CHAR">${InstrumentDetector07_model}</model>
+            <preset_time NAPItype="NX_FLOAT" ESRF_description="Desired measuring time">${InstrumentDetector07_preset_time}</preset_time>
+            <live_time NAPItype="NX_FLOAT" ESRF_description="Time the detector has been actually measuring (elapsed_time - dead_time)">${InstrumentDetector07_elapsed_live_time}</live_time>
+            <elapsed_time NAPItype="NX_FLOAT" ESRF_description="Time elapsed between start and stop of the measurement">${InstrumentDetector07_elapsed_real_time}</elapsed_time>
+            <calibration NAPItype="NX_CHAR" ESRF_description="For MCA detectors, coefficients a, b, c to compute a scale based on channel number as a + b * x + c * x * x ">${InstrumentDetector07_calibration}</calibration>
+            <description ESRF_description="name/manufacturer/model/etc. information" NAPItype="NX_CHAR">${InstrumentDetector07_description}</description>
+            <local_name ESRF_description="Local name for the detector" NAPItype="NX_CHAR">${InstrumentDetector07_local_name}</local_name>
+            <x_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector07_x_pixel_size}</x_pixel_size>
+            <y_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector07_y_pixel_size}</y_pixel_size>
+            <calibration_date NAPItype="NX_CHAR">${InstrumentDetector07_calibration_date}</calibration_date>
+            <layout ESRF_description="How the detector is represented. Any of these values: point | linear | area" NAPItype="NX_CHAR">${InstrumentDetector07_layout}</layout>
+            <beam_center_x ESRF_description="This is the x position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector07_beam_center_x}</beam_center_x>
+            <beam_center_y ESRF_description="This is the y position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector07_beam_center_y}</beam_center_y>
+            <flatfield_applied ESRF_description="True when the flat field correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector07_flat_field_applied}</flatfield_applied>
+            <pixel_mask ESRF_description="The 32-bit pixel mask for the detector" NAPItype="NX_CHAR">${InstrumentDetector07_pixel_mask}</pixel_mask>
+            <pixel_mask_applied ESRF_description="True when the pixel mask correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector07_pixel_mask_applied}</pixel_mask_applied>
+            <countrate_correction_applied ESRF_description="Counting detectors usually are not able to measure all incoming particles, especially at higher count-rates. Count-rate correction is applied to account for these errors." NAPItype="NX_CHAR">${InstrumentDetector07_countrate_correction_applied}</countrate_correction_applied>
+            <saturation_value ESRF_description="The value at which the detector goes into saturation. Especially common to CCD detectors, the data is known to be invalid above this value." NAPItype="NX_CHAR">${InstrumentDetector07_saturation_value}</saturation_value>
+            <threshold_energy ESRF_description="Single photon counter detectors can be adjusted for a certain energy range in which they work optimally. This is the energy setting for this." NAPItype="NX_CHAR">${InstrumentDetector07_threshold_energy}</threshold_energy>
+            <sensor_thickness ESRF_desription="" NAPItype="NX_CHAR">${InstrumentDetector07_sensor_thickness}</sensor_thickness>
+            <sensor_material ESRF_description="At times, radiation is not directly sensed by the detector. Rather, the detector might sense the output from some converter like a scintillator. This is the name of this converter material." NAPItype="NX_CHAR">${InstrumentDetector07_sensor_material}</sensor_material>
+            <bit_depth_readout ESRF_description="How many bits the electronics reads per pixel. With CCD’s and single photon counting detectors, this must not align with traditional integer sizes. This can be 4, 8, 12, 14, 16, " NAPItype="NX_CHAR">${InstrumentDetector07_bit_depth_readout}</bit_depth_readout>
+            <distance ESRF_description="This is the distance to the previous component in the instrument; most often the sample. The usage depends on the nature of the detector: Most often it is the distance of the detector assembly. But there are irregular detectors. In this case the distance must be specified for each detector pixel." NAPItype="NX_CHAR">${InstrumentDetector07_distance}</distance>
+            <frame_time ESRF_description="This is time for each frame. This is exposure_time + readout time." NAPItype="NX_CHAR">${InstrumentDetector07_frame_time}</frame_time>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentDetector07Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentDetector07Positioners_value}</value>
+            </group>
+            <group NX_class="NXcollection" groupName="rois" ESRF_description="Names and parameters describing the ROIs applied">
+                <name NAPItype="NX_CHAR">${InstrumentDetector07Rois_name}</name>
+                <value NAPItype="NX_CHAR" ESRF_description="Parameters defining the ROI. Format: R1P1,R1P2 R2P1,R2P2 ... RnP1,RnP2">${InstrumentDetector07Rois_value}</value>
+            </group>
+            <acquisition_mode ESRF_description="The acquisition mode of the detector. Any of these values: gated,triggered,summed,event,histogrammed,decimated" NAPItype="NX_CHAR">${InstrumentDetector07_acquisition_mode}</acquisition_mode>
+        </group>
+        <group NX_class="NXdetector" groupName="detector08">
+            <name ESRF_description="Name of the detector" NAPItype="NX_CHAR">${InstrumentDetector08_name}</name>
+            <type ESRF_description="Description of type such as He3 gas cylinder, He3 PSD, scintillator, fission chamber, proportion counter, ion chamber, ccd, pixel, image plate, CMOS, …" NAPItype="NX_CHAR">${InstrumentDetector08_type}</type>
+            <manufacturer ESRF_description="Name of the manufacturer of the detector. Example: Dectris" NAPItype="NX_CHAR">${InstrumentDetector08_manufacturer}</manufacturer>
+            <model ESRF_description="Model of the detector. Example: Pilatus3_6M" NAPItype="NX_CHAR">${InstrumentDetector08_model}</model>
+            <preset_time NAPItype="NX_FLOAT" ESRF_description="Desired measuring time">${InstrumentDetector08_preset_time}</preset_time>
+            <live_time NAPItype="NX_FLOAT" ESRF_description="Time the detector has been actually measuring (elapsed_time - dead_time)">${InstrumentDetector08_elapsed_live_time}</live_time>
+            <elapsed_time NAPItype="NX_FLOAT" ESRF_description="Time elapsed between start and stop of the measurement">${InstrumentDetector08_elapsed_real_time}</elapsed_time>
+            <calibration NAPItype="NX_CHAR" ESRF_description="For MCA detectors, coefficients a, b, c to compute a scale based on channel number as a + b * x + c * x * x ">${InstrumentDetector08_calibration}</calibration>
+            <description ESRF_description="name/manufacturer/model/etc. information" NAPItype="NX_CHAR">${InstrumentDetector08_description}</description>
+            <local_name ESRF_description="Local name for the detector" NAPItype="NX_CHAR">${InstrumentDetector08_local_name}</local_name>
+            <x_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector08_x_pixel_size}</x_pixel_size>
+            <y_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector08_y_pixel_size}</y_pixel_size>
+            <calibration_date NAPItype="NX_CHAR">${InstrumentDetector08_calibration_date}</calibration_date>
+            <layout ESRF_description="How the detector is represented. Any of these values: point | linear | area" NAPItype="NX_CHAR">${InstrumentDetector08_layout}</layout>
+            <beam_center_x ESRF_description="This is the x position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector08_beam_center_x}</beam_center_x>
+            <beam_center_y ESRF_description="This is the y position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector08_beam_center_y}</beam_center_y>
+            <flatfield_applied ESRF_description="True when the flat field correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector08_flat_field_applied}</flatfield_applied>
+            <pixel_mask ESRF_description="The 32-bit pixel mask for the detector" NAPItype="NX_CHAR">${InstrumentDetector08_pixel_mask}</pixel_mask>
+            <pixel_mask_applied ESRF_description="True when the pixel mask correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector08_pixel_mask_applied}</pixel_mask_applied>
+            <countrate_correction_applied ESRF_description="Counting detectors usually are not able to measure all incoming particles, especially at higher count-rates. Count-rate correction is applied to account for these errors." NAPItype="NX_CHAR">${InstrumentDetector08_countrate_correction_applied}</countrate_correction_applied>
+            <saturation_value ESRF_description="The value at which the detector goes into saturation. Especially common to CCD detectors, the data is known to be invalid above this value." NAPItype="NX_CHAR">${InstrumentDetector08_saturation_value}</saturation_value>
+            <threshold_energy ESRF_description="Single photon counter detectors can be adjusted for a certain energy range in which they work optimally. This is the energy setting for this." NAPItype="NX_CHAR">${InstrumentDetector08_threshold_energy}</threshold_energy>
+            <sensor_thickness ESRF_desription="" NAPItype="NX_CHAR">${InstrumentDetector08_sensor_thickness}</sensor_thickness>
+            <sensor_material ESRF_description="At times, radiation is not directly sensed by the detector. Rather, the detector might sense the output from some converter like a scintillator. This is the name of this converter material." NAPItype="NX_CHAR">${InstrumentDetector08_sensor_material}</sensor_material>
+            <bit_depth_readout ESRF_description="How many bits the electronics reads per pixel. With CCD’s and single photon counting detectors, this must not align with traditional integer sizes. This can be 4, 8, 12, 14, 16, " NAPItype="NX_CHAR">${InstrumentDetector08_bit_depth_readout}</bit_depth_readout>
+            <distance ESRF_description="This is the distance to the previous component in the instrument; most often the sample. The usage depends on the nature of the detector: Most often it is the distance of the detector assembly. But there are irregular detectors. In this case the distance must be specified for each detector pixel." NAPItype="NX_CHAR">${InstrumentDetector08_distance}</distance>
+            <frame_time ESRF_description="This is time for each frame. This is exposure_time + readout time." NAPItype="NX_CHAR">${InstrumentDetector08_frame_time}</frame_time>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentDetector08Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentDetector08Positioners_value}</value>
+            </group>
+            <group NX_class="NXcollection" groupName="rois" ESRF_description="Names and parameters describing the ROIs applied">
+                <name NAPItype="NX_CHAR">${InstrumentDetector08Rois_name}</name>
+                <value NAPItype="NX_CHAR" ESRF_description="Parameters defining the ROI. Format: R1P1,R1P2 R2P1,R2P2 ... RnP1,RnP2">${InstrumentDetector08Rois_value}</value>
+            </group>
+            <acquisition_mode ESRF_description="The acquisition mode of the detector. Any of these values: gated,triggered,summed,event,histogrammed,decimated" NAPItype="NX_CHAR">${InstrumentDetector08_acquisition_mode}</acquisition_mode>
+        </group>
+        <group NX_class="NXdetector" groupName="detector09">
+            <name ESRF_description="Name of the detector" NAPItype="NX_CHAR">${InstrumentDetector09_name}</name>
+            <type ESRF_description="Description of type such as He3 gas cylinder, He3 PSD, scintillator, fission chamber, proportion counter, ion chamber, ccd, pixel, image plate, CMOS, …" NAPItype="NX_CHAR">${InstrumentDetector09_type}</type>
+            <manufacturer ESRF_description="Name of the manufacturer of the detector. Example: Dectris" NAPItype="NX_CHAR">${InstrumentDetector09_manufacturer}</manufacturer>
+            <model ESRF_description="Model of the detector. Example: Pilatus3_6M" NAPItype="NX_CHAR">${InstrumentDetector09_model}</model>
+            <preset_time NAPItype="NX_FLOAT" ESRF_description="Desired measuring time">${InstrumentDetector09_preset_time}</preset_time>
+            <live_time NAPItype="NX_FLOAT" ESRF_description="Time the detector has been actually measuring (elapsed_time - dead_time)">${InstrumentDetector09_elapsed_live_time}</live_time>
+            <elapsed_time NAPItype="NX_FLOAT" ESRF_description="Time elapsed between start and stop of the measurement">${InstrumentDetector09_elapsed_real_time}</elapsed_time>
+            <calibration NAPItype="NX_CHAR" ESRF_description="For MCA detectors, coefficients a, b, c to compute a scale based on channel number as a + b * x + c * x * x ">${InstrumentDetector09_calibration}</calibration>
+            <description ESRF_description="name/manufacturer/model/etc. information" NAPItype="NX_CHAR">${InstrumentDetector09_description}</description>
+            <local_name ESRF_description="Local name for the detector" NAPItype="NX_CHAR">${InstrumentDetector09_local_name}</local_name>
+            <x_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector09_x_pixel_size}</x_pixel_size>
+            <y_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector09_y_pixel_size}</y_pixel_size>
+            <calibration_date NAPItype="NX_CHAR">${InstrumentDetector09_calibration_date}</calibration_date>
+            <layout ESRF_description="How the detector is represented. Any of these values: point | linear | area" NAPItype="NX_CHAR">${InstrumentDetector09_layout}</layout>
+            <beam_center_x ESRF_description="This is the x position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector09_beam_center_x}</beam_center_x>
+            <beam_center_y ESRF_description="This is the y position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector09_beam_center_y}</beam_center_y>
+            <flatfield_applied ESRF_description="True when the flat field correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector09_flat_field_applied}</flatfield_applied>
+            <pixel_mask ESRF_description="The 32-bit pixel mask for the detector" NAPItype="NX_CHAR">${InstrumentDetector09_pixel_mask}</pixel_mask>
+            <pixel_mask_applied ESRF_description="True when the pixel mask correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector09_pixel_mask_applied}</pixel_mask_applied>
+            <countrate_correction_applied ESRF_description="Counting detectors usually are not able to measure all incoming particles, especially at higher count-rates. Count-rate correction is applied to account for these errors." NAPItype="NX_CHAR">${InstrumentDetector09_countrate_correction_applied}</countrate_correction_applied>
+            <saturation_value ESRF_description="The value at which the detector goes into saturation. Especially common to CCD detectors, the data is known to be invalid above this value." NAPItype="NX_CHAR">${InstrumentDetector09_saturation_value}</saturation_value>
+            <threshold_energy ESRF_description="Single photon counter detectors can be adjusted for a certain energy range in which they work optimally. This is the energy setting for this." NAPItype="NX_CHAR">${InstrumentDetector09_threshold_energy}</threshold_energy>
+            <sensor_thickness ESRF_desription="" NAPItype="NX_CHAR">${InstrumentDetector09_sensor_thickness}</sensor_thickness>
+            <sensor_material ESRF_description="At times, radiation is not directly sensed by the detector. Rather, the detector might sense the output from some converter like a scintillator. This is the name of this converter material." NAPItype="NX_CHAR">${InstrumentDetector09_sensor_material}</sensor_material>
+            <bit_depth_readout ESRF_description="How many bits the electronics reads per pixel. With CCD’s and single photon counting detectors, this must not align with traditional integer sizes. This can be 4, 8, 12, 14, 16, " NAPItype="NX_CHAR">${InstrumentDetector09_bit_depth_readout}</bit_depth_readout>
+            <distance ESRF_description="This is the distance to the previous component in the instrument; most often the sample. The usage depends on the nature of the detector: Most often it is the distance of the detector assembly. But there are irregular detectors. In this case the distance must be specified for each detector pixel." NAPItype="NX_CHAR">${InstrumentDetector09_distance}</distance>
+            <frame_time ESRF_description="This is time for each frame. This is exposure_time + readout time." NAPItype="NX_CHAR">${InstrumentDetector09_frame_time}</frame_time>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentDetector09Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentDetector09Positioners_value}</value>
+            </group>
+            <group NX_class="NXcollection" groupName="rois" ESRF_description="Names and parameters describing the ROIs applied">
+                <name NAPItype="NX_CHAR">${InstrumentDetector09Rois_name}</name>
+                <value NAPItype="NX_CHAR" ESRF_description="Parameters defining the ROI. Format: R1P1,R1P2 R2P1,R2P2 ... RnP1,RnP2">${InstrumentDetector09Rois_value}</value>
+            </group>
+            <acquisition_mode ESRF_description="The acquisition mode of the detector. Any of these values: gated,triggered,summed,event,histogrammed,decimated" NAPItype="NX_CHAR">${InstrumentDetector09_acquisition_mode}</acquisition_mode>
+        </group>
+        <group NX_class="NXdetector" groupName="detector10">
+            <name ESRF_description="Name of the detector" NAPItype="NX_CHAR">${InstrumentDetector10_name}</name>
+            <type ESRF_description="Description of type such as He3 gas cylinder, He3 PSD, scintillator, fission chamber, proportion counter, ion chamber, ccd, pixel, image plate, CMOS, …" NAPItype="NX_CHAR">${InstrumentDetector10_type}</type>
+            <manufacturer ESRF_description="Name of the manufacturer of the detector. Example: Dectris" NAPItype="NX_CHAR">${InstrumentDetector10_manufacturer}</manufacturer>
+            <model ESRF_description="Model of the detector. Example: Pilatus3_6M" NAPItype="NX_CHAR">${InstrumentDetector10_model}</model>
+            <preset_time NAPItype="NX_FLOAT" ESRF_description="Desired measuring time">${InstrumentDetector10_preset_time}</preset_time>
+            <live_time NAPItype="NX_FLOAT" ESRF_description="Time the detector has been actually measuring (elapsed_time - dead_time)">${InstrumentDetector10_elapsed_live_time}</live_time>
+            <elapsed_time NAPItype="NX_FLOAT" ESRF_description="Time elapsed between start and stop of the measurement">${InstrumentDetector10_elapsed_real_time}</elapsed_time>
+            <calibration NAPItype="NX_CHAR" ESRF_description="For MCA detectors, coefficients a, b, c to compute a scale based on channel number as a + b * x + c * x * x ">${InstrumentDetector10_calibration}</calibration>
+            <description ESRF_description="name/manufacturer/model/etc. information" NAPItype="NX_CHAR">${InstrumentDetector10_description}</description>
+            <local_name ESRF_description="Local name for the detector" NAPItype="NX_CHAR">${InstrumentDetector10_local_name}</local_name>
+            <x_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector10_x_pixel_size}</x_pixel_size>
+            <y_pixel_size ESRF_description="Size of each detector pixel. If it is scalar all pixels are the same size." NAPItype="NX_CHAR">${InstrumentDetector10_y_pixel_size}</y_pixel_size>
+            <calibration_date NAPItype="NX_CHAR">${InstrumentDetector10_calibration_date}</calibration_date>
+            <layout ESRF_description="How the detector is represented. Any of these values: point | linear | area" NAPItype="NX_CHAR">${InstrumentDetector10_layout}</layout>
+            <beam_center_x ESRF_description="This is the x position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector10_beam_center_x}</beam_center_x>
+            <beam_center_y ESRF_description="This is the y position where the direct beam would hit the detector. This is a length and can be outside of the actual detector. The length can be in physical units or pixels as documented by the units attribute." NAPItype="NX_CHAR">${InstrumentDetector10_beam_center_y}</beam_center_y>
+            <flatfield_applied ESRF_description="True when the flat field correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector10_flat_field_applied}</flatfield_applied>
+            <pixel_mask ESRF_description="The 32-bit pixel mask for the detector" NAPItype="NX_CHAR">${InstrumentDetector10_pixel_mask}</pixel_mask>
+            <pixel_mask_applied ESRF_description="True when the pixel mask correction has been applied in the electronics, false otherwise." NAPItype="NX_CHAR">${InstrumentDetector10_pixel_mask_applied}</pixel_mask_applied>
+            <countrate_correction_applied ESRF_description="Counting detectors usually are not able to measure all incoming particles, especially at higher count-rates. Count-rate correction is applied to account for these errors." NAPItype="NX_CHAR">${InstrumentDetector10_countrate_correction_applied}</countrate_correction_applied>
+            <saturation_value ESRF_description="The value at which the detector goes into saturation. Especially common to CCD detectors, the data is known to be invalid above this value." NAPItype="NX_CHAR">${InstrumentDetector10_saturation_value}</saturation_value>
+            <threshold_energy ESRF_description="Single photon counter detectors can be adjusted for a certain energy range in which they work optimally. This is the energy setting for this." NAPItype="NX_CHAR">${InstrumentDetector10_threshold_energy}</threshold_energy>
+            <sensor_thickness ESRF_desription="" NAPItype="NX_CHAR">${InstrumentDetector10_sensor_thickness}</sensor_thickness>
+            <sensor_material ESRF_description="At times, radiation is not directly sensed by the detector. Rather, the detector might sense the output from some converter like a scintillator. This is the name of this converter material." NAPItype="NX_CHAR">${InstrumentDetector10_sensor_material}</sensor_material>
+            <bit_depth_readout ESRF_description="How many bits the electronics reads per pixel. With CCD’s and single photon counting detectors, this must not align with traditional integer sizes. This can be 4, 8, 12, 14, 16, " NAPItype="NX_CHAR">${InstrumentDetector10_bit_depth_readout}</bit_depth_readout>
+            <distance ESRF_description="This is the distance to the previous component in the instrument; most often the sample. The usage depends on the nature of the detector: Most often it is the distance of the detector assembly. But there are irregular detectors. In this case the distance must be specified for each detector pixel." NAPItype="NX_CHAR">${InstrumentDetector10_distance}</distance>
+            <frame_time ESRF_description="This is time for each frame. This is exposure_time + readout time." NAPItype="NX_CHAR">${InstrumentDetector10_frame_time}</frame_time>
+            <group NX_class="NXpositioner" groupName="positioners">
+                <name NAPItype="NX_CHAR">${InstrumentDetector10Positioners_name}</name>
+                <value NAPItype="NX_CHAR">${InstrumentDetector10Positioners_value}</value>
+            </group>
+            <group NX_class="NXcollection" groupName="rois" ESRF_description="Names and parameters describing the ROIs applied">
+                <name NAPItype="NX_CHAR">${InstrumentDetector10Rois_name}</name>
+                <value NAPItype="NX_CHAR" ESRF_description="Parameters defining the ROI. Format: R1P1,R1P2 R2P1,R2P2 ... RnP1,RnP2">${InstrumentDetector10Rois_value}</value>
+            </group>
+            <acquisition_mode ESRF_description="The acquisition mode of the detector. Any of these values: gated,triggered,summed,event,histogrammed,decimated" NAPItype="NX_CHAR">${InstrumentDetector10_acquisition_mode}</acquisition_mode>
+        </group>
+    </group>
+    <group NX_class="NXnote" groupName="notes">
+        <note_00 NAPItype="NX_CHAR">${Notes_note_00}</note_00>
+        <note_01 NAPItype="NX_CHAR">${Notes_note_01}</note_01>
+        <note_02 NAPItype="NX_CHAR">${Notes_note_02}</note_02>
+        <note_03 NAPItype="NX_CHAR">${Notes_note_03}</note_03>
+        <note_04 NAPItype="NX_CHAR">${Notes_note_04}</note_04>
+        <note_05 NAPItype="NX_CHAR">${Notes_note_05}</note_05>
+        <note_06 NAPItype="NX_CHAR">${Notes_note_06}</note_06>
+        <note_07 NAPItype="NX_CHAR">${Notes_note_07}</note_07>
+        <note_08 NAPItype="NX_CHAR">${Notes_note_08}</note_08>
+        <note_09 NAPItype="NX_CHAR">${Notes_note_09}</note_09>
+    </group>
+    <group NX_class="NXprocess" groupName="process">
+        <program NAPItype="NX_CHAR">${Process_program}</program>
+        <sequence_index NAPItype="NX_CHAR">${Process_sequence_index}</sequence_index>
+        <version NAPItype="NX_CHAR">${Process_version}</version>
+        <note NAPItype="NX_CHAR">${Process_note}</note>
+        <triggering ESRF_description="Defines how the process has been launched. Values are MANUAL, AUTOMATIC" NAPItype="NX_CHAR">${Process_triggering}</triggering>
+    </group>
+    <group NX_class="NXprocess" groupName="workflow">
+        <name NAPItype="NX_CHAR">${Workflow_name}</name>
+        <id NAPItype="NX_CHAR">${Workflow_id}</id>
+        <type NAPItype="NX_CHAR">${Workflow_type}</type>
+        <status NAPItype="NX_CHAR">${Workflow_status}</status>
+    </group>
+    <group NX_class="NXnote" groupName="external_references">
+        <neuroglancer NAPItype="NX_CHAR">${ExternalReferences_neuroglancer}</neuroglancer>
+        <group NX_class="NXCite" groupName="publication">
+            <doi NAPItype="NX_CHAR">${ExternalReferencesPublication_doi}</doi>
+            <endnote NAPItype="NX_CHAR">${ExternalReferencesPublication_endnote}</endnote>
+        </group>
+        <group NX_class="NXCite" groupName="datacollector">
+            <endnote NAPItype="NX_CHAR">${ExternalReferencesDatacollector_endnote}</endnote>
+        </group>
+    </group>
+</group>
