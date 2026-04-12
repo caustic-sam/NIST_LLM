@@ -1,0 +1,39 @@
+# Python virtual environments
+venv_nist/
+venv/
+.venv/
+env/
+
+# Compiled Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+
+# Test / coverage artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Downloaded PDFs (large binary assets)
+pdfs/
+*.pdf
+
+# Word cloud outputs
+*.png
+*_output.txt
+
+# Database files
+*.db
+*.sqlite3
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/

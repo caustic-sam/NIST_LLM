@@ -1,67 +1,65 @@
 """
 integrated_pipeline.py
 
-This script coordinates the PDF processing workflow:
+Coordinates the PDF processing workflow:
 - Extracts metadata and text
 - Cleans and assesses text quality
 - Stores results into a SQLite database
-
-✅ Updated to assume files live in scripts/ and are run from the project root
 """
 
 import os
+import random
 import sys
 
-# Ensure this script can access sibling modules from the scripts/ folder
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Allow importing sibling modules (txt_processing, store_results) from the project root
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from scripts.txt_processing import extract_text, extract_metadata, clean_text, assess_cleanliness
-from scripts.store_results import init_db, store_result
+from store_results import init_db, store_result  # noqa: E402
+from txt_processing import (  # noqa: E402
+    assess_cleanliness,
+    clean_text,
+    extract_metadata,
+    extract_text,
+)
 
-import random
-
-# Directory containing your PDFs
-PDF_DIRECTORY = "../pdfs"
-SAMPLE_SIZE = 20  # You can change this to process more/less files
+# Directory containing PDFs — resolved relative to this file, not cwd
+PDF_DIRECTORY = os.path.join(os.path.dirname(os.path.abspath(__file__)), "pdfs")
+SAMPLE_SIZE = 20
 
 
 def process_pdfs(directory: str, sample_size: int = 10):
     """
-    Main processor: randomly selects PDFs, extracts and scores text, and stores results in DB.
+    Randomly selects PDFs from directory, extracts and scores text, stores results in DB.
 
     Args:
-        directory (str): Folder path where PDFs are stored.
-        sample_size (int): Number of random PDFs to process.
+        directory: Folder path where PDFs are stored.
+        sample_size: Number of random PDFs to process.
     """
-    all_pdfs = [f for f in os.listdir(directory) if f.endswith('.pdf')]
+    all_pdfs = [f for f in os.listdir(directory) if f.endswith(".pdf")]
     selected_pdfs = random.sample(all_pdfs, min(sample_size, len(all_pdfs)))
 
-    print(f"📂 Scanning directory: {directory}")
-    print(f"🎯 Processing {len(selected_pdfs)} files...")
+    print(f"Scanning directory: {directory}")
+    print(f"Processing {len(selected_pdfs)} files...")
 
     for pdf_file in selected_pdfs:
         pdf_path = os.path.join(directory, pdf_file)
-        print(f"🔍 Processing {pdf_path}")
+        print(f"Processing {pdf_path}")
 
         metadata = extract_metadata(pdf_path)
         text = extract_text(pdf_path)
 
         if not text:
-            print("⚠️ Skipped — no extractable text.")
+            print(f"  Skipped {pdf_file} — no extractable text.")
             continue
 
         cleaned = clean_text(text)
         score = assess_cleanliness(cleaned)
-
-        title = metadata.get('/Title', 'No title in metadata')
+        title = metadata.get("/Title", "No title in metadata")
         store_result(pdf_file, title, score)
 
-        print(f"✅ {pdf_file} → Score: {score:.2f}% stored.")
+        print(f"  {pdf_file} -> Score: {score:.2f}% stored.")
 
 
 if __name__ == "__main__":
-    # Initialize the database (will create if it doesn't exist)
     init_db()
-
-    # Process PDF files
     process_pdfs(PDF_DIRECTORY, SAMPLE_SIZE)

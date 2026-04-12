@@ -2,8 +2,7 @@ import os
 import re
 import random
 import PyPDF2
-import pandas as pd
-from store_results import init_db, store_result  # Ensure store_results.py handles DB interactions
+from store_results import init_db, store_result
 
 # ✅ Function to remove an existing file before processing
 def remove_existing_file(file_path):
@@ -50,30 +49,24 @@ def assess_cleanliness(text):
 
 # ✅ Main function to process a batch of random PDFs and store results
 def process_random_pdfs(directory, max_files=500):
-    connection = connect_db()
-    if connection is None:
-        return  # Stop if DB connection fails
+    init_db()
 
     pdf_files = [f for f in os.listdir(directory) if f.endswith('.pdf')]
-    selected_files = random.sample(pdf_files, min(max_files, len(pdf_files)))  # Process up to `max_files` PDFs
+    selected_files = random.sample(pdf_files, min(max_files, len(pdf_files)))
     results = []
 
     for pdf in selected_files:
         pdf_path = os.path.join(directory, pdf)
         print(f"Processing: {pdf_path}")
 
-        metadata = extract_metadata(pdf_path)  # Extract metadata safely
-        extracted_text = extract_text(pdf_path)  # Extract text from PDF
+        metadata = extract_metadata(pdf_path)
+        extracted_text = extract_text(pdf_path)
 
         if extracted_text:
-            cleaned_text = clean_text(extracted_text)  # Clean extracted text
-            cleanliness_score = assess_cleanliness(cleaned_text)  # Assess cleanliness
-
-            # ✅ Ensure metadata is always a dictionary to prevent `.get()` errors
+            cleaned_text = clean_text(extracted_text)
+            cleanliness_score = assess_cleanliness(cleaned_text)
             title = metadata.get('/Title', 'No title in metadata')
-
-            # ✅ Insert document into the database
-            insert_document(title, cleaned_text, connection)
+            store_result(pdf, title, cleanliness_score)
 
             results.append({
                 "File": pdf,
@@ -88,5 +81,5 @@ def process_random_pdfs(directory, max_files=500):
                 "Cleanliness Score": "N/A due to file error"
             })
 
-    connection.close()  # ✅ Ensure DB connection is closed after processing
+    return results
 
